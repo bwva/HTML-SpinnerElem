@@ -6,10 +6,10 @@ The spinner is constructed as a bordered circle with one, two, or three of its b
 
 ## Installation
 
-You can include the spinner component in your project by:
- - downloading `spinner-component.js`
- - placing it where your web scripts are located
- - invoking the script in your HTML to load it:
+To use the spinner component in your project:
+ - download `HTML-SpinnerElem` from GitHub;
+ - from /src directory, move the script `spinner-component.js` to where your web scripts are located;
+ - invoke the script in your HTML to load it:
 ```html
 <script src="./scripts/spinner-component.js"></script>
 ```

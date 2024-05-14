@@ -101,4 +101,4 @@ MAYBE TODO: more options for the background.
 When a web page/app loads this script (`spinner-component.js`), the spinner web component is constructed as an instance of the script's SpinnerElem class. The class contains and encapsulates all of the javascript, HTML, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other scripts or styling.
 
 #### Fine to combine attributes
-
+The examples above are simplified to illustrate each attribute. In practice any number or combination of attributes may be used.

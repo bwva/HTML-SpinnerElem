@@ -17,7 +17,11 @@ To use the spinner component in your project:
 ## What is it?
 The spinner is a custom web component that you can treat like any inline HTML tag to place a spinner in the layout.
 
-The SpinnerElement is constructed from a bit of HTML with some styling to create a circle with a cursor moving around on it. The cursor is just part of the circle's border, colored distinctly from the rest of the border.
+The underlying SpinnerElement is constructed from a bit of HTML with some styling, plus css transformations to rotate it.
+
+For this release, the spinner is created as a circle with a cursor moving around on it. The cursor is just part of the circle's border, colored distinctly from the rest of the border.
+
+Future spinner variants to come, from me and perhaps you!
 
 SpinnerElements are self-contained, and need no additional images, hidden HTML elements, or scripts.
 

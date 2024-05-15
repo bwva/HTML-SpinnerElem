@@ -69,7 +69,9 @@ Later...
 ```
 ### Attributes
 
-The spinner web component accepts several attributes that affect its appearance or behavior:
+The spinner web component accepts several attributes that affect its appearance or behavior.
+
+Each attribute has a full and abbreviated name; in general good programming practice calls for descriptive names; up to you - you can always refer back to this README in five years when you're trying to figure out what they mean.
 
 #### speed | sp = [ # ]
 Controls the speed of the spinner. The value represents the time in seconds for a full rotation. Default is 1.
@@ -134,11 +136,10 @@ MAYBE TODO: more options for the background.
 ### Technical Notes
 
 #### No dependencies
-When a web page/app loads this script (`spinner-component.js`), the spinner web component is constructed as an instance of the script's SpinnerElem class. The class contains and encapsulates all of the javascript, HTML, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other scripts or styling.
+When a web page/app loads this script (`spinner-component.js`), the spinner web component is constructed as an instance of the script's SpinnerElem class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other scripts or styling.
 
 #### Fine to combine attributes
 The examples above are simplified to illustrate each attribute. In practice any number or combination of attributes may be used.
-
 ```
 <div style="color:#ff0000; font-size:2em;">
 <x-spinner prefix="Research " suffix=" takes time." speed=".75" cursor="1110" direction="cw" back-color="#ffff00" trace-color="transparent"></x-spinner>
@@ -154,7 +155,7 @@ The outer `div` provides the font color and size; the attributes of the spinner 
 - `trace-color="transparent"` hides the spinner's trace - the non-colored quadrants of the circle, which is normally visible as a light gray.
 
 #### Spinner Size
-The spinner derives its size from whatever `font-size` applies to it. Most modern web browsers recognize the typographic size unit `cap`, which is meant to be the height of the capital letter "H" in the font-size for the given typeface. The spinner including its border-cursor is sized to equal 1 `cap`. This aligns the spinner with the base line of the surrounding type, and doesn't alter the line height or the visual flow of the text line it's on. In browsers whose css doesn't recognize the `cap` unit, the SpinnerElement approximates the cap size. The idea is to make the spinner act like a character in the line it's on.
+The spinner derives its size from whatever `font-size` applies to it. If possible it is equal to the typographic size unit `cap`, which is meant to be the height of the capital letter "H" in the font-size for the given typeface. Having the spinner, including its border-cursor, sized to 1 `cap` aligns the spinner with the base line of the surrounding type, and doesn't alter the line height or the visual flow of the text line it's on. In browsers whose css doesn't recognize the `cap` unit, the SpinnerElement approximates the cap size. The idea is to make the spinner act like a character in the line it's on.
 
 How is the `font-size` assigned to the spinner?
 - the spinner tag itself may have a `style` attribute that includes a `font-size` setting;

@@ -174,4 +174,23 @@ How is the `font-size` assigned to the spinner?
 - the spinner may be assigned a css selector such as a name, id or class, and then its type styling may be set from elsewhere, such as a stylesheet;
 - any of the above may be accomplished from scripts as well as direct markup.
 
+#### The Spinner's Tag Name
+The SpinnerElement class creates the spinner with the tag "x-spinner", as in the barebones spinner:
+```
+<x-spinner></x-spinner>
+```
+Custom web components have two requirements:
+- tag names must start with "x-", and
+- they always have a closing tag.
+
+After creating the SpinnerElement class, `spinner-component.js` executes the command
+```
+customElements.define('x-spinner', SpinnerElement);
+```
+If "x-spinner" conflicts with some other custom element's name, or you have some other reason to use a different name, that would be where you would put your preferred name:
+```
+// customElements.define('x-spinner', SpinnerElement);
+customElements.define('x-MySpinnerName', SpinnerElement);
+```
+
 Have Fun!

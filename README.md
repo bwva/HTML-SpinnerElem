@@ -38,7 +38,7 @@ The spinner can be placed in your HTML as an inline-block element with the follo
 ```
 The above basic spinner will inherit the text color and size of its containing element, and rotate a single border quadrant clockwise once per second.
 
-  _Note: Custom web components always require closing tags.__
+  _Note: Custom web components always require closing tags._
 
 In the HTML spinner tag, the usual attributes, such as `id=` or `style=`, may be assigned:
 ```html
@@ -49,8 +49,8 @@ In the HTML spinner tag, the usual attributes, such as `id=` or `style=`, may be
 ### Scripting
 A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. Use .setAttribute() and .style to set any attributes or styles; this may be done before or after appending the spinner to the HTML.
 ```
-const spng	= document.getElementById('ElemToPutSpinnerIn');
-const sp	= new SpinnerElement;
+const spng = document.getElementById('ElemToPutSpinnerIn');
+const sp   = new SpinnerElement;
 sp.setAttribute('speed','1.5');
 spng.appendChild(sp);
 sp.setAttribute('color','turquoise');
@@ -77,7 +77,7 @@ for (const Sp of document.getElementsByName('RedSpinner)) {
 
 The spinner web component accepts several attributes that affect its appearance or behavior.
 
-Each attribute has a full and abbreviated name; in general good programming practice calls for descriptive names; up to you - you can always refer back to this README in five years when you're trying to figure out what they mean.
+Each attribute has both a full and an abbreviated name; in general good programming practice calls for descriptive names; up to you - you can always refer back to this README in five years when you're trying to figure out what they mean.
 
 #### speed | sp = [ # ]
 Controls the speed of the spinner. The value represents the time in seconds for a full rotation. Default is 1.
@@ -94,11 +94,9 @@ Sets the color of the spinner. Accepts any valid CSS color value. Default is inh
 #### trace-color | tclr = [ hex color | rgba() color | inherit | transparent ]
 Sets the color of the spinner's trace. Accepts any valid CSS color value.
 Default is a light gray - rgba(20, 20, 20, .1).
-Example:
 ```html
-<x-spinner color="#ff0000" trace-color="transparent"></x-spinner>
+<x-spinner trace-color="transparent"></x-spinner>
 ```
-This makes the spinner red, and its trace transparent.
 
 #### direction | dir = [ cw | ccw ]
 Sets the direction of spin. Default is clockwise ('cw').
@@ -140,7 +138,7 @@ MAYBE TODO: more options for the background.
 ```
 
 #### weight | wt = [ 0 .. 0.5 x cap ht | 1 .. 10 ]
-Sets the weight (thickness) of the cursor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size of the spinner; a value greater than .5 will be rejected. Weight can also be set on a size scale from 1..10, stepping the thickness in even increments up to just under 50% of the spinner's radius. Any other value will be rejected. Unspecified and rejected weight attributes get the default weight, .195 (= 4 on the size scale).
+Sets the weight (thickness) of the cursor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size of the spinner; a value greater than .5 will be rejected. Weight can also be set on a size scale from 1 to 10, stepping the thickness in even increments up to just under 50% of the spinner's radius. Any other value will be rejected. Unspecified and rejected weight attributes get the default weight, .195 (= 4 on the size scale).
 ```html
 <x-spinner weight=".12"></x-spinner>
 <x-spinner weight="4"></x-spinner>

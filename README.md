@@ -49,27 +49,27 @@ In the HTML spinner tag, the usual attributes, such as `id=` or `style=`, may be
 ### Scripting
 A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. Use .setAttribute() and .style to set any attributes or styles; this may be done before or after appending the spinner to the HTML.
 ```
-	const spng	= document.getElementById('ElemToPutSpinnerIn');
-	const sp	= new SpinnerElement;
-	sp.setAttribute('speed','1.5');
-	spng.appendChild(sp);
-	sp.setAttribute('color','turquoise');
-	sp.style['font-size'] = '1em';
+const spng	= document.getElementById('ElemToPutSpinnerIn');
+const sp	= new SpinnerElement;
+sp.setAttribute('speed','1.5');
+spng.appendChild(sp);
+sp.setAttribute('color','turquoise');
+sp.style['font-size'] = '1em';
 ```
 You can also programmatically assign a name or id to the spinner, allowing access to it from elsewhere:
 ```
-	const sp	= new SpinnerElement;
-	sp.setAttribute('id','spinner_01');
-	sp.setAttribute('name','RedSpinner');
-	// OR
-	sp.id		= 'spinner_02';
-	// etc.
+const sp	= new SpinnerElement;
+sp.setAttribute('id','spinner_01');
+sp.setAttribute('name','RedSpinner');
+// OR
+sp.id		= 'spinner_02';
+// etc.
 ```
 Later...
 ```
-	for (const Sp of document.getElementsByName('RedSpinner)) {
-		Sp.setAttribute('speed', '2');
-	}
+for (const Sp of document.getElementsByName('RedSpinner)) {
+	Sp.setAttribute('speed', '2');
+}
 ```
 ### Attributes
 

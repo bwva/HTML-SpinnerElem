@@ -45,7 +45,7 @@ In the HTML spinner tag, the usual attributes, such as `id` or `style=`, may be 
 ### Scripting
 A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. Use .setAttribute() and .style to set any attributes or styles; this may be done before or after appending the spinner to the HTML.
 ```
-	const spng	= document.getElementById('someElemToPutSpinnerIn');
+	const spng	= document.getElementById('ElemToPutSpinnerIn');
 	const sp	= new SpinnerElement;
 	sp.setAttribute('speed','1.5');
 	spng.appendChild(sp);

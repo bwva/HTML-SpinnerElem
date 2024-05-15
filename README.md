@@ -112,22 +112,22 @@ Sets the visual form of the cursor - the part that spins around. The accepted va
 ```
 
 #### prefix | pre = [ text | HTML element ]
-Adds text or an HTML element right before the spinner. The spinner is styled as an `inline-block`, so it will stay on the same line as the prefix, unless the prefix itself forces a newline. It may be necessary to provide visual space in the prefix text, if the spinner has the default 0-width margins.
+Adds text or an HTML element right before the spinner. The spinner is styled as an `inline-block`, so it will stay on the same line as the prefix, unless the prefix itself forces a newline. It may be necessary to provide visual space in the prefix text, if the spinner has the default 0-width kerning.
 ```html
 <x-spinner prefix="Searching "></x-spinner>
 ```
 
 #### suffix | suf = [ text | HTML element ]
-Adds text or an HTML element right after the spinner. The spinner is styled as an `inline-block`, so the suffix will stay on the same line as the spinner, unless the suffix itself forces a newline. It may be necessary to provide visual space in the suffix text, if the spinner has the default 0-width margins.
+Adds text or an HTML element right after the spinner. The spinner is styled as an `inline-block`, so the suffix will stay on the same line as the spinner, unless the suffix itself forces a newline. It may be necessary to provide visual space in the suffix text, if the spinner has the default 0-width kerning.
 ```html
 <x-spinner suffix=" Recording"></x-spinner>
 ```
 
-#### margin | mrgn = [ length ]
-Adds right and left margins to the spinner itself - but not to any prefix or suffix. Accepts standard css length units. Default is zero (0).
-TODO: More options and focused names for margins.
+#### kerning | kern = [ length ]
+Adds right and left kerning to the spinner itself - but not to any prefix or suffix. Accepts standard css length units. Default is zero (0).
+TODO: Separate left and right kerning.
 ```html
-<x-spinner prefix="Recording" suffix="Now" margin="2ch"></x-spinner>
+<x-spinner prefix="Recording" suffix="Now" kern="2ch"></x-spinner>
 ```
 
 #### back-color | bclr = [ hex color | rgba() color | inherit | transparent ]

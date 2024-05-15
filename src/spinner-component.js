@@ -8,8 +8,8 @@ class SpinnerElement extends HTMLElement {
     return [
       'color', 'clr', 'speed', 'sp', 'direction', 'dir',
       'trace-color', 'tclr', 'cursor', 'crsr',
-      'prefix', 'pre', 'suffix', 'suf', 'margin', 'mrgn',
-      'back-color', 'bclr'
+      'prefix', 'pre', 'suffix', 'suf', 'kerning', 'kern',
+      'back-color', 'bclr', 'weight', 'wt'
     ];
   }
 
@@ -29,10 +29,12 @@ class SpinnerElement extends HTMLElement {
       || name === 'pre'
       || name === 'suffix'
       || name === 'suf'
-      || name === 'margin'
-      || name === 'mrgn'
+      || name === 'kerning'
+      || name === 'kern'
       || name === 'back-color'
       || name === 'bclr'
+      || name === 'weight'
+      || name === 'wt'
     ) {
       this.render();
     }
@@ -43,12 +45,15 @@ class SpinnerElement extends HTMLElement {
     const tracecolor = this.getAttribute('trace-color')	|| this.getAttribute('tclr')	|| 'rgba(20, 20, 20, .1)';
     const speed      = this.getAttribute('speed') 		|| this.getAttribute('sp') 		|| '1';
     const direction  = this.getAttribute('direction') 	|| this.getAttribute('dir') 	|| 'cw';
-    const margin     = this.getAttribute('margin') 		|| this.getAttribute('mrgn') 	|| '0';
+    const kerning    = this.getAttribute('kerning') 	|| this.getAttribute('kern') 	|| '0';
     const prefix     = this.getAttribute('prefix') 		|| this.getAttribute('pre') 	|| '';
     const suffix     = this.getAttribute('suffix') 		|| this.getAttribute('suf') 	|| '';
     const bgcolor	 = this.getAttribute('back-color') 	|| this.getAttribute('bclr') 	|| '';
     const cursor     = this.getAttribute('cursor') 		|| this.getAttribute('crsr') 	|| '1000';
-
+    let weight       = this.getAttribute('weight') 		|| this.getAttribute('wt') 		|| '0.191';
+    if ((weight == Math.floor(weight) && weight < 11) ) {
+      weight = (.05 * weight) - .005;
+    }
     const crsr_pat     = cursor.split('');
     const top_color    = crsr_pat[0] == 1 ? crsrcolor : tracecolor;
     const left_color   = crsr_pat[1] == 1 ? crsrcolor : tracecolor;
@@ -81,28 +86,28 @@ class SpinnerElement extends HTMLElement {
         }
         span {
           display: inline-block;
-          margin-left: ${margin};
-          margin-right: ${margin};
-          border-radius: 50%;
+          box-sizing: border-box;
+          margin-left: ${kerning};
+          margin-right: ${kerning};
+          border-radius: 50%; // 10%;
           @supports (width: 1cap) {
-            border:        .191cap solid ${tracecolor};
-            border-top:    .191cap solid ${top_color};
-            border-bottom: .191cap solid ${bottom_color};
-            border-left:   .191cap solid ${left_color};
-            border-right:  .191cap solid ${right_color};
-            width:         .618cap;
-            height:        .618cap;
-            // .618 + (2 * .191) = 1cap-equivalent
+            border:        ${weight}cap solid ${tracecolor};
+            border-top:    ${weight}cap solid ${top_color};
+            border-bottom: ${weight}cap solid ${bottom_color};
+            border-left:   ${weight}cap solid ${left_color};
+            border-right:  ${weight}cap solid ${right_color};
+            width:         1cap;
+            height:        1cap;
           }
           @supports not (width: 1cap) {
-            border:        .1em solid ${tracecolor};
-            border-top:    .1em solid ${top_color};
-            border-bottom: .1em solid ${bottom_color};
-            border-left:   .1em solid ${left_color};
-            border-right:  .1em solid ${right_color};
-            width:         .5em;
-            height:        .5em;
-            // .5em + (.1em * 2) = .7em = approx cap height
+            border:        .14em solid ${tracecolor};
+            border-top:    .14em solid ${top_color};
+            border-bottom: .14em solid ${bottom_color};
+            border-left:   .14em solid ${left_color};
+            border-right:  .14em solid ${right_color};
+            width:         .7em;
+            height:        .7em;
+            // .14em * 5 = .7em = approx cap height
           }
           animation: ${animation} ${speed}s linear infinite;
         }

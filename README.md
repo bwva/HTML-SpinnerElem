@@ -15,23 +15,23 @@ To use the spinner component in your project:
 ```
 
 ## What is it?
-The spinner is a custom web component that you can treat like any HTML tag to place a spinner in the layout.
+The spinner is a custom web component that you can treat like any inline HTML tag to place a spinner in the layout.
 
 The SpinnerElement is constructed from a bit of HTML with some styling to create a circle with a cursor moving around on it. The cursor is just part of the circle's border, colored distinctly from the rest of the border.
 
 SpinnerElements are self-contained, and need no additional images, hidden HTML elements, or scripts.
 
 ## Usage
+Loading the `spinner-component.js` Javascript file automatically constructs a spinner web component and makes it available as an element in the current DOM.
+```html
+<script src="./MyScriptDirectory/spinner-component.js"></script>
+```
 
 ### HTML Tag
-Loading the `spinner-component.js` Javascript file automatically constructs a spinner web component and makes it available as an element in the current DOM.
-
 The spinner can be placed in your HTML as an inline-block element with the following tag:
-
 ```html
 <x-spinner></x-spinner>
 ```
-
 The above basic spinner will inherit the text color and size of its containing element, and rotate a single border quadrant clockwise once per second.
 
 Note: Custom web components always require closing tags.
@@ -120,13 +120,13 @@ Adds text or an HTML element right after the spinner. The spinner is styled as a
 
 #### margin | mrgn = [ length ]
 Adds right and left margins to the spinner itself - but not to any prefix or suffix. Accepts standard css length units. Default is zero (0).
-TODO: More options for margins.
+TODO: More options and focused names for margins.
 ```html
 <x-spinner prefix="Recording" suffix="Now" margin="2ch"></x-spinner>
 ```
 
 #### back-color | bclr = [ hex color | rgba() color | inherit | transparent ]
-Add a minimally-formatted background to the entire tag, including any prefix and suffix, with some padding and (arbitrary design diktat) rounded corners. The background is colored with this attribute, which may be any standard HTML color. Default is no back_color, and therefore no added background, padding, etc.
+Add a minimally-formatted background to the entire tag, including any prefix and suffix, with some padding and  rounded corners by arbitrary design diktat. The background is colored with this attribute, which may be any standard HTML color. Default is no back_color, and therefore no added background, padding, etc.
 Note that the spinner tag may be placed in another HTML element that provides background features, possibly with more options for styling.
 MAYBE TODO: more options for the background.
 ```html
@@ -155,12 +155,13 @@ The outer `div` provides the font color and size; the attributes of the spinner 
 - `trace-color="transparent"` hides the spinner's trace - the non-colored quadrants of the circle, which is normally visible as a light gray.
 
 #### Spinner Size
-The spinner derives its size from whatever `font-size` applies to it. If possible it is equal to the typographic size unit `cap`, which is meant to be the height of the capital letter "H" in the font-size for the given typeface. Having the spinner, including its border-cursor, sized to 1 `cap` aligns the spinner with the base line of the surrounding type, and doesn't alter the line height or the visual flow of the text line it's on. In browsers whose css doesn't recognize the `cap` unit, the SpinnerElement approximates the cap size. The idea is to make the spinner act like a character in the line it's on.
+The spinner derives its size from whatever `font-size` applies to it. If possible it is equal to the typographic size unit `cap`, which is meant to be the height of the capital letter "H" in the font-size for the given typeface. Having the spinner sized to 1 `cap` aligns the spinner with the base line of the surrounding type, and doesn't alter the line height or the visual flow of the text line it's on. In browsers whose css doesn't recognize the `cap` unit, the SpinnerElement approximates the cap size. The idea is to make the spinner act like a character in the line it's on.
 
 How is the `font-size` assigned to the spinner?
 - the spinner tag itself may have a `style` attribute that includes a `font-size` setting;
 - without its own styling, the spinner will inherit the `font-size` of its immediate containing element (and the text color as well);
-- the spinner may be assigned a css selector such as a name, id or class, and then its type styling may be set from elsewhere, such as a stylesheet.
+- the spinner may be assigned a css selector such as a name, id or class, and then its type styling may be set from elsewhere, such as a stylesheet;
+- any of the above may be accomplished from scripts as well as directmarkup.
 
 #### Cursor Thickness - In the Weeds
 For this iteration, the thickness of the cursor - the border - is set by a fixed ratio to the spinner size. Fiddling with it to find what seemed to work visually at varying sizes yielded 20% of the spinner diameter - but when I added it up -  I saw .2 + .2 borders + .6 of cap left for the actual spinner, and it morphed into golden mean territory .191 + .191 + .618 = 1 cap, so that's where I left it for now.

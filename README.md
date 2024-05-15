@@ -138,10 +138,17 @@ MAYBE TODO: more options for the background.
 <x-spinner back-color="#ccccff"></x-spinner>
 ```
 
+#### weight | wt = [ decimal of cap ht ]
+Sets the weight (thickness) of the cursor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size of the spinner; a value greater than .5 will expand the spinner's size. The spinner's weight attribute can also be set on a point scale from 1..10, stepping the thickness in even increments up to 50% of the spinner's size. The default weight value is .191.
+```html
+<x-spinner weight=".12"></x-spinner>
+<x-spinner weight="4"></x-spinner>
+```
+
 ### Technical Notes
 
 #### No dependencies
-When a web page/app loads this script (`spinner-component.js`), the spinner web component is constructed as an instance of the script's SpinnerElem class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other scripts or styling.
+When a web page/app loads this script (`spinner-component.js`), the spinner web component is constructed as an instance of the script's SpinnerElement class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other scripts or styling.
 
 #### Fine to combine attributes
 The examples above are simplified to illustrate each attribute. In practice any number or combination of attributes may be used.
@@ -167,9 +174,5 @@ How is the `font-size` assigned to the spinner?
 - without its own styling, the spinner will inherit the `font-size` of its immediate containing element (and the text color as well);
 - the spinner may be assigned a css selector such as a name, id or class, and then its type styling may be set from elsewhere, such as a stylesheet;
 - any of the above may be accomplished from scripts as well as directmarkup.
-
-#### Cursor Thickness - In the Weeds
-For this iteration, the thickness of the cursor - the border - is set by a fixed ratio to the spinner size. Fiddling with it to find what seemed to work visually at varying sizes yielded 20% of the spinner diameter - but when I added it up -  I saw .2 + .2 borders + .6 of cap left for the actual spinner, and it morphed into golden mean territory .191 + .191 + .618 = 1 cap, so that's where I left it for now.
-TODO: attribute for cursor thickness, so you can tune it to the surrounding typeface.
 
 Have Fun!

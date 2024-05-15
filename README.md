@@ -36,11 +36,11 @@ The above basic spinner will inherit the text color and size of its containing e
 
 Note: Custom web components always require closing tags.
 
-In the HTML spinner tag, the usual attributes, such as `id` or `style=`, may be assigned:
+In the HTML spinner tag, the usual attributes, such as `id=` or `style=`, may be assigned:
 ```html
 <x-spinner style="font-style:italic;"></x-spinner>
 ```
-[ _font-style_? See `prefix` and `suffix` attributes below. ]
+[ Wait - _font-style_? See `prefix` and `suffix` attributes below. ]
 
 ### Scripting
 A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. Use .setAttribute() and .style to set any attributes or styles; this may be done before or after appending the spinner to the HTML.

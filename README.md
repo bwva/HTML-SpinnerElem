@@ -71,6 +71,7 @@ for (const Sp of document.getElementsByName('RedSpinner)) {
 	Sp.setAttribute('speed', '2');
 }
 ```
+NOTE: Element attributes are not always interchangeable with Javascript object properties with the same names - be careful.
 ### Attributes
 
 The spinner web component accepts several attributes that affect its appearance or behavior.

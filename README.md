@@ -8,7 +8,7 @@ The spinner is constructed as a bordered circle with one, two, or three of its b
 
 To use the spinner component in your project:
  - download and open `HTML-SpinnerElem` from GitHub;
- - from /src directory, move the script `spinner-component.js` to where your web scripts are located;
+ - from the included /src directory, move the script `spinner-component.js` to where your web scripts are located;
  - invoke the script in your HTML to load it:
 ```html
 <script src="./MyScriptDirectory/spinner-component.js"></script>

@@ -15,7 +15,7 @@ To use the spinner component in your project:
 ```
 
 ## What is it?
-The spinner is a custom web component that you can treat like any inline HTML tag to place a spinner in the layout.
+The spinner is a custom web component that you can treat like any inline HTML tag to place a spinner in your layout.
 
 The underlying SpinnerElement is constructed from a bit of HTML with some styling, plus css transformations to rotate it.
 
@@ -23,7 +23,7 @@ For this release, the spinner is created as a circle with a cursor moving around
 
 Future spinner variants to come, from me and perhaps you!
 
-SpinnerElements are self-contained, and need no additional images, hidden HTML elements, or scripts.
+SpinnerElements are self-contained, and need no additional images, css, HTML elements, or scripts.
 
 ## Usage
 Loading the `spinner-component.js` Javascript file automatically constructs a spinner web component and makes it available as an element in the current DOM.
@@ -38,7 +38,7 @@ The spinner can be placed in your HTML as an inline-block element with the follo
 ```
 The above basic spinner will inherit the text color and size of its containing element, and rotate a single border quadrant clockwise once per second.
 
-Note: Custom web components always require closing tags.
+  _Note: Custom web components always require closing tags.__
 
 In the HTML spinner tag, the usual attributes, such as `id=` or `style=`, may be assigned:
 ```html
@@ -62,7 +62,7 @@ const sp	= new SpinnerElement;
 sp.setAttribute('id','spinner_01');
 sp.setAttribute('name','RedSpinner');
 // OR
-sp.id		= 'spinner_02';
+sp.id		= 'spinner_02';  // See Note below
 // etc.
 ```
 Later...
@@ -71,7 +71,8 @@ for (const Sp of document.getElementsByName('RedSpinner)) {
 	Sp.setAttribute('speed', '2');
 }
 ```
-NOTE: Element attributes are not always interchangeable with Javascript object properties with the same names - be careful.
+  _Note: Element attributes are not always interchangeable with Javascript object properties with the same names - be careful._
+
 ### Attributes
 
 The spinner web component accepts several attributes that affect its appearance or behavior.
@@ -147,8 +148,8 @@ Sets the weight (thickness) of the cursor and trace. This allows you to tune a s
 
 ### Technical Notes
 
-#### No dependencies
-When a web page/app loads this script (`spinner-component.js`), the spinner web component is constructed as an instance of the script's SpinnerElement class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other scripts or styling.
+#### No dependencies - No side effects
+When a web page/app loads this script (`spinner-component.js`), the spinner web component is constructed as an instance of the script's SpinnerElement class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other element or layout structure. The spinner may inherit styling from surrounding HTML, and its styling may be set programmatically. But the styling used to create the SpinnerElement, including such crucial css as `box-sizing`, will have no effect outside the spinner.
 
 #### Fine to combine attributes
 The examples above are simplified to illustrate each attribute. In practice any number or combination of attributes may be used.
@@ -173,6 +174,6 @@ How is the `font-size` assigned to the spinner?
 - the spinner tag itself may have a `style` attribute that includes a `font-size` setting;
 - without its own styling, the spinner will inherit the `font-size` of its immediate containing element (and the text color as well);
 - the spinner may be assigned a css selector such as a name, id or class, and then its type styling may be set from elsewhere, such as a stylesheet;
-- any of the above may be accomplished from scripts as well as directmarkup.
+- any of the above may be accomplished from scripts as well as direct markup.
 
 Have Fun!

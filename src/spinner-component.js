@@ -41,16 +41,16 @@ class SpinnerElement extends HTMLElement {
   }
 
   render() {
-    const crsrcolor  = this.getAttribute('color') 		|| this.getAttribute('clr') 	|| 'currentColor';
-    const tracecolor = this.getAttribute('trace-color')	|| this.getAttribute('tclr')	|| 'rgba(20, 20, 20, .1)';
-    const speed      = this.getAttribute('speed') 		|| this.getAttribute('sp') 		|| '1';
-    const direction  = this.getAttribute('direction') 	|| this.getAttribute('dir') 	|| 'cw';
-    const kerning    = this.getAttribute('kerning') 	|| this.getAttribute('kern') 	|| '0';
-    const prefix     = this.getAttribute('prefix') 		|| this.getAttribute('pre') 	|| '';
-    const suffix     = this.getAttribute('suffix') 		|| this.getAttribute('suf') 	|| '';
-    const bgcolor	 = this.getAttribute('back-color') 	|| this.getAttribute('bclr') 	|| '';
-    const cursor     = this.getAttribute('cursor') 		|| this.getAttribute('crsr') 	|| '1000';
-    let weight       = this.getAttribute('weight') 		|| this.getAttribute('wt') 		|| '0.191';
+    const crsrcolor  = this.getAttribute('color')       || this.getAttribute('clr')   || 'currentColor';
+    const tracecolor = this.getAttribute('trace-color') || this.getAttribute('tclr')  || 'rgba(20, 20, 20, .1)';
+    const speed      = this.getAttribute('speed')       || this.getAttribute('sp')    || '1';
+    const direction  = this.getAttribute('direction')   || this.getAttribute('dir')   || 'cw';
+    const kerning    = this.getAttribute('kerning')     || this.getAttribute('kern')  || '0';
+    const prefix     = this.getAttribute('prefix')      || this.getAttribute('pre')   || '';
+    const suffix     = this.getAttribute('suffix')      || this.getAttribute('suf')   || '';
+    const bgcolor    = this.getAttribute('back-color')  || this.getAttribute('bclr')  || '';
+    const cursor     = this.getAttribute('cursor')      || this.getAttribute('crsr')  || '1000';
+    let weight       = this.getAttribute('weight')      || this.getAttribute('wt')    || '0.191';
     if ((weight == Math.floor(weight) && weight < 11) ) {
       weight = (.05 * weight) - .005;
     }

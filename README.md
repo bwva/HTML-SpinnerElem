@@ -138,8 +138,8 @@ MAYBE TODO: more options for the background.
 <x-spinner back-color="#ccccff"></x-spinner>
 ```
 
-#### weight | wt = [ decimal of cap ht ]
-Sets the weight (thickness) of the cursor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size of the spinner; a value greater than .5 will expand the spinner's size. The spinner's weight attribute can also be set on a point scale from 1..10, stepping the thickness in even increments up to 50% of the spinner's size. The default weight value is .191.
+#### weight | wt = [ 0 .. 0.5 x cap ht | 1 .. 10 ]
+Sets the weight (thickness) of the cursor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size of the spinner; a value greater than .5 will be rejected. Weight can also be set on a size scale from 1..10, stepping the thickness in even increments up to just under 50% of the spinner's radius. Any other value will be rejected. Unspecified and rejected weight attributes get the default weight, .195 (= 4 on the size scale).
 ```html
 <x-spinner weight=".12"></x-spinner>
 <x-spinner weight="4"></x-spinner>

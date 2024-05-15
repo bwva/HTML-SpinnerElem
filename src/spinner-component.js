@@ -50,10 +50,18 @@ class SpinnerElement extends HTMLElement {
     const suffix     = this.getAttribute('suffix')      || this.getAttribute('suf')   || '';
     const bgcolor    = this.getAttribute('back-color')  || this.getAttribute('bclr')  || '';
     const cursor     = this.getAttribute('cursor')      || this.getAttribute('crsr')  || '1000';
-    let weight       = this.getAttribute('weight')      || this.getAttribute('wt')    || '0.191';
-    if ((weight == Math.floor(weight) && weight < 11) ) {
-      weight = (.05 * weight) - .005;
+    let weight       = this.getAttribute('weight')      || this.getAttribute('wt')    || '0.195';
+    switch (true) {
+      case (weight <= .5 && weight > 0):
+        break;
+      case (weight == Math.floor(weight) && weight < 11 && weight >= 1):
+        weight = (.05 * weight) - .005;
+        break;
+      default:
+        weight = .195;
+        break;
     }
+
     const crsr_pat     = cursor.split('');
     const top_color    = crsr_pat[0] == 1 ? crsrcolor : tracecolor;
     const left_color   = crsr_pat[1] == 1 ? crsrcolor : tracecolor;
@@ -89,25 +97,25 @@ class SpinnerElement extends HTMLElement {
           box-sizing: border-box;
           margin-left: ${kerning};
           margin-right: ${kerning};
-          border-radius: 50%; // 10%;
+          border-radius: 50%;
           @supports (width: 1cap) {
+            width:         1cap;
+            height:        1cap;
             border:        ${weight}cap solid ${tracecolor};
             border-top:    ${weight}cap solid ${top_color};
             border-bottom: ${weight}cap solid ${bottom_color};
             border-left:   ${weight}cap solid ${left_color};
             border-right:  ${weight}cap solid ${right_color};
-            width:         1cap;
-            height:        1cap;
           }
           @supports not (width: 1cap) {
+            // approximation:
+            width:         .7em;
+            height:        .7em;
             border:        .14em solid ${tracecolor};
             border-top:    .14em solid ${top_color};
             border-bottom: .14em solid ${bottom_color};
             border-left:   .14em solid ${left_color};
             border-right:  .14em solid ${right_color};
-            width:         .7em;
-            height:        .7em;
-            // .14em * 5 = .7em = approx cap height
           }
           animation: ${animation} ${speed}s linear infinite;
         }

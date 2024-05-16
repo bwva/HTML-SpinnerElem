@@ -92,6 +92,14 @@ class SpinnerElement extends HTMLElement {
           0%   { transform: rotate(0deg); }
           100% { transform: rotate(-360deg); }
         }
+        button {
+          @supports (width: 1cap) {
+            vertical-align: calc(1em - 1cap);
+          }
+          @supports not (width: 1cap) {
+            vertical-align: .33em;
+          }
+        }
         span {
           display: inline-block;
           box-sizing: border-box;
@@ -139,3 +147,43 @@ class SpinnerElement extends HTMLElement {
   }
 }
 customElements.define('x-spinner', SpinnerElement);
+
+/* Some basic functions */
+
+function insertSpinner(spinner,target,options) {
+	target	= target.id ? target : document.getElementById(target);
+	target.innerHTML = '';
+	target.appendChild(spinner);
+}
+function appendSpinner(spinner,target,options) {
+	target	= target.id ? target : document.getElementById(target);
+	target.appendChild(spinner);
+	spinner.setAttribute('clr', 'red');
+}
+
+function removeSpinner(options) {
+	// ...
+}
+
+function SpinnerOptions() {
+	const options	= new String( SpinnerElement.observedAttributes );
+	return options.split(',');
+}
+
+function showSpinnerOptions(target) {
+	target	= target.id ? target : document.getElementById(target);
+	let names = SpinnerOptions() || [];
+	target.innerHTML = names.join(' ');
+}
+
+function SpinnerAppliedOptions(spinner) {
+	const appliedOptions	= spinner.getAttributeNames() || [];
+	return appliedOptions;
+}
+
+function showSpinnerAppliedOptions(spinner,target) {
+	target	= target.id ? target : document.getElementById(target);
+ 	let names = SpinnerAppliedOptions(spinner) || [];
+	target.innerHTML = names.join(' ');
+}
+

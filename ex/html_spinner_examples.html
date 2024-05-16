@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"  content="width=device-width, initial-scale=1.0" />
+<link rel="icon"    href="./favicon.ico">
+<style>
+html {
+	min-height: 100%;
+}
+body {
+	font-family: sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6,th,hr,p  {
+	margin-top:4px;
+	margin-bottom:4px;
+}
+button {
+ vertical-align: calc(1em - 1cap);
+}
+#stopBtnSp {
+	color: green;
+	font-size: 1.6em;
+}
+</style>
+<title>HTML-Spinner Examples</title>
+</head>
+<body>
+<p style="display:block;font-size: 2em;">
+<span style="
+	display: inline-block;
+	font-size:.4em;
+	width:         1cap;
+	height:        1cap;
+	border:        0;
+	margin-right:2em;
+">Circling the Square: </span> &nbsp;
+<span style="
+	display: inline-block;
+	width:         1cap;
+	height:        1cap;
+	border:        .195cap solid rgba(0,80,80,.1);
+	border-top:    .195cap solid rgba(0,80,80,.75);
+"></span>&rarr;
+<span style="
+	display: inline-block;
+	width:         1cap;
+	height:        1cap;
+	border-radius: 50%;
+	border:        .195cap solid rgba(0,80,80,.1);
+	border-top:    .195cap solid rgba(0,80,80,.75);
+"></span> &nbsp;
+<span style="
+	display: inline-block;
+	width:         1cap;
+	height:        1cap;
+	border:        .195cap solid rgba(0,80,80,.1);
+	border-top:    .195cap solid rgba(0,80,80,.75);
+	border-bottom: .195cap solid rgba(0,80,80,.75);
+"></span>&rarr;
+<span style="
+	display: inline-block;
+	width:         1cap;
+	height:        1cap;
+	border-radius: 50%;
+	border:        .195cap solid rgba(0,80,80,.1);
+	border-top:    .195cap solid rgba(0,80,80,.75);
+	border-bottom: .195cap solid rgba(0,80,80,.75);
+"></span> &nbsp;
+<span style="
+	display: inline-block;
+	width:         1cap;
+	height:        1cap;
+	border:        .195cap solid rgba(0,80,80,.1);
+	border-top:    .195cap solid rgba(0,80,80,.75);
+	border-left:   .195cap solid rgba(0,80,80,.75);
+"></span>&rarr;
+<span style="
+	display: inline-block;
+	width:         1cap;
+	height:        1cap;
+	border-radius: 50%;
+	border:        .195cap solid rgba(0,80,80,.1);
+	border-top:    .195cap solid rgba(0,80,80,.75);
+	border-left:   .195cap solid rgba(0,80,80,.75);
+"></span> &nbsp;
+<span style="
+	display: inline-block;
+	width:         1cap;
+	height:        1cap;
+	border:        .195cap solid rgba(0,80,80,.1);
+	border-top:    .195cap solid rgba(0,80,80,.75);
+	border-bottom: .195cap solid rgba(0,80,80,.75);
+	border-left:   .195cap solid rgba(0,80,80,.75);
+"></span>&rarr;
+<span style="
+	display: inline-block;
+	width:         1cap;
+	height:        1cap;
+	border-radius: 50%;
+	border:        .195cap solid rgba(0,80,80,.1);
+	border-top:    .195cap solid rgba(0,80,80,.75);
+	border-bottom: .195cap solid rgba(0,80,80,.75);
+	border-left:   .195cap solid rgba(0,80,80,.75);
+"></span> &nbsp;
+</p>
+<hr>
+<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
+  <div>weight&rarr;<br>cursor&darr;<br><br>1000</div>
+  <div>Default<br>(4 / .195)<br><x-spinner crsr="1" wt=".195" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div>1<br>.045<br><x-spinner crsr="1" wt=".045" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div>2<br>.095<br><x-spinner crsr="1" wt=".095" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div>3<br>.145<br><x-spinner crsr="1" wt=".145" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div>4<br>.195<br><x-spinner crsr="1" wt=".195" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div>5<br>.245<br><x-spinner crsr="1" wt=".245" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div>6<br>.295<br><x-spinner crsr="1" wt=".295" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div>7<br>.345<br><x-spinner crsr="1" wt=".345" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div>8<br>.395<br><x-spinner crsr="1" wt=".395" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div>9<br>.445<br><x-spinner crsr="1" wt=".445" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div>10<br>.495<br><x-spinner crsr="1" wt=".495" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+</div>
+<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
+  <div><br>1010</div>
+  <div><x-spinner crsr="101" wt=".195" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".045" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".095" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".145" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".195" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".245" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".295" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".345" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".395" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".445" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".495" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+</div>
+<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
+  <div><br>1100</div>
+  <div><x-spinner crsr="11" wt=".195" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".045" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".095" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".145" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".195" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".245" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".295" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".345" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".395" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".445" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".495" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+</div>
+<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
+  <div><br>1110</div>
+  <div><x-spinner crsr="111" wt=".195" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".045" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".095" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".145" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".195" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".245" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".295" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".345" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".395" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".445" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".495" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
+</div>
+<hr>
+<hr>
+<button type="button" onclick="
+	let sp = '<' + 'x-spinner speed=\'2\' direction=\'cw\'>' + '<' + '/x-spinner>';
+	let spn	= '<' + 'x-spinner id=\'spinMe\'>' + '<' + '/x-spinner>';
+	setItemValue('searching', 'Searching ...' + spn );
+	const spinM = document.getElementById('spinMe');
+	spinM.setAttribute('sp', '.5');
+	spinM.setAttribute('direction', 'cw');
+	spinM.setAttribute('trace-color', 'transparent' );  // '#ffff00'
+">Search</button>
+<h2 id="searching" style="color:red;"> &nbsp; </h2>
+<hr>
+<div style="font-size:4em;">
+<button type="button" onclick="const sp1=new SpinnerElement;insertSpinner(sp1,'here1');">Insert it</button> &nbsp;
+<div id="here1" style="display:inline-block;border-bottom:1pt blue solid;width:4em;text-align:center;"> &nbsp; </div> &nbsp;
+<button type="button" onclick="const sp1=new SpinnerElement;appendSpinner(sp1,'here2');">Append it</button> &nbsp;
+<div id="here2" style="display:inline-block;border-bottom:1pt blue solid;width:4em;text-align:center;"> Hi </div> &nbsp;
+</div>
+<hr>
+<button type="button" onclick="const sp3=new SpinnerElement;showSpinnerOptions('here3');">Options</button> &nbsp;
+<div id="here3" style="display:inline-block;text-align:left;"></div>
+<hr>
+<button type="button" onclick="
+	document.getElementById('sp6').setAttribute('color', '#00dd00');
+	document.getElementById('sp6').setAttribute('direction', 'cw');
+	document.getElementById('sp6').setAttribute('sp', '.4');
+	document.getElementById('sp6').setAttribute('wt', '3');
+	document.getElementById('sp6').setAttribute('suf', ' ');
+	document.getElementById('sp6').setAttribute('pre', 'Pursuit!');
+	document.getElementById('sp6').style.fontStyle = 'italic';
+	showSpinnerAppliedOptions(sp6, 'here4');
+">Go</button>
+<p style="font-size:4em;margin-top:0;margin-bottom:0;">
+<x-spinner id="sp6" color="#ddd" sp="1.5" tclr="#ccf"  wt="8" dir="cw" suf="Scanning..." kern=".4em"></x-spinner><br>
+<div style="display:inline-block;text-align:left;">Options Applied: <span id="here4"></span></div>
+</p>
+<hr>
+<p style="background-color:yellow;padding:2em;">
+<x-spinner prefix="We're working on it ... " cursor="1" trace-color="transparent" back-color="white" color="red"></x-spinner>
+</p>
+<hr>
+<p style="color:green; font-size:2em;">
+<x-spinner prefix="Is it moving?" kerning="1ch" crsr="101" wt=".195" bclr="rgba(0,55,255,.25)"></x-spinner>
+</p>
+<hr>
+<p style="font-size:2em;">
+<x-spinner crsr="101" wt=".495" tclr="rgba(255,255,0,1)"></x-spinner>
+</p>
+<hr>
+<p style="font-size:3em;color:#ff0000;">
+<x-spinner color="#ff0000" cursor="101" wt="8" speed="1" direction="cw" back-color=transparent "></x-spinner>
+Recording in Progress
+<x-spinner color="#ff0000" cursor="0101" wt="8" speed="1" direction="cw" back-color=transparent "></x-spinner>
+</p>
+<p>
+<x-spinner color="#ff0000" cursor="1"  suffix=" Running" speed="2" direction="cw" "></x-spinner> along.
+</p>
+<p>
+<x-spinner id="stopBtnSp" cursor="1"  suffix=" Try this: <button id='Color and size from page style!' onclick='alert(this.id)'>How was this spinner styled?</button>" speed="2" direction="cw" "></x-spinner>
+</p>
+<hr>
+<div style="color:#ff0000; font-size:2em;">
+<x-spinner prefix="Research " suffix=" takes time." wt=".195" speed=".75" cursor="1110" direction="cw" back-color="#ffff00" trace-color="transparent"></x-spinner>
+</div>
+<hr>
+<button type="button" onclick="
+	const spng	= document.getElementById('spinning');
+	if (this.innerHTML=='Spin It') {
+		const sp	= new SpinnerElement;
+		sp.id		= 'thisSpinner';
+		sp.setAttribute('color','turquoise');
+		spng.appendChild(sp);
+		sp.style['font-size'] = '1em';
+		sp.setAttribute('prefix', 'Spinning ... ');
+		this.innerHTML='Stop It';
+	}
+	else {
+		clearItem(spng.id);
+		setItemValue(spng.id, ' &nbsp; ');
+		this.innerHTML='Spin It';
+	}
+">Spin It</button>
+<h3 id="spinning" style="color:purple;"> &nbsp; </h3>
+<hr>
+<button type="button" onclick="
+	if (this.innerHTML=='Run') {
+		const sp	= new SpinnerElement;
+		sp.id		= 'thatSpinner';
+		this.innerHTML = '';
+		this.appendChild(sp);
+		sp.setAttribute('color','purple');
+		sp.setAttribute('prefix', 'Cancel ');
+		this.style['font-weight'] = 'bold';
+		this.style['font-size'] = '';
+	}
+	else {
+		this.innerHTML='Run';
+		this.style['font-weight'] = '';
+	}
+
+">Run</button>
+
+<hr>
+
+<script src="./scripts/KALE.js"></script>
+<script src="./scripts/spinnerComponent.js"></script>
+<script></script>
+
+</body>
+</html>
+
+

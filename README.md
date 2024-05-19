@@ -47,7 +47,7 @@ In the HTML spinner tag, the usual attributes, such as `id=` or `style=`, may be
 [ Wait - _font-style_? See `prefix` and `suffix` attributes below. ]
 
 ### Scripting
-A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. You may use the built-in .setAttribute and .style metjhods to set any attributes or styles; this may be done before or after appending the spinner to the HTML.
+A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. You may use the built-in .setAttribute and .style methods to set any attributes or styles; this may be done before or after appending the spinner to the HTML.
 ```
 const spng = document.getElementById('ElemToPutSpinnerIn');
 const sp   = new SpinnerElement;
@@ -56,7 +56,7 @@ spng.appendChild(sp);
 sp.setAttribute('color','turquoise');
 sp.style['font-size'] = '1em';
 ```
-You can also programmatically assign, attributes, including a name or id to the spinner, allowing access to it from elsewhere:
+You can also programmatically assign attributes, including a name or id, to the spinner, allowing access to it from elsewhere:
 ```
 const sp	= new SpinnerElement;
 sp.setAttribute('id','spinner_01');
@@ -117,8 +117,8 @@ Controls the speed of the spinner. The value represents the time in seconds for 
 <x-spinner speed="0.5"></x-spinner>
 ```
 
-#### color | clr = [ hex color | rgba() color | transparent  ]
-Sets the color of the spinner. Accepts any valid CSS color value. Default is inherited.
+#### color | clr = [ hex color | rgba() color | inherit | transparent  ]
+Sets the color of the spinner's cursor. Accepts any valid CSS color value. Default is inherit.
 ```html
 <x-spinner color="#0000ff"></x-spinner>
 ```
@@ -136,14 +136,21 @@ Sets the direction of spin. Default is clockwise ('cw').
 <x-spinner dir="ccw"></x-spinner>
 ```
 
-#### cursor | crsr = [ 1 | 11 | 101 | 111 | 1### ]
-Sets the visual form of the cursor - the part that spins around. The accepted value is up to 4 digits, each of which is a one (1) or a zero (0), representing each of the four quadrants of the circular spinner. A one (1) colors a quadrant; a zero (0) allows the trace color to show for that quadrant. '1000' would color one quadrant of the spinner. '1100' would color two adjacent quadrants, '1110' would color three adjacent quadrants, and '1010' would color opposite quadrants. Ending zeroes (0) may be omitted, so '11' is the same as '1100', '101' the same as '1010'.
+#### cursor | crsr = [ 1 | 11 | 101 | 111 | 1111 ]
+Sets the visual form of the cursor - the part that spins around. The accepted value is up to 4 digits, each of which is a one (1) or a zero (0), representing each of the four quadrants of the circular spinner. A one (1) colors a quadrant; a zero (0) allows the trace color to show for that quadrant. '1000' would color one quadrant of the spinner. '1100' would color two adjacent quadrants, '1110' would color three adjacent quadrants, and '1010' would color opposite quadrants. '1111' would not appear to move with the default 'solid' cursor-style (below), but does show movement in some others. Ending zeroes (0) may be omitted, so '11' is the same as '1100', '101' the same as '1010'.
 ```html
 <x-spinner cursor="101"></x-spinner>
 ```
 
 #### cursor-style | cstyle = [ solid | dotted | dashed | double | ridge | groove | inset | outset ]
-Sets the appearance of the cursor using the available border-types.
+Sets the appearance of the cursor using the available border-types. Different spinners can be created with varying combinations of cursor-style and weight.
+
+#### weight | wt = [ 0 .. 0.5 x cap ht | 1 .. 10 ]
+Sets the weight (thickness) of the cursor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size (diameter) of the spinner; a value greater than .5 will be rejected. Weight can also be set on a size scale from 1 to 10, stepping the thickness in even increments up to just under the spinner's radius. Any other value will be rejected. Unspecified and rejected weight attributes get the default weight, .195 (= 4 on the size scale).
+```html
+<x-spinner weight=".12"></x-spinner>
+<x-spinner weight="4"></x-spinner>
+```
 
 #### prefix | pre = [ text | HTML element ]
 Adds text or an HTML element right before the spinner. The spinner is styled as an `inline-block`, so it will stay on the same line as the prefix, unless the prefix itself forces a newline. It may be necessary to provide visual space in the prefix text, if the spinner has the default 0-width kerning.
@@ -168,18 +175,11 @@ TODO: Separate left and right kerning.
 Sets the background color for the spinner only, not its prefix, suffix, or back, because the element's background-color only applies within its border.
 
 #### back-color | bclr = [ hex color | rgba() color | inherit | transparent ]
-Add a minimally-formatted background to the entire tag, including any prefix and suffix, with some padding and  rounded corners by arbitrary design diktat. The background is colored with this attribute, which may be any standard HTML color. Default is no back_color, and therefore no added background, padding, etc.
+Add a minimally-formatted background to the entire tag, including any prefix and suffix, with some padding and  rounded corners set for now by arbitrary design diktat. The background is colored with this attribute, which may be any standard HTML color. Default is no back_color, and therefore no added background, padding, etc.
 Note that the spinner tag may be placed in another HTML element that provides background features, possibly with more options for styling.
 MAYBE TODO: more options for the background.
 ```html
 <x-spinner back-color="#ccccff"></x-spinner>
-```
-
-#### weight | wt = [ 0 .. 0.5 x cap ht | 1 .. 10 ]
-Sets the weight (thickness) of the cursor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size of the spinner; a value greater than .5 will be rejected. Weight can also be set on a size scale from 1 to 10, stepping the thickness in even increments up to just under 50% of the spinner's radius. Any other value will be rejected. Unspecified and rejected weight attributes get the default weight, .195 (= 4 on the size scale).
-```html
-<x-spinner weight=".12"></x-spinner>
-<x-spinner weight="4"></x-spinner>
 ```
 
 ### Technical Notes

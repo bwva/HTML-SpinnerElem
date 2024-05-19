@@ -2,7 +2,7 @@
 
 Create a customizable spinner as an HTML web component.
 
-The spinner is constructed as a bordered circle with one, two, or three of its border quadrants colored, rotating at a specified rate and direction.
+The spinner is constructed as a bordered circle with one or more of its border quadrants colored, rotating at a specified rate and direction.
 
 ## Installation
 

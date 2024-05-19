@@ -47,7 +47,7 @@ In the HTML spinner tag, the usual attributes, such as `id=` or `style=`, may be
 [ Wait - _font-style_? See `prefix` and `suffix` attributes below. ]
 
 ### Scripting
-A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. Use .setAttribute() and .style to set any attributes or styles; this may be done before or after appending the spinner to the HTML.
+A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. You may use the built-in .setAttribute and .style metjhods to set any attributes or styles; this may be done before or after appending the spinner to the HTML.
 ```
 const spng = document.getElementById('ElemToPutSpinnerIn');
 const sp   = new SpinnerElement;
@@ -56,7 +56,7 @@ spng.appendChild(sp);
 sp.setAttribute('color','turquoise');
 sp.style['font-size'] = '1em';
 ```
-You can also programmatically assign a name or id to the spinner, allowing access to it from elsewhere:
+You can also programmatically assign, attributes, including a name or id to the spinner, allowing access to it from elsewhere:
 ```
 const sp	= new SpinnerElement;
 sp.setAttribute('id','spinner_01');
@@ -73,11 +73,43 @@ for (const Sp of document.getElementsByName('RedSpinner)) {
 ```
   _Note: Element attributes are not always interchangeable with Javascript object properties with the same names - be careful._
 
+Finally, the SpinnerElement comes with its own methods for setting attributes and styles:
+```
+const sp = new SpinnerElement;
+sp.setAttributes({
+ color: 'turquoise',
+ prefix: 'Spinning ... ',
+ cstyle: 'double'
+});
+sp.setStyle({
+ 'font-size': '2em',
+ 'font-weight': 'bold'
+});
+```
+
 ### Attributes
 
-The spinner web component accepts several attributes that affect its appearance or behavior.
+The spinner web component accepts a set of attributes that affect its appearance or behavior.
 
 Each attribute has both a full and an abbreviated name; in general good programming practice calls for descriptive names; up to you - you can always refer back to this README in five years when you're trying to figure out what they mean.
+
+Attributes specified in markup, and in options for `new SpinnerElement(options)`, are limited to the following plus `style`, `id`, `name`. Each one is described below:
+```
+  color | clr
+  speed | sp
+  direction | dir
+  weight | wt
+  prefix | pre
+  suffix | suf
+  cursor | crsr
+  cursor-style | cstyle
+  kerning | kern
+  trace-color | tclr
+  background-color | bgclr
+  back-color | bkclr
+```
+
+Other attributes appropriate to inline elements may always be assigned to spinners via the built-in Javascript `setAttribute` method.
 
 #### speed | sp = [ # ]
 Controls the speed of the spinner. The value represents the time in seconds for a full rotation. Default is 1.
@@ -110,6 +142,9 @@ Sets the visual form of the cursor - the part that spins around. The accepted va
 <x-spinner cursor="101"></x-spinner>
 ```
 
+#### cursor-style | cstyle = [ solid | dotted | dashed | double | ridge | groove | inset | outset ]
+Sets the appearance of the cursor using the available border-types.
+
 #### prefix | pre = [ text | HTML element ]
 Adds text or an HTML element right before the spinner. The spinner is styled as an `inline-block`, so it will stay on the same line as the prefix, unless the prefix itself forces a newline. It may be necessary to provide visual space in the prefix text, if the spinner has the default 0-width kerning.
 ```html
@@ -128,6 +163,9 @@ TODO: Separate left and right kerning.
 ```html
 <x-spinner prefix="Recording" suffix="Now" kern="2ch"></x-spinner>
 ```
+
+#### background-color | bgclr = [ hex color | rgba() color | inherit | transparent ]
+Sets the background color for the spinner only, not its prefix, suffix, or back, because the element's background-color only applies within its border.
 
 #### back-color | bclr = [ hex color | rgba() color | inherit | transparent ]
 Add a minimally-formatted background to the entire tag, including any prefix and suffix, with some padding and  rounded corners by arbitrary design diktat. The background is colored with this attribute, which may be any standard HTML color. Default is no back_color, and therefore no added background, padding, etc.

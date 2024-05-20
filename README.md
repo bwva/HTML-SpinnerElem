@@ -4,6 +4,12 @@ Create a customizable spinner as an HTML web component.
 
 The spinner is constructed as a bordered circle with one or more of its border quadrants colored, rotating at a specified rate and direction.
 
+Here is a sample page showing some variations: <a href="https://bvadata.info/html_spinner_examples.html">https://bvadata.info/html_spinner_examples.html</a>
+
+Here are some CodePens:
+- <a href="https://codepen.io/bwva/pen/PovZgEP">Spinners as List Bullet Markers</a>
+- <a href="https://codepen.io/bwva/pen/wvbMZVd">Spinner Cursor Types Varied by Weight and Cursor Style</a>
+
 ## Installation
 
 To use the spinner component in your project:

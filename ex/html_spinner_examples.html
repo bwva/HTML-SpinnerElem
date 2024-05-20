@@ -11,6 +11,7 @@ html {
 body {
 	font-family: sans-serif;
 	margin-left: 2rem;
+	max-width:   960px;
 }
 
 h1,h2,h3,h4,h5,h6,th,hr,p  {
@@ -29,6 +30,18 @@ button {
 	color: green;
 	font-size: 1.6em;
 }
+	.spin1 {
+	  list-style: none;
+	  padding: 0;
+	}
+	.spin1 li {
+	  display: flex;
+	  align-items: center;
+	  margin-bottom: 0.5em;
+	}
+	.spin1 li x-spinner {
+	  margin-right: 0.5em;
+	}
 
 </style>
 <title>HTML-Spinner Examples</title>
@@ -132,77 +145,6 @@ button {
 "></span> &nbsp;
 </p>
 <hr>
-<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
-  <div>weight&rarr;<br>cursor&darr;<br><br>1000</div>
-  <div>Default<br>(4 / .195)<br>  <x-spinner crsr="1" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div>1<br>.045<br><x-spinner crsr="1" wt=".045" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div>2<br>.095<br><x-spinner crsr="1" wt=".095" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div>3<br>.145<br><x-spinner crsr="1" wt=".145" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div>4<br>.195<br><x-spinner crsr="1" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div>5<br>.245<br><x-spinner crsr="1" wt=".245" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div>6<br>.295<br><x-spinner crsr="1" wt=".295" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div>7<br>.345<br><x-spinner crsr="1" wt=".345" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div>8<br>.395<br><x-spinner crsr="1" wt=".395" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div>9<br>.445<br><x-spinner crsr="1" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div>10<br>.495<br><x-spinner crsr="1" wt=".495" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-</div>
-<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
-  <div><br>1010</div>
-  <div><x-spinner crsr="101" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="101" wt=".045" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="101" wt=".095" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="101" wt=".145" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="101" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="101" wt=".245" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="101" wt=".295" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="101" wt=".345" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="101" wt=".395" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="101" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="101" wt=".495" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-</div>
-<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
-  <div><br>1100</div>
-  <div><x-spinner crsr="11" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="11" wt=".045" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="11" wt=".095" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="11" wt=".145" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="11" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="11" wt=".245" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="11" wt=".295" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="11" wt=".345" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="11" wt=".395" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="11" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="11" wt=".495" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-</div>
-<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
-  <div><br>1110</div>
-  <div><x-spinner crsr="111" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="111" wt=".045" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="111" wt=".095" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="111" wt=".145" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="111" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="111" wt=".245" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="111" wt=".295" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="111" wt=".345" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="111" wt=".395" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="111" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="111" wt=".495" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-</div>
-<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
-  <div><br>1111</div>
-  <div><x-spinner crsr="1111" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="1111" wt=".045" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="1111" wt=".095" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="1111" wt=".145" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="1111" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="1111" wt=".245" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="1111" wt=".295" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="1111" wt=".345" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="1111" wt=".395" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="1111" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-  <div><x-spinner crsr="1111" wt=".495" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:4em;"></x-spinner></div>
-</div>
-<hr>
 <div>
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demo');
@@ -252,6 +194,77 @@ button {
     spinner.setOutsetCursor();
   });
 ">Outset</button>
+</div>
+<hr>
+<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
+  <div>weight&rarr;<br>cursor&darr;<br><br>1000</div>
+  <div>Default<br>(4 / .195)<br>  <x-spinner crsr="1" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div>1<br>.045<br><x-spinner crsr="1" wt=".045" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div>2<br>.095<br><x-spinner crsr="1" wt=".095" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div>3<br>.145<br><x-spinner crsr="1" wt=".145" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div>4<br>.195<br><x-spinner crsr="1" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div>5<br>.245<br><x-spinner crsr="1" wt=".245" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div>6<br>.295<br><x-spinner crsr="1" wt=".295" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div>7<br>.345<br><x-spinner crsr="1" wt=".345" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div>8<br>.395<br><x-spinner crsr="1" wt=".395" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div>9<br>.445<br><x-spinner crsr="1" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div>10<br>.495<br><x-spinner crsr="1" wt=".495" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+</div>
+<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
+  <div><br>1010</div>
+  <div><x-spinner crsr="101" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".045" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".095" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".145" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".245" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".295" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".345" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".395" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="101" wt=".495" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+</div>
+<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
+  <div><br>1100</div>
+  <div><x-spinner crsr="11" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".045" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".095" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".145" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".245" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".295" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".345" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".395" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="11" wt=".495" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+</div>
+<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
+  <div><br>1110</div>
+  <div><x-spinner crsr="111" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".045" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".095" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".145" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".245" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".295" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".345" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".395" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="111" wt=".495" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+</div>
+<div style="font-family:sans-serif;color:green;text-align:center;max-width=960px;display:grid;grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));gap:1px;">
+  <div><br>1111</div>
+  <div><x-spinner crsr="1111" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="1111" wt=".045" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="1111" wt=".095" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="1111" wt=".145" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="1111" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="1111" wt=".245" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="1111" wt=".295" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="1111" wt=".345" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="1111" wt=".395" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="1111" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
+  <div><x-spinner crsr="1111" wt=".495" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
 </div>
 <hr>
 <button type="button" onclick="
@@ -333,27 +346,14 @@ button {
 <x-spinner id="sp6" color="#ddd" sp="1.5" tclr="#ccf"  wt="8" dir="ccw" suf="Scanning..." kern=".4em"></x-spinner><br>
 </p>
 <hr>
+<h3>Special Case: List Bullets</h3>
 <section>
-	<style>
-	.spin1 {
-	  list-style: none;
-	  padding: 0;
-	}
-	.spin1 li {
-	  display: flex;
-	  align-items: center;
-	  margin-bottom: 0.5em;
-	}
-	.spin1 li x-spinner {
-	  margin-right: 0.5em;
-	}
-	</style>
 	<ul class="spin1" style="font-size:2em;">
-	<li></x-spinner> Customizable</li>
-	<li></x-spinner> No Dependencies or Frameworks</li>
-	<li></x-spinner> Compatible with standard HTML, css, and Javascript</li>
-	<li></x-spinner> Works in all modern browsers</li>
-	<li></x-spinner> May be entirely controlled in markup, or by script, or in combination</li>
+	<li> Customizable</li>
+	<li> No Dependencies or Frameworks</li>
+	<li> Compatible with standard HTML, css, and Javascript</li>
+	<li> Works in all modern browsers</li>
+	<li> May be entirely controlled in markup, or by script, or in combination</li>
 	</ul>
 	<script>
 	document.addEventListener('DOMContentLoaded', function() {
@@ -365,6 +365,10 @@ button {
 	});
 	</script>
 </section>
+<blockquote>
+  The spinning bullets on the list above are substituted for the list element's own bullet markers, by removing the list's own markers, and then inserting the custom spinner elements at the very start of each list item, just before its content. The insertion is accomplished with a brief script triggered after full DOM load to ensure the list is all there. See <a href="https://codepen.io/bwva/pen/PovZgEP">CodePen: Spinners as List Markers</a>.
+
+</blockquote>
 <hr>
 <p style="background-color:yellow;padding:2em;">
 <x-spinner prefix="We'll be right back ... " cursor="1" trace-color="transparent" back-color="white" color="red"></x-spinner>

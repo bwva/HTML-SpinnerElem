@@ -29,6 +29,7 @@ button {
 	color: green;
 	font-size: 1.6em;
 }
+
 </style>
 <title>HTML-Spinner Examples</title>
 </head>
@@ -332,6 +333,39 @@ button {
 <x-spinner id="sp6" color="#ddd" sp="1.5" tclr="#ccf"  wt="8" dir="ccw" suf="Scanning..." kern=".4em"></x-spinner><br>
 </p>
 <hr>
+<section>
+	<style>
+	.spin1 {
+	  list-style: none;
+	  padding: 0;
+	}
+	.spin1 li {
+	  display: flex;
+	  align-items: center;
+	  margin-bottom: 0.5em;
+	}
+	.spin1 li x-spinner {
+	  margin-right: 0.5em;
+	}
+	</style>
+	<ul class="spin1" style="font-size:2em;">
+	<li></x-spinner> Customizable</li>
+	<li></x-spinner> No Dependencies or Frameworks</li>
+	<li></x-spinner> Compatible with standard HTML, css, and Javascript</li>
+	<li></x-spinner> Works in all modern browsers</li>
+	<li></x-spinner> May be entirely controlled in markup, or by script, or in combination</li>
+	</ul>
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const listItems = document.querySelectorAll('.spin1 li');
+	  listItems.forEach(function(item) {
+		const spinner = new SpinnerElement( {crsr: '101', bgclr:"gold", 'trace-color':"green", color:"red"});
+		item.insertAdjacentElement('afterbegin', spinner);
+	  });
+	});
+	</script>
+</section>
+<hr>
 <p style="background-color:yellow;padding:2em;">
 <x-spinner prefix="We'll be right back ... " cursor="1" trace-color="transparent" back-color="white" color="red"></x-spinner>
 </p>
@@ -357,7 +391,7 @@ Recording in Progress
 
 <script src="./scripts/KALE.js"></script>
 <script src="./scripts/spinnerComponent.js"></script>
-<script></script>
+
 <script>
 </script>
 

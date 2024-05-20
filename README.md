@@ -31,7 +31,7 @@ Loading the `spinner-component.js` Javascript file automatically constructs a sp
 <script src="./MyScriptDirectory/spinner-component.js"></script>
 ```
 
-_Note: GitHub can't allow installation of custom web components, so no examples are embedded here. See the `/ex` directory for an HTML doc with lots of examples._
+_Note: GitHub can't allow installation of custom web components, so no examples are embedded here. See the `/ex` directory for an HTML doc with lots of examples. I have also placed this doc online, loading the latest production version of `spinner-component.js`, at [my own site](https://bvadata.info/html_spinner_examples.html). And I've started posting CodePens with some examples._
 
 ### HTML Tag
 The spinner can be placed in your HTML as an inline-block element with the following tag:

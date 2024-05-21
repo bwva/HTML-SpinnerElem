@@ -48,6 +48,12 @@ button {
 <title>HTML-Spinner Examples</title>
 </head>
 <body>
+<h1>
+<x-spinner color="green"></x-spinner>
+Spun Out? Try the HTML Spinner Element
+<x-spinner color="red" dir="ccw"></x-spinner>
+</h1>
+
 <section>
 	<h3> How is this spinner made?</h3>
 	<p>
@@ -348,7 +354,18 @@ yielding: <x-spinner crsr="101" wt=".195" class="demo" tclr="rgba(0,55,255,.25)"
 	}
 ">Insert It</button> &nbsp;
 <div id="here1" style="display:inline-block;border-bottom:1pt blue solid;width:4em;text-align:center;"> &nbsp; </div> &nbsp;
-<button type="button" onclick="const sp1=new SpinnerElement({cursor:'1111',cstyle:'dotted',wt:'5'});appendSpinner(sp1,'#here2');">Append it</button> &nbsp;
+<button type="button" onclick="
+	if (this.innerHTML === 'Append It') {
+		const sp2=new SpinnerElement({id: 'sp2_id',
+		cursor:'1111', cstyle:'dotted',wt:'5'});
+		appendSpinner(sp2,'#here2');
+		this.innerHTML='Remove It';
+	}
+	else {
+		removeSpinner('#sp2_id');
+		this.innerHTML='Append It';
+	}
+">Append It</button> &nbsp;
 <div id="here2" style="display:inline-block;border-bottom:1pt blue solid;width:4em;text-align:center;"> Hi </div> &nbsp;
 </div>
 <hr>

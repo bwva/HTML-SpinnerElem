@@ -67,7 +67,7 @@ class SpinnerElement extends HTMLElement {
   render() {
     const crsrcolor  = this.getAttribute('color')       || this.getAttribute('clr')   || 'currentColor';
     const tracecolor = this.getAttribute('trace-color') || this.getAttribute('tclr')  || 'rgba(20, 20, 20, .1)';
-    const bkcolor    = this.getAttribute('back-color')  || this.getAttribute('bkclr')  || '';
+    const bkcolor    = this.getAttribute('back-color')  || this.getAttribute('bkclr') || '';
     const bgcolor    = this.getAttribute('background-color') || this.getAttribute('bgclr')  || 'transparent';
 
     const speed      = this.getAttribute('speed')       || this.getAttribute('sp')    || '1';
@@ -140,13 +140,13 @@ class SpinnerElement extends HTMLElement {
           100% { transform: rotate(-360deg); }
         }
         span {
-          display:      inline-block;
-          padding:      0;
-          box-sizing:   border-box;
-          margin-left:    ${kerning};
-          margin-right:   ${kerning};
+          box-sizing:       border-box;
+          display:          inline-block;
+          padding:          0;
+          margin-left:      ${kerning};
+          margin-right:     ${kerning};
           background-color: ${bgcolor};
-      ${circleBorderSpinnerCss}
+          ${circleBorderSpinnerCss}
           animation: ${animation} ${speed}s linear infinite;
         }
         div {

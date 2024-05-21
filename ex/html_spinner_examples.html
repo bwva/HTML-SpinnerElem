@@ -145,7 +145,7 @@ button {
 "></span> &nbsp;
 </p>
 <hr>
-<div>
+<div>Curser Styles: &nbsp;
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demo');
   targetSpinners.forEach(spinner => {
@@ -266,6 +266,18 @@ button {
   <div><x-spinner crsr="1111" wt=".445" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
   <div><x-spinner crsr="1111" wt=".495" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;"></x-spinner></div>
 </div>
+<p>
+All of the spinners above use the same basic spinner with size 3em, cursor color green, and trace color light blue. The table shows how the spinner varies with different cursor types and weights, and the buttons change the spinner style for the whole set, identified by the class "demo".
+</p>
+<p>
+Here is the spinner markup for one of the spinners above:<br>
+  <code style="white-space: pre-wrap;">
+&lt;div style="color:green;">
+&lt;x-spinner crsr="101" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" style="font-size:3em;">&lt;/x-spinner>
+&lt;/div>
+</code>
+yielding: <x-spinner crsr="101" wt=".195" class="demo" tclr="rgba(0,55,255,.25)" clr="green" style="font-size:3em;"></x-spinner>, which still has the class "demo" so it will change cursor style when you click the buttons above.
+</p>
 <hr>
 <button type="button" onclick="
 	let spn	= `<x-spinner id='spinMe'></x-spinner>`;

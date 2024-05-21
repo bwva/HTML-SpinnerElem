@@ -220,6 +220,9 @@ How is the `font-size` assigned to the spinner?
 - the spinner may be assigned a css selector such as a name, id or class, and then its type styling may be set from elsewhere, such as a stylesheet;
 - any of the above may be accomplished from scripts as well as direct markup.
 
+#### How is this Spinner Made?
+This spinner is made from a square box with a border. One or more of the top, right, bottom, and left, borders are colored differently from the rest. Then the sides of the square are made round by giving the corners of the square a radius of 50% of its size. The result is four "quadrants" of the spinner to color and format to create different cursors.
+
 #### The Spinner's Tag Name
 The SpinnerElement class creates the spinner with the tag "x-spinner", as in the barebones spinner:
 ```

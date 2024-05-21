@@ -10,7 +10,8 @@ html {
 }
 body {
 	font-family: sans-serif;
-	margin-left: 2rem;
+	margin-left: auto;
+	margin-right: auto;
 	max-width:   960px;
 }
 
@@ -47,103 +48,109 @@ button {
 <title>HTML-Spinner Examples</title>
 </head>
 <body>
-<p style="display:block;font-size: 2em;">
-<span style="
-	display: inline-block;
-	font-size:.4em;
-	width:         1cap;
-	height:        1cap;
-	border:        0;
-	margin-right:2em;
-">Circling the Square: </span> &nbsp;
-<span style="
-	display: inline-block;
-	width:         1cap;
-	height:        1cap;
-	border:        .195cap solid rgba(0,80,80,.1);
-	border-top:    .195cap solid rgba(0,80,80,.75);
-"></span>&rarr;
-<span style="
-	display: inline-block;
-	width:         1cap;
-	height:        1cap;
-	border-radius: 50%;
-	border:        .195cap solid rgba(0,80,80,.1);
-	border-top:    .195cap solid rgba(0,80,80,.75);
-"></span> &nbsp;
-<span style="
-	display: inline-block;
-	width:         1cap;
-	height:        1cap;
-	border:        .195cap solid rgba(0,80,80,.1);
-	border-top:    .195cap solid rgba(0,80,80,.75);
-	border-bottom: .195cap solid rgba(0,80,80,.75);
-"></span>&rarr;
-<span style="
-	display: inline-block;
-	width:         1cap;
-	height:        1cap;
-	border-radius: 50%;
-	border:        .195cap solid rgba(0,80,80,.1);
-	border-top:    .195cap solid rgba(0,80,80,.75);
-	border-bottom: .195cap solid rgba(0,80,80,.75);
-"></span> &nbsp;
-<span style="
-	display: inline-block;
-	width:         1cap;
-	height:        1cap;
-	border:        .195cap solid rgba(0,80,80,.1);
-	border-top:    .195cap solid rgba(0,80,80,.75);
-	border-left:   .195cap solid rgba(0,80,80,.75);
-"></span>&rarr;
-<span style="
-	display: inline-block;
-	width:         1cap;
-	height:        1cap;
-	border-radius: 50%;
-	border:        .195cap solid rgba(0,80,80,.1);
-	border-top:    .195cap solid rgba(0,80,80,.75);
-	border-left:   .195cap solid rgba(0,80,80,.75);
-"></span> &nbsp;
-<span style="
-	display: inline-block;
-	width:         1cap;
-	height:        1cap;
-	border:        .195cap solid rgba(0,80,80,.1);
-	border-top:    .195cap solid rgba(0,80,80,.75);
-	border-bottom: .195cap solid rgba(0,80,80,.75);
-	border-left:   .195cap solid rgba(0,80,80,.75);
-"></span>&rarr;
-<span style="
-	display: inline-block;
-	width:         1cap;
-	height:        1cap;
-	border-radius: 50%;
-	border:        .195cap solid rgba(0,80,80,.1);
-	border-top:    .195cap solid rgba(0,80,80,.75);
-	border-bottom: .195cap solid rgba(0,80,80,.75);
-	border-left:   .195cap solid rgba(0,80,80,.75);
-"></span> &nbsp;
-<span style="
-	display: inline-block;
-	width:         1cap;
-	height:        1cap;
-	border:        .195cap solid rgba(0,80,80,.75);
-	border-top:    .195cap solid rgba(0,80,80,.75);
-	border-bottom: .195cap solid rgba(0,80,80,.75);
-	border-left:   .195cap solid rgba(0,80,80,.75);
-"></span>&rarr;
-<span style="
-	display: inline-block;
-	width:         1cap;
-	height:        1cap;
-	border-radius: 50%;
-	border:        .195cap solid rgba(0,80,80,.75);
-	border-top:    .195cap solid rgba(0,80,80,.75);
-	border-bottom: .195cap solid rgba(0,80,80,.75);
-	border-left:   .195cap solid rgba(0,80,80,.75);
-"></span> &nbsp;
-</p>
+<section>
+	<h3> How is this spinner made?</h3>
+	<p>
+	These images illustrate how the cursor - the spinning part - is made from a square box with a border. One or more of the top, right, bottom, and left, borders are colored differently from the rest. Then the sides of the square are made round by giving the corners of the square a radius of 50% of its size. The result is four "quadrants" of the spinner to color and format for different spinners.
+	</p>
+	<p style="display:block;font-size: 2em;">
+	<span style="
+		display: inline-block;
+		font-size:.4em;
+		width:         1cap;
+		height:        1cap;
+		border:        0;
+		margin-right:2em;
+	">Circling the Square: </span> &nbsp;
+	<span style="
+		display: inline-block;
+		width:         1cap;
+		height:        1cap;
+		border:        .195cap solid rgba(0,80,80,.1);
+		border-top:    .195cap solid rgba(0,80,80,.75);
+	"></span>&rarr;
+	<span style="
+		display: inline-block;
+		width:         1cap;
+		height:        1cap;
+		border-radius: 50%;
+		border:        .195cap solid rgba(0,80,80,.1);
+		border-top:    .195cap solid rgba(0,80,80,.75);
+	"></span> &nbsp;
+	<span style="
+		display: inline-block;
+		width:         1cap;
+		height:        1cap;
+		border:        .195cap solid rgba(0,80,80,.1);
+		border-top:    .195cap solid rgba(0,80,80,.75);
+		border-bottom: .195cap solid rgba(0,80,80,.75);
+	"></span>&rarr;
+	<span style="
+		display: inline-block;
+		width:         1cap;
+		height:        1cap;
+		border-radius: 50%;
+		border:        .195cap solid rgba(0,80,80,.1);
+		border-top:    .195cap solid rgba(0,80,80,.75);
+		border-bottom: .195cap solid rgba(0,80,80,.75);
+	"></span> &nbsp;
+	<span style="
+		display: inline-block;
+		width:         1cap;
+		height:        1cap;
+		border:        .195cap solid rgba(0,80,80,.1);
+		border-top:    .195cap solid rgba(0,80,80,.75);
+		border-left:   .195cap solid rgba(0,80,80,.75);
+	"></span>&rarr;
+	<span style="
+		display: inline-block;
+		width:         1cap;
+		height:        1cap;
+		border-radius: 50%;
+		border:        .195cap solid rgba(0,80,80,.1);
+		border-top:    .195cap solid rgba(0,80,80,.75);
+		border-left:   .195cap solid rgba(0,80,80,.75);
+	"></span> &nbsp;
+	<span style="
+		display: inline-block;
+		width:         1cap;
+		height:        1cap;
+		border:        .195cap solid rgba(0,80,80,.1);
+		border-top:    .195cap solid rgba(0,80,80,.75);
+		border-bottom: .195cap solid rgba(0,80,80,.75);
+		border-left:   .195cap solid rgba(0,80,80,.75);
+	"></span>&rarr;
+	<span style="
+		display: inline-block;
+		width:         1cap;
+		height:        1cap;
+		border-radius: 50%;
+		border:        .195cap solid rgba(0,80,80,.1);
+		border-top:    .195cap solid rgba(0,80,80,.75);
+		border-bottom: .195cap solid rgba(0,80,80,.75);
+		border-left:   .195cap solid rgba(0,80,80,.75);
+	"></span> &nbsp;
+	<span style="
+		display: inline-block;
+		width:         1cap;
+		height:        1cap;
+		border:        .195cap solid rgba(0,80,80,.75);
+		border-top:    .195cap solid rgba(0,80,80,.75);
+		border-bottom: .195cap solid rgba(0,80,80,.75);
+		border-left:   .195cap solid rgba(0,80,80,.75);
+	"></span>&rarr;
+	<span style="
+		display: inline-block;
+		width:         1cap;
+		height:        1cap;
+		border-radius: 50%;
+		border:        .195cap solid rgba(0,80,80,.75);
+		border-top:    .195cap solid rgba(0,80,80,.75);
+		border-bottom: .195cap solid rgba(0,80,80,.75);
+		border-left:   .195cap solid rgba(0,80,80,.75);
+	"></span> &nbsp;
+	</p>
+</section>
 <hr>
 <div><x-spinner cstyle="dotted" crsr="1111" color="magenta"></x-spinner>
 Curser Styles: &nbsp;

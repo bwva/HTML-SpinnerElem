@@ -8,7 +8,7 @@ Here is a sample page showing some variations: <a href="https://bvadata.info/htm
 
 Here are some CodePens:
 - <a href="https://codepen.io/bwva/pen/PovZgEP">Spinners as List Bullet Markers</a>
-- <a href="https://codepen.io/bwva/pen/wvbMZVd">Spinner Cursor Types Varied by Weight and Cursor Style</a>
+- <a href="https://codepen.io/bwva/pen/wvbMZVd">Spinner Rotor Types Varied by Weight and Rotor Style</a>
 
 ## Installation
 
@@ -25,11 +25,9 @@ The spinner is a custom web component that you can treat like any inline HTML ta
 
 The underlying SpinnerElement is constructed from a bit of HTML with some styling, plus css transformations to rotate it.
 
-For this release, the spinner is created as a circle with a cursor moving around on it. The cursor is just part of the circle's border, colored distinctly from the rest of the border.
+The spinner is created as a circle with a rotor. The rotor is just part of the circle's border, colored distinctly from the rest of the border.
 
-Future spinner variants to come, from me and perhaps you!
-
-SpinnerElements are self-contained, and need no additional images, css, HTML elements, or scripts.
+SpinnerElements are self-contained, and need no additional images, css, HTML elements, frameworks, or scripts. At the same time, SpinnerElements are versatile in HTML markup and highly scriptable for dynamic applications.
 
 ## Usage
 Loading the `spinner-component.js` Javascript file automatically constructs a spinner web component and makes it available as an element in the current DOM.
@@ -109,8 +107,8 @@ Attributes specified in markup, and in options for `new SpinnerElement(options)`
   weight | wt
   prefix | pre
   suffix | suf
-  cursor | crsr
-  cursor-style | cstyle
+  rotor | rtr
+  rotor-style | cstyle
   kerning | kern
   trace-color | tclr
   background-color | bgclr
@@ -126,7 +124,7 @@ Controls the speed of the spinner. The value represents the time in seconds for 
 ```
 
 #### color | clr = [ hex color | rgba() color | inherit | transparent  ]
-Sets the color of the spinner's cursor. Accepts any valid CSS color value. Default is inherit.
+Sets the color of the spinner's rotor. Accepts any valid CSS color value. Default is inherit.
 ```html
 <x-spinner color="#0000ff"></x-spinner>
 ```
@@ -144,17 +142,17 @@ Sets the direction of spin. Default is clockwise ('cw').
 <x-spinner dir="ccw"></x-spinner>
 ```
 
-#### cursor | crsr = [ 1 | 11 | 101 | 111 | 1111 ]
-Sets the visual form of the cursor - the part that spins around. The accepted value is up to 4 digits, each of which is a one (1) or a zero (0), representing each of the four quadrants of the circular spinner. A one (1) colors a quadrant; a zero (0) allows the trace color to show for that quadrant. '1000' would color one quadrant of the spinner. '1100' would color two adjacent quadrants, '1110' would color three adjacent quadrants, and '1010' would color opposite quadrants. '1111' would not appear to move with the default 'solid' cursor-style (below), but does show movement in some others. Ending zeroes (0) may be omitted, so '11' is the same as '1100', '101' the same as '1010'.
+#### rotor | rtr = [ 1 | 11 | 101 | 111 | 1111 ]
+Sets the visual form of the rotor - the part that spins around. The accepted value is up to 4 digits, each of which is a one (1) or a zero (0), representing each of the four quadrants of the circular spinner. A one (1) colors a quadrant; a zero (0) allows the trace color to show for that quadrant. '1000' would color one quadrant of the spinner. '1100' would color two adjacent quadrants, '1110' would color three adjacent quadrants, and '1010' would color opposite quadrants. '1111' would not appear to move with the default 'solid' rotor-style (below), but does show movement in some others. Ending zeroes (0) may be omitted, so '11' is the same as '1100', '101' the same as '1010'.
 ```html
-<x-spinner cursor="101"></x-spinner>
+<x-spinner rotor="101"></x-spinner>
 ```
 
-#### cursor-style | cstyle = [ solid | dotted | dashed | double | ridge | groove | inset | outset ]
-Sets the appearance of the cursor using the available border-types. Different spinners can be created with varying combinations of cursor-style and weight.
+#### rotor-style | cstyle = [ solid | dotted | dashed | double | ridge | groove | inset | outset ]
+Sets the appearance of the rotor using the available border-types. Different spinners can be created with varying combinations of rotor-style and weight.
 
 #### weight | wt = [ 0 .. 0.5 x cap ht | 1 .. 10 ]
-Sets the weight (thickness) of the cursor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size (diameter) of the spinner; a value greater than .5 will be rejected. Weight can also be set on a size scale from 1 to 10, stepping the thickness in even increments up to just under the spinner's radius. Any other value will be rejected. Unspecified and rejected weight attributes get the default weight, .195 (= 4 on the size scale).
+Sets the weight (thickness) of the rotor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size (diameter) of the spinner; a value greater than .5 will be rejected. Weight can also be set on a size scale from 1 to 10, stepping the thickness in even increments up to just under the spinner's radius. Any other value will be rejected. Unspecified and rejected weight attributes get the default weight, .195 (= 4 on the size scale).
 ```html
 <x-spinner weight=".12"></x-spinner>
 <x-spinner weight="4"></x-spinner>
@@ -199,14 +197,14 @@ When a web page/app loads this script (`spinner-component.js`), the spinner web 
 The examples above are simplified to illustrate each attribute. In practice any number or combination of attributes may be used.
 ```
 <div style="color:#ff0000; font-size:2em;">
-<x-spinner prefix="Research " suffix=" takes time." speed=".75" cursor="1110" direction="cw" back-color="#ffff00" trace-color="transparent"></x-spinner>
+<x-spinner prefix="Research " suffix=" takes time." speed=".75" rotor="1110" direction="cw" back-color="#ffff00" trace-color="transparent"></x-spinner>
 </div>
 ```
 The outer `div` provides the font color and size; the attributes of the spinner include:
 - `prefix="Research "` adding text before the spinner;
 - `suffix=" takes time."` adding text after the spinner;
 - `speed=".75"` sets the speed to one rotation every .75 seconds;
-- `cursor="1110"` sets the moving part to three quadrants of the circle;
+- `rotor="1110"` sets the moving part to three quadrants of the circle;
 - `direction="cw"` sets the rotation to clockwise (but that's the default, so this isn't really need for clockwise);
 - `back-color="#ffff00"` creates a background with that color (bright yellow) and adds padding and rounded corners to the background;
 - `trace-color="transparent"` hides the spinner's trace - the non-colored quadrants of the circle, which is normally visible as a light gray.
@@ -221,7 +219,7 @@ How is the `font-size` assigned to the spinner?
 - any of the above may be accomplished from scripts as well as direct markup.
 
 #### How is this Spinner Made?
-This spinner is made from a square box with a border. One or more of the top, right, bottom, and left, borders are colored differently from the rest. Then the sides of the square are made round by giving the corners of the square a radius of 50% of its size. The result is four "quadrants" of the spinner to color and format to create different cursors.
+This spinner is made from a square box with a border. One or more of the top, right, bottom, and left, borders are colored differently from the rest. Then the sides of the square are made round by giving the corners of the square a radius of 50% of its size. The result is four "quadrants" of the spinner to color and format to create different rotors.
 
 #### The Spinner's Tag Name
 The SpinnerElement class creates the spinner with the tag "x-spinner", as in the barebones spinner:

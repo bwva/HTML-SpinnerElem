@@ -2,40 +2,41 @@ class SpinnerElement extends HTMLElement {
   constructor( options = {} ) {
     super();
     this.attachShadow({ mode: 'open' });
+    this.observedAttributesSet = new Set(this.constructor.observedAttributes);
     this.setAttributes(options);
     this.rendered = false;
   }
 
-  static get observedAttributes() {
-    return [
+  static observedAttributes = [
       'rotor', 'rtr',
-      'rotor-color', 'color', 'clr', 'rclr',
       'rotor-style', 'rstyle',
       'speed', 'sp', 'direction', 'dir', 'weight', 'wt',
+      'rotor-color', 'rclr', // same as 'color'
       'background-color', 'bgclr',
       'trace-color', 'tclr',
-      'prefix', 'pre', 'suffix', 'suf', 'kerning', 'kern',
       'back-color', 'bkclr',
-      'rotor-status', 'rstatus', 'aria-wrap', 'awrap',
-      'aria-role', 'role', 'aria-description', 'adesc',
-      'style', 'name', 'id'
-    ];
-  }
+      'prefix', 'pre', 'suffix', 'suf', 'kerning', 'kern',
+      'rotor-status', 'rstatus',
+      'aria-wrap', 'awrap',
+      'aria-role', 'role', 'aria-description',
+      'aria-label', 'aria-busy', 'aria-live',
+      // these are standard attributes:
+      'color', 'style', 'name', 'id'
+  ];
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (this.constructor.observedAttributes.includes(name)) {
-    this.render();
+    if (this.observedAttributesSet.has(name)) {
+      this.render();
     }
   }
 
   setAttributes(options = {}) {
-   const observedAttributes = this.constructor.observedAttributes;
-   Object.entries(options).forEach(([key, value]) => {
-     if (observedAttributes.includes(key)) {
-       this.setAttribute(key, value);
-     } else {
-       console.warn(`Ignoring unknown attribute "${key}" for <x-spinner>`);
-     }
+    Object.entries(options).forEach(([key, value]) => {
+      if (this.observedAttributesSet.has(key)) {
+        this.setAttribute(key, value);
+      } else {
+        console.warn(`Ignoring unknown attribute "${key}" for <x-spinner>`);
+      }
     });
   }
 
@@ -60,19 +61,40 @@ class SpinnerElement extends HTMLElement {
       weight     :  alts.weight    || '0.195',
       direction  :  alts.direction || 'cw',
       rstatus    :  alts.rstatus   || 'running',
-      awrap      :  alts.awrap     || 'none',
-      ariaRole        : alts.ariaRole       || 'alert',
-      ariaLive        : alts.ariaLive       || 'polite',
-      ariaBusy        : alts.ariaBusy       || 'true',
-      ariaAtomic      : alts.ariaAtomic     || 'true',
-      ariaRelevant    : alts.ariaRelevant   || 'text',
-      ariaLabel       : alts.ariaLabel      || 'Application Status',
-      ariaLabelledBy  : alts.ariaLabelledBy || 'spinner-prefix spinner-suffix',
-      ariaDescription : alts.ariaDescription|| ''
+      awrap      :  alts.awrap               || 'none',
+      ariaRole        : alts.ariaRole        || 'alert',
+      ariaLive        : alts.ariaLive        || 'polite',
+      ariaBusy        : alts.ariaBusy        || 'true',
+      ariaAtomic      : alts.ariaAtomic      || 'true',
+      ariaRelevant    : alts.ariaRelevant    || 'text',
+      ariaLabel       : alts.ariaLabel       || 'Application Status',
+      ariaLabelledBy  : alts.ariaLabelledBy  || 'spinner-prefix spinner-suffix',
+      ariaDescription : alts.ariaDescription || ''
     };
     return defaults;
   }
 
+  // operation
+  start() {
+    this.setAttribute('rstatus', 'running');
+  }
+  stop() {
+    this.setAttribute('rstatus', 'paused');
+  }
+  show() {
+    this.style.setProperty('display', 'inline-block')
+  }
+  hide() {
+    this.style.setProperty('display', 'none')
+  }
+  veil() {
+    this.style.setProperty('visibility', 'hidden')
+  }
+  unveil() {
+    this.style.setProperty('visibility', 'visible')
+  }
+
+  // convenience methods
   setSolidRotor() {
     this.setAttribute('rotor-style', 'solid');
   }
@@ -97,64 +119,56 @@ class SpinnerElement extends HTMLElement {
   setOutsetRotor() {
     this.setAttribute('rotor-style', 'outset');
   }
-  start() {
-    this.setAttribute('rstatus', 'running');
-  }
-  stop() {
-    this.setAttribute('rstatus', 'paused');
-  }
-  show() {
-    this.style.setProperty('display', 'inline-block')
-  }
-  hide() {
-    this.style.setProperty('display', 'none')
-  }
-  veil() {
-    this.style.setProperty('visibility', 'hidden')
-  }
-  unveil() {
-    this.style.setProperty('visibility', 'visible')
-  }
+
   setPrefix(newPrefix = '') {
-    this.setAttribute('prefix', newPrefix);
+     this.setAttribute('prefix', newPrefix);
   }
+
   setSuffix(newSuffix = '') {
     this.setAttribute('suffix', newSuffix);
   }
 
+  // The main show
   render() {
-    const defaults   = this.setStandardDefaults(  ); // { rotor: '1010' }
+    const defaults     = this.setStandardDefaults(  ); // { rotor: '1010' }
 
-    const rtrcolor   = this.getAttribute('color')           || this.getAttribute('clr')    ||
-                       this.getAttribute('rotor-color')     || this.getAttribute('rclr')   || defaults.rtrcolor;
-    const tracecolor = this.getAttribute('trace-color')     || this.getAttribute('tclr')   || defaults.tracecolor;
-    const bkcolor    = this.getAttribute('back-color')      || this.getAttribute('bkclr')  || defaults.bkcolor;
-    const bgcolor    = this.getAttribute('background-color')|| this.getAttribute('bgclr')  || defaults.bgcolor;
-    const speed      = this.getAttribute('speed')           || this.getAttribute('sp')     || defaults.speed;
-    const kerning    = this.getAttribute('kerning')         || this.getAttribute('kern')   || defaults.kerning;
-    const prefix     = this.getAttribute('prefix')          || this.getAttribute('pre')    || defaults.prefix;
-    const suffix     = this.getAttribute('suffix')          || this.getAttribute('suf')    || defaults.suffix;
-    const rtrstyle   = this.getAttribute('rotor-style')     || this.getAttribute('rstyle') || defaults.rtrstyle;
-    const rstatus    = this.getAttribute('rotor-status')    || this.getAttribute('rstatus')|| defaults.rstatus;
-    const direction  = this.getAttribute('direction')       || this.getAttribute('dir')    || defaults.direction;
+    const spAttributes = Array.from(this.attributes).reduce((obj, attr) => {
+      if (this.observedAttributesSet.has(attr.name)) {
+        obj[attr.name] = attr.value;
+      }
+      return obj;
+    }, {});
 
-    const ariaRole        = this.getAttribute('role')       || defaults.ariaRole;
-    const ariaLive        = defaults.ariaLive;
-    const ariaBusy        = defaults.ariaBusy;
+    const rtrcolor   = spAttributes['color']           || spAttributes['clr']    ||
+                       spAttributes['rotor-color']     || spAttributes['rclr']   || defaults.rtrcolor;
+    const tracecolor = spAttributes['trace-color']     || spAttributes['tclr']   || defaults.tracecolor;
+    const bkcolor    = spAttributes['back-color']      || spAttributes['bkclr']  || defaults.bkcolor;
+    const bgcolor    = spAttributes['background-color']|| spAttributes['bgclr']  || defaults.bgcolor;
+    const speed      = spAttributes['speed']           || spAttributes['sp']     || defaults.speed;
+    const kerning    = spAttributes['kerning']         || spAttributes['kern']   || defaults.kerning;
+    const prefix     = spAttributes['prefix']          || spAttributes['pre']    || defaults.prefix;
+    const suffix     = spAttributes['suffix']          || spAttributes['suf']    || defaults.suffix;
+    const rtrstyle   = spAttributes['rotor-style']     || spAttributes['rstyle'] || defaults.rtrstyle;
+    const rstatus    = spAttributes['rotor-status']    || spAttributes['rstatus']|| defaults.rstatus;
+    const direction  = spAttributes['direction']       || spAttributes['dir']    || defaults.direction;
+
+    const awrap           = spAttributes['aria-wrap']        || spAttributes['awrap']   || defaults.awrap;
+    const ariaRole        = spAttributes['aria-role']        || spAttributes['role']    || defaults.ariaRole;
+    const ariaLabel       = spAttributes['aria-label']       || defaults.ariaLabel;
+    const ariaBusy        = spAttributes['aria-busy']        || defaults.ariaBusy;
+    const ariaLive        = spAttributes['aria-live']        || defaults.ariaLive;
+    const ariaDescription = spAttributes['aria-description'] || defaults.ariaDescription;
     const ariaAtomic      = defaults.ariaAtomic;
     const ariaRelevant    = defaults.ariaRelevant;
-    const ariaLabel       = defaults.ariaLabel;
     const ariaLabelledBy  = defaults.ariaLabelledBy;
-    const ariaDescription = this.getAttribute('aria-description') || defaults.ariaDescription;
 
     const spinnerHTML  = `<div><span id="spinner-prefix">${prefix}</span><span id="rotor"></span><span id="spinner-suffix">${suffix}</span></div>`;
-    const awrap        = this.getAttribute('aria-wrap')     || this.getAttribute('awrap')  || defaults.awrap;
-    const markup       = (awrap === 'none' || awrap === 'presentation') ? `${spinnerHTML}` :
+    const markup       = (awrap === 'none' || awrap === 'presentation' || awrap === 'ignore') ? `${spinnerHTML}` :
       `<div id="ariaRegion" role="${ariaRole}" aria-live="${ariaLive}" aria-busy="${ariaBusy}"
         aria-atomic="${ariaAtomic}" aria-relevant="${ariaRelevant}" aria-label="${ariaLabel}"
         aria-labelledby="${ariaLabelledBy}" aria-description="${ariaDescription}">${spinnerHTML}</div>`;
 
-    let weight       = this.getAttribute('weight')          || this.getAttribute('wt')     || defaults.weight;
+    let weight       = spAttributes['weight']          || spAttributes['wt']     || defaults.weight;
     switch (true) {
       case (weight <= .5 && weight > 0):
         break;
@@ -165,7 +179,7 @@ class SpinnerElement extends HTMLElement {
         weight = defaults.weight;
         break;
     }
-    const rotor       = this.getAttribute('rotor')          || this.getAttribute('rtr')  || defaults.rotor;
+    const rotor       = spAttributes['rotor']          || spAttributes['rtr']  || defaults.rotor;
     const rtr_pat     = rotor.split('');
     const top_color   = rtr_pat[0] == 1 ? rtrcolor : tracecolor;
     const left_color  = rtr_pat[1] == 1 ? rtrcolor : tracecolor;
@@ -280,7 +294,7 @@ function createSpinnerElement(tagName, defaultOptions = {}) {
   return CustomSpinnerElement;
 }
 
-/* Some basic functions */
+/* Some basic external functions */
 
 function insertSpinner(spinner,target,options) {
   const targetElement = (typeof target === 'string') ?

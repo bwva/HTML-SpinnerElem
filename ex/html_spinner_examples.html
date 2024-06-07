@@ -98,18 +98,18 @@ button {
   gap:          1px;
   font-size:    3em;
 ">
-<x-spinner rtr="100" color="green" wt="1" tclr="rgba(0,55,255,.25)"></x-spinner>
-<x-spinner rtr="100" wt="4" sp="0.33" tclr="rgba(0,55,255,.25)"></x-spinner>
-<x-spinner rtr="101" color="blue" wt="10" tclr="rgba(0,55,255,.25)"></x-spinner>
-<x-spinner rtr="101" wt="1" tclr="rgba(0,55,255,.25)" rstyle="dotted"></x-spinner>
-<x-spinner rtr="101" wt="4" tclr="rgba(0,55,255,.25)" rstyle="dotted"></x-spinner>
-<x-spinner rtr="1111" color="red" wt="3" dir="ccw" rstyle="dotted"></x-spinner>
-<x-spinner rtr="1111" color="#0f0" wt="8" tclr="rgba(0,55,255,.25)" rstyle="dotted"></x-spinner>
-<x-spinner rtr="11" wt="2" tclr="rgba(0,55,255,.25)" rstyle="double"></x-spinner>
-<x-spinner rtr="11" color="purple" wt="4" tclr="rgba(0,55,255,.25)" rstyle="double"></x-spinner>
-<x-spinner rtr="11" wt="10" tclr="rgba(0,55,255,.25)"></x-spinner>
-<x-spinner rtr="111" color="pink" wt="3" tclr="rgba(0,55,255,.25)"></x-spinner>
-<x-spinner rtr="111" color="blue" wt="10" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="100" color="green" wt="1" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="100" wt="4" sp="0.33" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="101" color="blue" wt="10" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="101" wt="1" tclr="rgba(0,55,255,.25)" rstyle="dotted"></x-spinner>
+<x-spinner rotor="101" wt="4" tclr="rgba(0,55,255,.25)" rstyle="dotted"></x-spinner>
+<x-spinner rotor="1111" color="red" wt="3" dir="ccw" rstyle="dotted"></x-spinner>
+<x-spinner rotor="1111" color="#0f0" wt="8" tclr="rgba(0,55,255,.25)" rstyle="dotted"></x-spinner>
+<x-spinner rotor="11" wt="2" tclr="rgba(0,55,255,.25)" rstyle="double"></x-spinner>
+<x-spinner rotor="11" color="purple" wt="4" tclr="rgba(0,55,255,.25)" rstyle="double"></x-spinner>
+<x-spinner rotor="11" wt="10" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="111" color="pink" wt="3" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="111" color="blue" wt="10" tclr="rgba(0,55,255,.25)"></x-spinner>
 </div>
 <div style="
   width:        90%;
@@ -118,7 +118,7 @@ button {
   margin-right: auto;
   ">
 <code style="white-space: pre-wrap;">
-&lt;x-spinner rtr="1111" color="red" wt="3" dir="ccw" rstyle="dotted">&lt;/x-spinner>
+&lt;x-spinner rotor="1111" color="red" wt="3" dir="ccw" rstyle="dotted">&lt;/x-spinner>
 </code>
 </div>
 </section>
@@ -147,7 +147,7 @@ button {
   &lt;script src="./scripts/spinnerComponent.js">&lt;/script></code></li>
   <li>Place a spinner where you want it</li>
   <li><x-spinner></x-spinner> Default: <code> &lt;x-spinner>&lt;/x-spinner> </code></li>
-  <li><x-spinner rtr="1111" rstyle="dotted" sp=".5" color="green"></x-spinner> Fast Dotted Green:<br><code> &lt;x-spinner rstyle="dotted" sp=".5" color="green">&lt;/x-spinner> </code></li>
+  <li><x-spinner rotor="1111" rstyle="dotted" sp=".5" color="green"></x-spinner> Fast Dotted Green:<br><code> &lt;x-spinner rstyle="dotted" sp=".5" color="green">&lt;/x-spinner> </code></li>
 </ol>
 </p>
 </section>
@@ -228,11 +228,11 @@ with a file size less than 10k.
 </p>
 <hr>
 <p style="color:green; font-size:2em;">
-<x-spinner prefix="Is it moving?" kerning="1ch" rtr="101" wt=".195" bgclr="gold" tclr="red" bkclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner prefix="Is it moving?" kerning="1ch" rotor="101" wt=".195" bgclr="gold" tclr="red" bkclr="rgba(0,55,255,.25)"></x-spinner>
 </p>
 <hr>
 <p style="font-size:2em;">
-<x-spinner rtr="101" wt=".495" sp="2" tclr="rgba(255,255,0,1)"></x-spinner> Restricted
+<x-spinner rotor="101" wt=".495" sp="2" tclr="rgba(255,255,0,1)"></x-spinner> Restricted
 </p>
 <hr>
 <p style="font-size:2.4em;color:#ff0000;">
@@ -321,7 +321,7 @@ Recording in Progress
 <div id="dump"></div>
 
 <hr>
-<button type="button" style="font-weight:bold;height:1.6em;width:12ch;font-size:1.4em" onclick="
+<button type="button" role='alert' style="font-weight:bold;height:1.6em;width:12ch;font-size:1.4em" onclick="
   if (this.innerHTML=='Run') {
     const sp  = new SpinnerElement;
     sp.id     = 'thatSpinner';
@@ -541,7 +541,7 @@ as specified with <code>direction="[ cw | ccw ]"</code>.
 </section>
 <hr id="rstyles">
 <section>
-<h2 style="text-align:center;"><x-spinner rstyle="dotted" rtr="1010" class="demoSpnr" color="magenta" style="font-size:inherit;"></x-spinner> Rotor Styles:</h2>
+<h2 style="text-align:center;"><x-spinner rstyle="dotted" rotor="1010" class="demoSpnr" color="magenta" style="font-size:inherit;"></x-spinner> Rotor Styles:</h2>
 <div style="text-align:center;">
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
@@ -695,7 +695,7 @@ Here is the spinner markup for one of the spinners above:
   &lt;x-spinner class="demoSpnr" rtr="101" wt=".195" tclr="rgba(0,55,255,.25)">&lt;/x-spinner>
   &lt;/div>
 </code>
-yielding: <x-spinner rtr="101" wt=".195" class="demoSpnr" tclr="rgba(0,55,255,.25)" clr="green" style="font-size:3em;"></x-spinner>,
+yielding: <x-spinner rtr="101" wt=".195" class="demoSpnr" tclr="rgba(0,55,255,.25)" rclr="green" style="font-size:3em;"></x-spinner>,
 which still has the class "demoSpnr" so it has the size of the spinners above,
 and it will change rotor style when you click the buttons above.
 </p>
@@ -811,7 +811,7 @@ and also some examples such as a copy of this page.
 </section>
 <section>
 <p style="text-align:center;color:purple;">
-<x-spinner rstyle="double" rtr="101" style="font-size:60em;line-height:1.0;"></x-spinner>
+<x-spinner rstyle="double" rotor="101" style="font-size:60em;line-height:1.0;"></x-spinner>
 </p>
 </section>
 <hr>

@@ -128,6 +128,14 @@ class SpinnerElement extends HTMLElement {
     this.setAttribute('suffix', newSuffix);
   }
 
+  toString() {
+   const shadowRoot = this.shadowRoot;
+   if (shadowRoot) {
+     return shadowRoot.innerHTML;
+   }
+   return '';
+  }
+
   // The main show
   render() {
     const defaults     = this.setStandardDefaults(  ); // { rotor: '1010' }
@@ -197,28 +205,27 @@ class SpinnerElement extends HTMLElement {
          color: inherit;
       `;
 
-    const circleBorderSpinnerCss  = `
-       border-radius: 50%;
-       @supports (width: 1cap) {
-         width:         1cap;
-         height:        1cap;
-         border:        calc(1cap * ${weight}) ${rtrstyle} ${tracecolor};
-         border-top:    calc(1cap * ${weight}) ${rtrstyle} ${top_color};
-         border-bottom: calc(1cap * ${weight}) ${rtrstyle} ${bottom_color};
-         border-left:   calc(1cap * ${weight}) ${rtrstyle} ${left_color};
-         border-right:  calc(1cap * ${weight}) ${rtrstyle} ${right_color};
-       }
-       @supports not (width: 1cap) {
-         // approximation:
-         width:         .7em;
-         height:        .7em;
-         border:        calc(.14em * ${weight}) ${rtrstyle} ${tracecolor};
-         border-top:    calc(.14em * ${weight}) ${rtrstyle} ${top_color};
-         border-bottom: calc(.14em * ${weight}) ${rtrstyle} ${bottom_color};
-         border-left:   calc(.14em * ${weight}) ${rtrstyle} ${left_color};
-         border-right:  calc(.14em * ${weight}) ${rtrstyle} ${right_color};
-       }
-    `;
+    const circleBorderSpinnerCss  =
+`border-radius: 50%;
+          @supports (width: 1cap) {
+            width:         1cap;
+            height:        1cap;
+            border:        calc(1cap * ${weight}) ${rtrstyle} ${tracecolor};
+            border-top:    calc(1cap * ${weight}) ${rtrstyle} ${top_color};
+            border-bottom: calc(1cap * ${weight}) ${rtrstyle} ${bottom_color};
+            border-left:   calc(1cap * ${weight}) ${rtrstyle} ${left_color};
+            border-right:  calc(1cap * ${weight}) ${rtrstyle} ${right_color};
+          }
+          @supports not (width: 1cap) {
+            // approximation:
+            width:         .7em;
+            height:        .7em;
+            border:        calc(.14em * ${weight}) ${rtrstyle} ${tracecolor};
+            border-top:    calc(.14em * ${weight}) ${rtrstyle} ${top_color};
+            border-bottom: calc(.14em * ${weight}) ${rtrstyle} ${bottom_color};
+            border-left:   calc(.14em * ${weight}) ${rtrstyle} ${left_color};
+            border-right:  calc(.14em * ${weight}) ${rtrstyle} ${right_color};
+          }`;
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -237,11 +244,11 @@ class SpinnerElement extends HTMLElement {
           white-space:      pre;
         }
         span#rotor {
+          animation: ${animation} ${speed}s linear infinite ${rstatus};
           margin-left:      ${kerning};
           margin-right:     ${kerning};
           background-color: ${bgcolor};
           ${circleBorderSpinnerCss}
-          animation: ${animation} ${speed}s linear infinite ${rstatus};
         }
         div {
           display:          inline-block;

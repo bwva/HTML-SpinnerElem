@@ -1,0 +1,187 @@
+<h1>HTML-SpinnerElem</h1>
+<p>Create a customizable spinner as an HTML web component.</p>
+<p>The spinner is constructed as a bordered circle with one or more of its border quadrants colored, rotating at a specified rate and direction.</p>
+<p>Here is a sample page showing some variations: <a href="https://bvadata.info/html_spinner_examples.html">https://bvadata.info/html_spinner_examples.html</a></p>
+<p>Here are some CodePens:</p>
+<ul>
+<li><a href="https://codepen.io/bwva/pen/PovZgEP">Spinners as List Bullet Markers</a></li>
+<li><a href="https://codepen.io/bwva/pen/wvbMZVd">Spinner Rotor Types Varied by Weight and Rotor Style</a></li>
+</ul>
+<h2>Installation</h2>
+<p>To use the spinner component in your project:</p>
+<ul>
+<li>download and open <code>HTML-SpinnerElem</code> from GitHub;</li>
+<li>from the included /src directory, move the script <code>spinner-component.js</code> to where your web scripts are located;</li>
+<li>invoke the script in your HTML to load it:</li>
+</ul>
+<pre><code class="language-html">&lt;script src=&quot;./MyScriptDirectory/spinner-component.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h2>What is it?</h2>
+<p>The spinner is a custom web component that you can treat like any inline HTML tag to place a spinner in your layout.</p>
+<p>The underlying SpinnerElement is constructed from a bit of HTML with some styling, plus css transformations to rotate it.</p>
+<p>The spinner is created as a circle with a rotor. The rotor is just part of the circle’s border, colored distinctly from the rest of the border.</p>
+<p>SpinnerElements are self-contained, and need no additional images, css, HTML elements, frameworks, or scripts. At the same time, SpinnerElements are versatile in HTML markup and highly scriptable for dynamic applications.</p>
+<h2>Usage</h2>
+<p>Loading the <code>spinner-component.js</code> Javascript file automatically constructs a spinner web component and makes it available as an element in the current DOM.</p>
+<pre><code class="language-html">&lt;script src=&quot;./MyScriptDirectory/spinner-component.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p><em>Note: GitHub can’t allow installation of custom web components, so no examples are embedded here. See the <code>/ex</code> directory for an HTML doc with lots of examples. I have also placed this doc online, loading the latest production version of <code>spinner-component.js</code>, at <a href="https://bvadata.info/html_spinner_examples.html">my own site</a>. And I’ve started posting CodePens with some examples.</em></p>
+<h3>HTML Tag</h3>
+<p>The spinner can be placed in your HTML as an inline-block element with the following tag:</p>
+<pre><code class="language-html">&lt;x-spinner&gt;&lt;/x-spinner&gt;
+</code></pre>
+<p>The above basic spinner will inherit the text color and size of its containing element, and rotate a single border quadrant clockwise once per second.</p>
+<p><em>Note: Custom web components always require closing tags.</em></p>
+<p>In the HTML spinner tag, the usual attributes, such as <code>id=</code> or <code>style=</code>, may be assigned:</p>
+<pre><code class="language-html">&lt;x-spinner style=&quot;font-style:italic;&quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<p>[ Wait - <em>font-style</em>? See <code>prefix</code> and <code>suffix</code> attributes below. ]</p>
+<h3>Scripting</h3>
+<p>A spinner element may be added programmatically by calling <code>new SpinnerElement</code> to create the spinner, and then appending the spinner to the HTML element where you want it to appear. You may use the built-in .setAttribute and .style methods to set any attributes or styles; this may be done before or after appending the spinner to the HTML.</p>
+<pre><code>const spng = document.getElementById('ElemToPutSpinnerIn');
+const sp   = new SpinnerElement;
+sp.setAttribute('speed','1.5');
+spng.appendChild(sp);
+sp.setAttribute('color','turquoise');
+sp.style['font-size'] = '1em';
+</code></pre>
+<p>You can also programmatically assign attributes, including a name or id, to the spinner, allowing access to it from elsewhere:</p>
+<pre><code>const sp	= new SpinnerElement;
+sp.setAttribute('id','spinner_01');
+sp.setAttribute('name','RedSpinner');
+// OR
+sp.id		= 'spinner_02';  // See Note below
+// etc.
+</code></pre>
+<p>Later…</p>
+<pre><code>for (const Sp of document.getElementsByName('RedSpinner)) {
+	Sp.setAttribute('speed', '2');
+}
+</code></pre>
+<p><em>Note: Element attributes are not always interchangeable with Javascript object properties with the same names - be careful.</em></p>
+<p>Finally, the SpinnerElement comes with its own methods for setting attributes and styles:</p>
+<pre><code>const sp = new SpinnerElement;
+sp.setAttributes({
+ color: 'turquoise',
+ prefix: 'Spinning ... ',
+ cstyle: 'double'
+});
+sp.setStyle({
+ 'font-size': '2em',
+ 'font-weight': 'bold'
+});
+</code></pre>
+<h3>Attributes</h3>
+<p>The spinner web component accepts a set of attributes that affect its appearance or behavior.</p>
+<p>Each attribute has both a full and an abbreviated name; in general good programming practice calls for descriptive names; up to you - you can always refer back to this README in five years when you’re trying to figure out what they mean.</p>
+<p>Attributes specified in markup, and in options for <code>new SpinnerElement(options)</code>, are limited to the following plus <code>style</code>, <code>id</code>, <code>name</code>. Each one is described below:</p>
+<pre><code>  color | clr
+  speed | sp
+  direction | dir
+  weight | wt
+  prefix | pre
+  suffix | suf
+  rotor | rtr
+  rotor-style | cstyle
+  kerning | kern
+  trace-color | tclr
+  background-color | bgclr
+  back-color | bkclr
+</code></pre>
+<p>Other attributes appropriate to inline elements may always be assigned to spinners via the built-in Javascript <code>setAttribute</code> method.</p>
+<h4>speed | sp = [ # ]</h4>
+<p>Controls the speed of the spinner. The value represents the time in seconds for a full rotation. Default is 1.</p>
+<pre><code class="language-html">&lt;x-spinner speed=&quot;0.5&quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<h4>color | clr = [ hex color | rgba() color | inherit | transparent  ]</h4>
+<p>Sets the color of the spinner’s rotor. Accepts any valid CSS color value. Default is inherit.</p>
+<pre><code class="language-html">&lt;x-spinner color=&quot;#0000ff&quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<h4>trace-color | tclr = [ hex color | rgba() color | inherit | transparent ]</h4>
+<p>Sets the color of the spinner’s trace. Accepts any valid CSS color value.
+Default is a light gray - rgba(20, 20, 20, .1).</p>
+<pre><code class="language-html">&lt;x-spinner trace-color=&quot;transparent&quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<h4>direction | dir = [ cw | ccw ]</h4>
+<p>Sets the direction of spin. Default is clockwise (‘cw’).</p>
+<pre><code class="language-html">&lt;x-spinner dir=&quot;ccw&quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<h4>rotor | rtr = [ 1 | 11 | 101 | 111 | 1111 ]</h4>
+<p>Sets the visual form of the rotor - the part that spins around. The accepted value is up to 4 digits, each of which is a one (1) or a zero (0), representing each of the four quadrants of the circular spinner. A one (1) colors a quadrant; a zero (0) allows the trace color to show for that quadrant. ‘1000’ would color one quadrant of the spinner. ‘1100’ would color two adjacent quadrants, ‘1110’ would color three adjacent quadrants, and ‘1010’ would color opposite quadrants. ‘1111’ would not appear to move with the default ‘solid’ rotor-style (below), but does show movement in some others. Ending zeroes (0) may be omitted, so ‘11’ is the same as ‘1100’, ‘101’ the same as ‘1010’.</p>
+<pre><code class="language-html">&lt;x-spinner rotor=&quot;101&quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<h4>rotor-style | cstyle = [ solid | dotted | dashed | double | ridge | groove | inset | outset ]</h4>
+<p>Sets the appearance of the rotor using the available border-types. Different spinners can be created with varying combinations of rotor-style and weight.</p>
+<h4>weight | wt = [ 0 .. 0.5 x cap ht | 1 .. 10 ]</h4>
+<p>Sets the weight (thickness) of the rotor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size (diameter) of the spinner; a value greater than .5 will be rejected. Weight can also be set on a size scale from 1 to 10, stepping the thickness in even increments up to just under the spinner’s radius. Any other value will be rejected. Unspecified and rejected weight attributes get the default weight, .195 (= 4 on the size scale).</p>
+<pre><code class="language-html">&lt;x-spinner weight=&quot;.12&quot;&gt;&lt;/x-spinner&gt;
+&lt;x-spinner weight=&quot;4&quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<h4>prefix | pre = [ text | HTML element ]</h4>
+<p>Adds text or an HTML element right before the spinner. The spinner is styled as an <code>inline-block</code>, so it will stay on the same line as the prefix, unless the prefix itself forces a newline. It may be necessary to provide visual space in the prefix text, if the spinner has the default 0-width kerning.</p>
+<pre><code class="language-html">&lt;x-spinner prefix=&quot;Searching &quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<h4>suffix | suf = [ text | HTML element ]</h4>
+<p>Adds text or an HTML element right after the spinner. The spinner is styled as an <code>inline-block</code>, so the suffix will stay on the same line as the spinner, unless the suffix itself forces a newline. It may be necessary to provide visual space in the suffix text, if the spinner has the default 0-width kerning.</p>
+<pre><code class="language-html">&lt;x-spinner suffix=&quot; Recording&quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<h4>kerning | kern = [ length ]</h4>
+<p>Adds right and left kerning to the spinner itself - but not to any prefix or suffix. Accepts standard css length units. Default is zero (0).
+TODO: Separate left and right kerning.</p>
+<pre><code class="language-html">&lt;x-spinner prefix=&quot;Recording&quot; suffix=&quot;Now&quot; kern=&quot;2ch&quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<h4>background-color | bgclr = [ hex color | rgba() color | inherit | transparent ]</h4>
+<p>Sets the background color for the spinner only, not its prefix, suffix, or back, because the element’s background-color only applies within its border.</p>
+<h4>back-color | bclr = [ hex color | rgba() color | inherit | transparent ]</h4>
+<p>Add a minimally-formatted background to the entire tag, including any prefix and suffix, with some padding and  rounded corners set for now by arbitrary design diktat. The background is colored with this attribute, which may be any standard HTML color. Default is no back_color, and therefore no added background, padding, etc.
+Note that the spinner tag may be placed in another HTML element that provides background features, possibly with more options for styling.
+MAYBE TODO: more options for the background.</p>
+<pre><code class="language-html">&lt;x-spinner back-color=&quot;#ccccff&quot;&gt;&lt;/x-spinner&gt;
+</code></pre>
+<h3>Technical Notes</h3>
+<h4>No dependencies - No side effects</h4>
+<p>When a web page/app loads this script (<code>spinner-component.js</code>), the spinner web component is constructed as an instance of the script’s SpinnerElement class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other element or layout structure. The spinner may inherit styling from surrounding HTML, and its styling may be set programmatically. But the styling used to create the SpinnerElement, including such crucial css as <code>box-sizing</code>, will have no effect outside the spinner.</p>
+<h4>Fine to combine attributes</h4>
+<p>The examples above are simplified to illustrate each attribute. In practice any number or combination of attributes may be used.</p>
+<pre><code>&lt;div style=&quot;color:#ff0000; font-size:2em;&quot;&gt;
+&lt;x-spinner prefix=&quot;Research &quot; suffix=&quot; takes time.&quot; speed=&quot;.75&quot; rotor=&quot;1110&quot; direction=&quot;cw&quot; back-color=&quot;#ffff00&quot; trace-color=&quot;transparent&quot;&gt;&lt;/x-spinner&gt;
+&lt;/div&gt;
+</code></pre>
+<p>The outer <code>div</code> provides the font color and size; the attributes of the spinner include:</p>
+<ul>
+<li><code>prefix=&quot;Research &quot;</code> adding text before the spinner;</li>
+<li><code>suffix=&quot; takes time.&quot;</code> adding text after the spinner;</li>
+<li><code>speed=&quot;.75&quot;</code> sets the speed to one rotation every .75 seconds;</li>
+<li><code>rotor=&quot;1110&quot;</code> sets the moving part to three quadrants of the circle;</li>
+<li><code>direction=&quot;cw&quot;</code> sets the rotation to clockwise (but that’s the default, so this isn’t really need for clockwise);</li>
+<li><code>back-color=&quot;#ffff00&quot;</code> creates a background with that color (bright yellow) and adds padding and rounded corners to the background;</li>
+<li><code>trace-color=&quot;transparent&quot;</code> hides the spinner’s trace - the non-colored quadrants of the circle, which is normally visible as a light gray.</li>
+</ul>
+<h4>Spinner Size</h4>
+<p>The spinner derives its size from whatever <code>font-size</code> applies to it. If possible it is equal to the typographic size unit <code>cap</code>, which is meant to be the height of the capital letter “H” in the font-size for the given typeface. Having the spinner sized to 1 <code>cap</code> aligns the spinner with the base line of the surrounding type, and doesn’t alter the line height or the visual flow of the text line it’s on. In browsers whose css doesn’t recognize the <code>cap</code> unit, the SpinnerElement approximates the cap size. The idea is to make the spinner act like a character in the line it’s on.</p>
+<p>How is the <code>font-size</code> assigned to the spinner?</p>
+<ul>
+<li>the spinner tag itself may have a <code>style</code> attribute that includes a <code>font-size</code> setting;</li>
+<li>without its own styling, the spinner will inherit the <code>font-size</code> of its immediate containing element (and the text color as well);</li>
+<li>the spinner may be assigned a css selector such as a name, id or class, and then its type styling may be set from elsewhere, such as a stylesheet;</li>
+<li>any of the above may be accomplished from scripts as well as direct markup.</li>
+</ul>
+<h4>How is this Spinner Made?</h4>
+<p>This spinner is made from a square box with a border. One or more of the top, right, bottom, and left, borders are colored differently from the rest. Then the sides of the square are made round by giving the corners of the square a radius of 50% of its size. The result is four “quadrants” of the spinner to color and format to create different rotors.</p>
+<h4>The Spinner’s Tag Name</h4>
+<p>The SpinnerElement class creates the spinner with the tag “x-spinner”, as in the barebones spinner:</p>
+<pre><code>&lt;x-spinner&gt;&lt;/x-spinner&gt;
+</code></pre>
+<p>Custom web components have two requirements:</p>
+<ul>
+<li>tag names must start with “x-”, and</li>
+<li>they always have a closing tag.</li>
+</ul>
+<p>After creating the SpinnerElement class, <code>spinner-component.js</code> executes the command</p>
+<pre><code>customElements.define('x-spinner', SpinnerElement);
+</code></pre>
+<p>If “x-spinner” conflicts with some other custom element’s name, or you have some other reason to use a different name, that would be where you would put your preferred name:</p>
+<pre><code>// customElements.define('x-spinner', SpinnerElement);
+customElements.define('x-MySpinnerName', SpinnerElement);
+</code></pre>
+<p>Have Fun!</p>

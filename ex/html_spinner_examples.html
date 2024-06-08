@@ -20,17 +20,6 @@ section,hr {
   margin-left: auto;
   margin-right: auto;
 }
-
-h1,h2,h3,h4,h5,h6,p  {
-/*
-  margin-top:4px;
-  margin-bottom:4px;
- */
-}
-th,hr {
-  margin-top:1em;
-  margin-bottom:1em;
-}
 li {
   margin-bottom: 0.2em
 }
@@ -42,37 +31,6 @@ button {
     vertical-align: .33em;
   }
 }
-.spin1 {
-  list-style: none;
-  padding: 0;
-}
-.spin1 li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5em;
-}
-.spin1 li x-spinner {
-  margin-right: 0.5em;
-}
-.demoSpnr {
-  font-size: 2em;
-  @media screen and (min-width: 660px) {
-    font-size: 3em;
-  }
-}
-.demoHdr {
-  font-size: .6em;
-  @media screen and (min-width: 660px) {
-    font-size: .8em;
-  }
-}
-.sqr2crcl {
-  font-size: 1.2em;
-  @media screen and (min-width: 660px) {
-  font-size: 1.6em;
-  }
-}
-
 </style>
 <title>HTML-Spinner Examples</title>
 </head>
@@ -124,6 +82,20 @@ button {
 </section>
 <hr style="max-width: 720px;margin-left:auto;margin-right:auto;">
 <section style="padding-left:2.4em;">
+  <style>
+    .spin1 {
+      list-style: none;
+      padding: 0;
+    }
+    .spin1 li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5em;
+    }
+    .spin1 li x-spinner {
+      margin-right: 0.5em;
+    }
+  </style>
   <ul class="spin1" style="font-size:1.6em;">
   <li> Customizable</li>
   <li> No Dependencies or Frameworks</li>
@@ -264,7 +236,7 @@ Recording in Progress
   } else {
     // set attributes in one op with spinner's .setAttributes method
     spin6.setAttributes({
-      'rotor-color':        '#ddd',
+      color:        '#ddd',
       direction:    'ccw',
       sp:           '1.5',
       wt:           '8',
@@ -435,6 +407,14 @@ Recording in Progress
 </section>
 <hr>
 <section>
+<style>
+	.sqr2crcl {
+	  font-size: 1.2em;
+	  @media screen and (min-width: 660px) {
+	  font-size: 1.6em;
+	  }
+	}
+</style>
   <h3 style="text-align:center;"> How is this spinner made?</h3>
   <p>
 These images illustrate how the <em>rotor</em> - the spinning part - is made from a square box HTML element with a border.
@@ -554,12 +534,25 @@ as specified with <code>direction="[ cw | ccw ]"</code>.
 </section>
 <hr id="rstyles">
 <section>
+<style>
+	.demoSpnr {
+	  font-size: 2em;
+	  @media screen and (min-width: 660px) {
+		font-size: 3em;
+	  }
+	}
+	.demoHdr {
+	  font-size: .6em;
+	  @media screen and (min-width: 660px) {
+		font-size: .8em;
+	  }
+	}
+</style>
 <h2 style="text-align:center;"><x-spinner rstyle="dotted" rotor="1010" class="demoSpnr" color="magenta" style="font-size:inherit;"></x-spinner> Rotor Styles:</h2>
 <div style="text-align:center;">
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
-//    spinner.setSolidRotor();
     spinner.setRotor('solid')
   });
 ">Solid</button> &nbsp;
@@ -772,6 +765,20 @@ with the tag name 'x-spinner' is still available.
 </section>
 <hr>
 <section>
+  <style>
+    .spin1 {
+      list-style: none;
+      padding: 0;
+    }
+    .spin1 li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5em;
+    }
+    .spin1 li x-spinner {
+      margin-right: 0.5em;
+    }
+  </style>
 <h2 style="text-align:center">Special Case: A Workaround for List Bullets</h2>
 <ul class="spin1" style="font-size:1.6em;">
   <li> Customizable</li>

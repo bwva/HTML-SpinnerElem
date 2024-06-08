@@ -30,7 +30,7 @@ class SpinnerElement extends HTMLElement {
     }
   }
 
-  setAttributes(options = {}) {
+  setAttributes( options = {} ) {
     Object.entries(options).forEach(([key, value]) => {
       if (this.observedAttributesSet.has(key)) {
         this.setAttribute(key, value);
@@ -40,13 +40,13 @@ class SpinnerElement extends HTMLElement {
     });
   }
 
-  setStyle(style = {}) {
+  setStyle( style = {} ) {
     Object.entries(style).forEach(([property, value]) => {
       this.style.setProperty(property, value);
     });
   }
 
-  setStandardDefaults(alts = {}) {
+  setDefaults( alts = {} ) {
     const defaults = {
       rotor      :  alts.rotor     || '1000',
       rtrcolor   :  alts.rtrcolor  || 'currentColor',
@@ -75,12 +75,26 @@ class SpinnerElement extends HTMLElement {
   }
 
   // operation
-  start() {
+  // run & go are the same
+  run() {
     this.setAttribute('rstatus', 'running');
+  }
+  go() {
+    this.setAttribute('rstatus', 'running');
+  }
+  // pause & stop are the same
+  pause() {
+    this.setAttribute('rstatus', 'paused');
   }
   stop() {
     this.setAttribute('rstatus', 'paused');
   }
+  stopGo() {
+    const newStatus = (this.getAttribute('rstatus') === 'paused') ?
+      'running' : 'paused';
+    this.setAttribute('rstatus', newStatus);
+  }
+
   show() {
     this.style.setProperty('display', 'inline-block')
   }
@@ -95,50 +109,25 @@ class SpinnerElement extends HTMLElement {
   }
 
   // convenience methods
-  setSolidRotor() {
-    this.setAttribute('rotor-style', 'solid');
+  setRotor( style = 'solid' ) {
+    this.setAttribute('rotor-style', style);
   }
-  setDottedRotor() {
-    this.setAttribute('rotor-style', 'dotted');
+  setWeight( wt = 'this.defaults.weight') {
+    this.setAttribute('weight', wt);
   }
-  setDoubleRotor() {
-    this.setAttribute('rotor-style', 'double');
-  }
-  setDashedRotor() {
-    this.setAttribute('rotor-style', 'dashed');
-  }
-  setGrooveRotor() {
-    this.setAttribute('rotor-style', 'groove');
-  }
-  setRidgeRotor() {
-    this.setAttribute('rotor-style', 'ridge');
-  }
-  setInsetRotor() {
-    this.setAttribute('rotor-style', 'inset');
-  }
-  setOutsetRotor() {
-    this.setAttribute('rotor-style', 'outset');
-  }
-
   setPrefix(newPrefix = '') {
      this.setAttribute('prefix', newPrefix);
   }
-
   setSuffix(newSuffix = '') {
     this.setAttribute('suffix', newSuffix);
   }
-
   toString() {
-   const shadowRoot = this.shadowRoot;
-   if (shadowRoot) {
-     return shadowRoot.innerHTML;
-   }
-   return '';
+    return this.shadowRoot ? this.shadowRoot.innerHTML : '';
   }
 
   // The main show
   render() {
-    const defaults     = this.setStandardDefaults(  ); // { rotor: '1010' }
+    const defaults     = this.setDefaults( {  } ); // { rotor: '1010' }
 
     const spAttributes = Array.from(this.attributes).reduce((obj, attr) => {
       if (this.observedAttributesSet.has(attr.name)) {
@@ -147,21 +136,22 @@ class SpinnerElement extends HTMLElement {
       return obj;
     }, {});
 
-    const rtrcolor   = spAttributes['color']           || spAttributes['clr']    ||
-                       spAttributes['rotor-color']     || spAttributes['rclr']   || defaults.rtrcolor;
-    const tracecolor = spAttributes['trace-color']     || spAttributes['tclr']   || defaults.tracecolor;
-    const bkcolor    = spAttributes['back-color']      || spAttributes['bkclr']  || defaults.bkcolor;
-    const bgcolor    = spAttributes['background-color']|| spAttributes['bgclr']  || defaults.bgcolor;
-    const speed      = spAttributes['speed']           || spAttributes['sp']     || defaults.speed;
-    const kerning    = spAttributes['kerning']         || spAttributes['kern']   || defaults.kerning;
-    const prefix     = spAttributes['prefix']          || spAttributes['pre']    || defaults.prefix;
-    const suffix     = spAttributes['suffix']          || spAttributes['suf']    || defaults.suffix;
-    const rtrstyle   = spAttributes['rotor-style']     || spAttributes['rstyle'] || defaults.rtrstyle;
-    const rstatus    = spAttributes['rotor-status']    || spAttributes['rstatus']|| defaults.rstatus;
-    const direction  = spAttributes['direction']       || spAttributes['dir']    || defaults.direction;
+    const rotor      = spAttributes['rotor']           ||= spAttributes['rtr']    || defaults.rotor;
+    const rtrcolor   = spAttributes['rotor-color']     ||= spAttributes['rclr']   ||= spAttributes['color'] || defaults.rtrcolor;
+    const tracecolor = spAttributes['trace-color']     ||= spAttributes['tclr']   || defaults.tracecolor;
+    const bkcolor    = spAttributes['back-color']      ||= spAttributes['bkclr']  || defaults.bkcolor;
+    const bgcolor    = spAttributes['background-color']||= spAttributes['bgclr']  || defaults.bgcolor;
+    const speed      = spAttributes['speed']           ||= spAttributes['sp']     || defaults.speed;
+    const kerning    = spAttributes['kerning']         ||= spAttributes['kern']   || defaults.kerning;
+    const prefix     = spAttributes['prefix']          ||= spAttributes['pre']    || defaults.prefix;
+    const suffix     = spAttributes['suffix']          ||= spAttributes['suf']    || defaults.suffix;
+    const rtrstyle   = spAttributes['rotor-style']     ||= spAttributes['rstyle'] || defaults.rtrstyle;
+    const rstatus    = spAttributes['rotor-status']    ||= spAttributes['rstatus']|| defaults.rstatus;
+    const direction  = spAttributes['direction']       ||= spAttributes['dir']    || defaults.direction;
+    const weight     = spAttributes['weight']          ||= spAttributes['wt']     || defaults.weight;
 
-    const awrap           = spAttributes['aria-wrap']        || spAttributes['awrap']   || defaults.awrap;
-    const ariaRole        = spAttributes['aria-role']        || spAttributes['role']    || defaults.ariaRole;
+    const awrap           = spAttributes['aria-wrap']        ||= spAttributes['awrap']   || defaults.awrap;
+    const ariaRole        = spAttributes['aria-role']        ||= spAttributes['role']    || defaults.ariaRole;
     const ariaLabel       = spAttributes['aria-label']       || defaults.ariaLabel;
     const ariaBusy        = spAttributes['aria-busy']        || defaults.ariaBusy;
     const ariaLive        = spAttributes['aria-live']        || defaults.ariaLive;
@@ -170,72 +160,70 @@ class SpinnerElement extends HTMLElement {
     const ariaRelevant    = defaults.ariaRelevant;
     const ariaLabelledBy  = defaults.ariaLabelledBy;
 
-    const spinnerHTML  = `<div><span id="spinner-prefix">${prefix}</span><span id="rotor"></span><span id="spinner-suffix">${suffix}</span></div>`;
-    const markup       = (awrap === 'none' || awrap === 'presentation' || awrap === 'ignore') ? `${spinnerHTML}` :
-      `<div id="ariaRegion" role="${ariaRole}" aria-live="${ariaLive}" aria-busy="${ariaBusy}"
-        aria-atomic="${ariaAtomic}" aria-relevant="${ariaRelevant}" aria-label="${ariaLabel}"
-        aria-labelledby="${ariaLabelledBy}" aria-description="${ariaDescription}">${spinnerHTML}</div>`;
-
-    let weight       = spAttributes['weight']          || spAttributes['wt']     || defaults.weight;
-    switch (true) {
-      case (weight <= .5 && weight > 0):
-        break;
-      case (weight == Math.floor(weight) && weight < 11 && weight >= 1):
-        weight = (.05 * weight) - .005;
-        break;
-      default:
-        weight = defaults.weight;
-        break;
+    // using weight
+    let rWeight;
+    if (weight <= .5 && weight > 0) {
+      rWeight  = weight;
     }
-    const rotor       = spAttributes['rotor']          || spAttributes['rtr']  || defaults.rotor;
+    else if (weight == Math.floor(weight) && weight < 11 && weight >= 1) {
+      rWeight  = (.05 * weight) - .005;
+    }
+    else {
+      rWeight  = defaults.weight;
+    }
+
+    // using rotor
     const rtr_pat     = rotor.split('');
     const top_color   = rtr_pat[0] == 1 ? rtrcolor : tracecolor;
     const left_color  = rtr_pat[1] == 1 ? rtrcolor : tracecolor;
     const bottom_color= rtr_pat[2] == 1 ? rtrcolor : tracecolor;
     const right_color = rtr_pat[3] == 1 ? rtrcolor : tracecolor;
 
-    const animation  = direction === 'cw' ? 'spinner' : 'spinner_rev';
+    // using direction
+    const rtFrom      = '0deg';
+    const rtTo        = direction === 'cw' ? '360deg' : '-360deg';
+
+    // composing the spinner element
+    const spinnerHTML  = `<div><span id="spinner-prefix">${prefix}</span><span id="rotor"></span><span id="spinner-suffix">${suffix}</span></div>`;
+    const markup       = (awrap === 'none' || awrap === 'presentation' || awrap === 'ignore') ? `${spinnerHTML}` :
+      `<div id="ariaRegion" role="${ariaRole}" aria-live="${ariaLive}" aria-busy="${ariaBusy}"
+        aria-atomic="${ariaAtomic}" aria-relevant="${ariaRelevant}" aria-label="${ariaLabel}"
+        aria-labelledby="${ariaLabelledBy}" aria-description="${ariaDescription}">${spinnerHTML}</div>`;
 
     const backStyle = bkcolor ?
       `background-color: ${bkcolor};
-         padding: .191em .38em .191em .38em;
-         border-radius: .33em;
-         color: ${rtrcolor};`
-       : `background-color: transparent;
-         color: inherit;
-      `;
+         padding:           .191em .38em .191em .38em;
+         border-radius:     .33em;
+         color:             ${rtrcolor};
+`   : `background-color: transparent;
+          color:            inherit;
+`;
 
-    const circleBorderSpinnerCss  =
+    const circleBorderSpinnerCss  = CSS.supports('width', '1cap') ?
 `border-radius: 50%;
-          @supports (width: 1cap) {
-            width:         1cap;
-            height:        1cap;
-            border:        calc(1cap * ${weight}) ${rtrstyle} ${tracecolor};
-            border-top:    calc(1cap * ${weight}) ${rtrstyle} ${top_color};
-            border-bottom: calc(1cap * ${weight}) ${rtrstyle} ${bottom_color};
-            border-left:   calc(1cap * ${weight}) ${rtrstyle} ${left_color};
-            border-right:  calc(1cap * ${weight}) ${rtrstyle} ${right_color};
-          }
-          @supports not (width: 1cap) {
-            // approximation:
-            width:         .7em;
-            height:        .7em;
-            border:        calc(.14em * ${weight}) ${rtrstyle} ${tracecolor};
-            border-top:    calc(.14em * ${weight}) ${rtrstyle} ${top_color};
-            border-bottom: calc(.14em * ${weight}) ${rtrstyle} ${bottom_color};
-            border-left:   calc(.14em * ${weight}) ${rtrstyle} ${left_color};
-            border-right:  calc(.14em * ${weight}) ${rtrstyle} ${right_color};
-          }`;
+          width:            1cap;
+          height:           1cap;
+          border:           calc(1cap * ${rWeight}) ${rtrstyle} ${tracecolor};
+          border-top:       calc(1cap * ${rWeight}) ${rtrstyle} ${top_color};
+          border-bottom:    calc(1cap * ${rWeight}) ${rtrstyle} ${bottom_color};
+          border-left:      calc(1cap * ${rWeight}) ${rtrstyle} ${left_color};
+          border-right:     calc(1cap * ${rWeight}) ${rtrstyle} ${right_color};
+` :
+`          // approximation:
+          width:            .7em;
+          height:           .7em;
+          border:           calc(.14em * ${rWeight}) ${rtrstyle} ${tracecolor};
+          border-top:       calc(.14em * ${rWeight}) ${rtrstyle} ${top_color};
+          border-bottom:    calc(.14em * ${rWeight}) ${rtrstyle} ${bottom_color};
+          border-left:      calc(.14em * ${rWeight}) ${rtrstyle} ${left_color};
+          border-right:     calc(.14em * ${rWeight}) ${rtrstyle} ${right_color};
+`;
 
     this.shadowRoot.innerHTML = `
       <style>
         @keyframes spinner {
-          0%   { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        @keyframes spinner_rev {
-          0%   { transform: rotate(0deg); }
-          100% { transform: rotate(-360deg); }
+          0%   { transform: rotate( ${rtFrom} ); }
+          100% { transform: rotate( ${rtTo} ); }
         }
         span {
           box-sizing:       border-box;
@@ -244,7 +232,7 @@ class SpinnerElement extends HTMLElement {
           white-space:      pre;
         }
         span#rotor {
-          animation: ${animation} ${speed}s linear infinite ${rstatus};
+          animation: spinner ${speed}s linear infinite ${rstatus};
           margin-left:      ${kerning};
           margin-right:     ${kerning};
           background-color: ${bgcolor};
@@ -259,15 +247,15 @@ class SpinnerElement extends HTMLElement {
         }
         div#ariaRegion {
           background-color: ${bkcolor};
-          padding: .191em .38em .191em .38em;
-          border: 1.6pt dotted ${rtrcolor};
-          border-radius: .33em;
-          color: ${rtrcolor};
+          padding:          .191em .38em .191em .38em;
+          border:           1.6pt dotted ${rtrcolor};
+          border-radius:    .33em;
+          color:            ${rtrcolor};
         }
       </style>
       ${markup}
     `;
-  }
+  }  // end of render()
 
   connectedCallback() {
     if (!this.rendered) {
@@ -278,7 +266,7 @@ class SpinnerElement extends HTMLElement {
 }
 customElements.define('x-spinner', SpinnerElement);
 
-// Enable user customization of default spinner
+// Enable alternative spinner with customized defaults
 function createSpinnerElement(tagName, defaultOptions = {}) {
   if (!tagName || tagName === 'x-spinner') {
     console.log('Custom SpinnerElement must have a unique name other than "x-spinner".');

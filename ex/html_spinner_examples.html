@@ -232,7 +232,11 @@ with a file size less than 10k.
 </p>
 <hr>
 <p style="font-size:2em;">
-<x-spinner rotor="101" wt=".495" sp="2" tclr="rgba(255,255,0,1)"></x-spinner> Restricted
+<x-spinner onclick="this.stopGo()" rotor="101" wt=".495" sp="2" tclr="rgba(255,255,0,1)" kern="1ch" suffix="Restricted"></x-spinner>
+</p>
+<hr>
+<p style="font-size:2em;">
+<x-spinner onclick="this.stopGo()" rotor="1111" rstyle="dotted" wt="3" sp="1" tclr="rgba(255,255,0,1)" kern="1ch" suffix="Click to Start/Stop"></x-spinner>
 </p>
 <hr>
 <p style="font-size:2.4em;color:#ff0000;">
@@ -246,28 +250,36 @@ Recording in Progress
 </div>
 <hr>
 <button type="button" onclick="
+  const spin6 = document.getElementById('sp6');
   if (this.innerHTML === 'Chase') {
-    document.getElementById('sp6').setAttribute('color', '#00dd00');
-    document.getElementById('sp6').setAttribute('direction', 'cw');
-    document.getElementById('sp6').setAttribute('sp', '.4');
-    document.getElementById('sp6').setAttribute('wt', '3');
-    document.getElementById('sp6').setAttribute('rotor-style', 'dotted');
-    document.getElementById('sp6').setAttribute('suf', ' Chasing!');
-    document.getElementById('sp6').style.fontStyle = 'italic';
+    // set attributes individually with JS built-in .setAttribute
+    spin6.setAttribute('rotor-color', '#00dd00');
+    spin6.setAttribute('direction', 'cw');
+    spin6.setAttribute('sp', '.4');
+    spin6.setAttribute('wt', '3');
+    spin6.setAttribute('rstyle', 'dotted');
+    spin6.setAttribute('suf', ' Chasing!');
+    spin6.style.fontStyle = 'italic';
     this.innerHTML = 'Scan';
   } else {
-    document.getElementById('sp6').setAttribute('color', '#ddd');
-    document.getElementById('sp6').setAttribute('direction', 'ccw');
-    document.getElementById('sp6').setAttribute('sp', '1.5');
-    document.getElementById('sp6').setAttribute('wt', '8');
-    document.getElementById('sp6').setAttribute('suf', ' Scanning...');
-    document.getElementById('sp6').setAttribute('rotor-style', 'solid');
-    document.getElementById('sp6').setAttribute('rotor-status', 'running');
-    document.getElementById('sp6').style.fontStyle = '';
+    // set attributes in one op with spinner's .setAttributes method
+    spin6.setAttributes({
+      'rotor-color':        '#ddd',
+      direction:    'ccw',
+      sp:           '1.5',
+      wt:           '8',
+      suf:          ' Scanning...',
+      rstyle:       'solid',
+      rstatus:      'running',
+      rotor:        '1'
+    });
+    spin6.style.fontStyle = 'normal';
     this.innerHTML = 'Chase';
   }
+  console.log( spin6.toString() );
 ">Scan</button>
 <p style="font-size:4em;margin-top:0;margin-bottom:0;">
+<!-- These attributes define the spinner when first loaded -->
 <x-spinner id="sp6" rstatus="paused" rotor="1" color="#ddd" sp="1.5" tclr="#ccf"  wt="8" dir="ccw" kern="0em" role="alert" aria-wrap='true'></x-spinner><br>
 </p>
 <hr>
@@ -281,7 +293,7 @@ Recording in Progress
     spinM.setAttribute('pre', 'Searching ... ');
     spinM.setAttribute('direction', 'cw');
     spinM.setAttribute('trace-color', 'transparent' );  // '#ffff00'
-//    console.log( spinM.toString() );
+    console.log( spinM.toString() );
     this.innerHTML = 'Cancel';
   }
   else {
@@ -412,7 +424,7 @@ Recording in Progress
     this.innerHTML='Start It';
   }
   else {
-    sp5.start();
+    sp5.run();
     this.innerHTML='Stop It';
   }
 ">Start It</button>
@@ -547,49 +559,50 @@ as specified with <code>direction="[ cw | ccw ]"</code>.
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
-    spinner.setSolidRotor();
+//    spinner.setSolidRotor();
+    spinner.setRotor('solid')
   });
 ">Solid</button> &nbsp;
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
-    spinner.setDottedRotor();
+    spinner.setRotor('dotted')
   });
 ">Dotted</button> &nbsp;
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
-    spinner.setDoubleRotor();
+    spinner.setRotor('double')
   });
 ">Double</button> &nbsp;
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
-    spinner.setDashedRotor();
+    spinner.setRotor('dashed')
   });
 ">Dashed</button> &nbsp;
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
-    spinner.setRidgeRotor();
+    spinner.setRotor('ridge')
   });
 ">Ridge</button> &nbsp;
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
-    spinner.setGrooveRotor();
+    spinner.setRotor('groove')
   });
 ">Groove</button> &nbsp;
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
-    spinner.setInsetRotor();
+    spinner.setRotor('inset')
   });
 ">Inset</button> &nbsp;
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
-    spinner.setOutsetRotor();
+    spinner.setRotor('outset')
   });
 ">Outset</button>
 </div>

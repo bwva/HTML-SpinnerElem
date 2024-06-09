@@ -308,7 +308,7 @@ customElements.define('x-MySpinnerName', SpinnerElement);
 
 The defaults for spinners may be customized, baking in your preferred attributes so it's not necessary to provide them in markup. Unless you specify otherwise, they will still assume the color and size of the text they're embedded in, like a text character.
 
-Where spinnerComponent.js loads, it provides a utility function to create additional spinners with different defaults:
+When spinnerComponent.js loads, it provides a utility function to create additional spinners with different defaults:
 ```
   <script>
     createSpinnerElement('x-fast-revspinner', { speed: '.5', dir: 'ccw'});
@@ -316,7 +316,9 @@ Where spinnerComponent.js loads, it provides a utility function to create additi
 ```
 The first parameter is the name, which must start with 'x-'; the second parameter is an object with whatever attributes you want made default.
 
-The spinner created above would be marked up as `<x-fast-revspinner></x-fast-revspinner>`. With no additonal attributes, this spinner rotates in .5 second instead of 1 second, and spins counter-clockwise instead of clockwise.
+The spinner created above would be marked up as
+  `<x-fast-revspinner></x-fast-revspinner>`.
+With no additional attributes, this spinner rotates in .5 second instead of 1 second, and spins counter-clockwise instead of clockwise.
 
 Note that the above script creates a new spinner element; the original spinner with the tag name 'x-spinner' is still available.
 

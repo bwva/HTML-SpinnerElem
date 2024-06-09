@@ -85,7 +85,7 @@ const sp = new SpinnerElement;
 sp.setAttributes({
  color: 'turquoise',
  prefix: 'Spinning ... ',
- cstyle: 'double'
+ rstyle: 'double'
 });
 sp.setStyle({
  'font-size': '2em',
@@ -97,96 +97,162 @@ sp.setStyle({
 
 The spinner web component accepts a set of attributes that affect its appearance or behavior.
 
-Each attribute has both a full and an abbreviated name; in general good programming practice calls for descriptive names; up to you - you can always refer back to this README in five years when you're trying to figure out what they mean.
+Each attribute has both a full and an abbreviated name; in general good programming practice calls for descriptive names. It's up to you - you can always refer back to this README in five years when you're trying to figure out what they mean.
 
-Attributes specified in markup, and in options for `new SpinnerElement(options)`, are limited to the following plus `style`, `id`, `name`. Each one is described below:
+Attributes may be specified in markup, in options for `new SpinnerElement(options)`, and programmatically. The following are available plus the standard attributes `style`, `id`, and `name`. Each attribute is described below:
 ```
-  color | clr
   speed | sp
+  rotor | rtr
+  rotor-style | rstyle
   direction | dir
   weight | wt
-  prefix | pre
-  suffix | suf
-  rotor | rtr
-  rotor-style | cstyle
-  kerning | kern
+  rotor-color | rclr | color
   trace-color | tclr
   background-color | bgclr
   back-color | bkclr
+  prefix | pre
+  suffix | suf
+  kerning | kern
+  rotor-status | rstatus
+```
+An additional set of ARIA-related attributes is available for cases when the spinner has a semantic rather than a presentational role, as decribed further below. The standard ARIA trigger `role` is duplicated for completeness below with `aria-role` and `arole`:
+```
+  aria-wrap | awrap
+  aria-role | arole
+  aria-label | albl
+  aria-labelledby | albldby
+  aria-busy | abusy
+  aria-live | alive
+  aria-description | adesc
 ```
 
-Other attributes appropriate to inline elements may always be assigned to spinners via the built-in Javascript `setAttribute` method.
+Other attributes appropriate to inline elements may always be assigned to spinners via the built-in Javascript `setAttribute` method or in markup.
 
 #### speed | sp = [ # ]
+```html
+  <x-spinner speed="0.5"></x-spinner>
+```
 Controls the speed of the spinner. The value represents the time in seconds for a full rotation. Default is 1.
-```html
-<x-spinner speed="0.5"></x-spinner>
-```
 
-#### color | clr = [ hex color | rgba() color | inherit | transparent  ]
-Sets the color of the spinner's rotor. Accepts any valid CSS color value. Default is inherit.
+#### rotor | rtr = [ 1 | 11 | 101 | 111 | 1111 ]
 ```html
-<x-spinner color="#0000ff"></x-spinner>
+  <x-spinner rotor="101"></x-spinner>
 ```
+Sets the visual form of the rotor - the part that spins around. The accepted value is up to 4 digits, each of which is a one (1) or a zero (0), representing each of the four quadrants of the circular spinner. A one (1) colors a quadrant; a zero (0) allows the trace color to show for that quadrant. '1000' would color one quadrant of the spinner. '1100' would color two adjacent quadrants, '1110' would color three adjacent quadrants, and '1010' would color opposite quadrants. '1111' would not appear to move with the default 'solid' rotor-style (below), but does show movement in some others. Ending zeroes (0) may be omitted, so '11' is the same as '1100', '101' the same as '1010'.
+
+#### rotor-style | rstyle = [ solid | dotted | dashed | double | ridge | groove | inset | outset ]
+```html
+  <x-spinner rotor-style="dotted"></x-spinner>
+```
+Sets the appearance of the rotor using the available border-types. Different spinners can be created with varying combinations of rotor-style and weight.
+
+#### direction | dir = [ cw | ccw ]
+```html
+  <x-spinner dir="ccw"></x-spinner>
+```
+Sets the direction of spin. Default is clockwise ('cw').
+
+#### weight | wt = [ 0 .. 0.5 | 1 .. 10 ]
+```html
+  <x-spinner weight=".12"></x-spinner>
+  <x-spinner weight="4"></x-spinner>
+```
+Sets the weight (thickness) of the rotor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size (diameter) of the spinner; a value greater than .5 will be rejected. Weight can also be set on a size scale from 1 to 10, stepping the thickness in even increments up to just under the spinner's radius. Any other value will be rejected. Unspecified and rejected weight attributes get the default weight, .195 (= 4 on the size scale).
+
+#### rotor-color | rclr | color = [ hex color | rgba() color | inherit | transparent  ]
+```html
+  <x-spinner color="#0000ff"></x-spinner>
+```
+Sets the color of the spinner's rotor. Accepts any valid CSS color value. Default is inherit.
 
 #### trace-color | tclr = [ hex color | rgba() color | inherit | transparent ]
 Sets the color of the spinner's trace. Accepts any valid CSS color value.
 Default is a light gray - rgba(20, 20, 20, .1).
 ```html
-<x-spinner trace-color="transparent"></x-spinner>
-```
-
-#### direction | dir = [ cw | ccw ]
-Sets the direction of spin. Default is clockwise ('cw').
-```html
-<x-spinner dir="ccw"></x-spinner>
-```
-
-#### rotor | rtr = [ 1 | 11 | 101 | 111 | 1111 ]
-Sets the visual form of the rotor - the part that spins around. The accepted value is up to 4 digits, each of which is a one (1) or a zero (0), representing each of the four quadrants of the circular spinner. A one (1) colors a quadrant; a zero (0) allows the trace color to show for that quadrant. '1000' would color one quadrant of the spinner. '1100' would color two adjacent quadrants, '1110' would color three adjacent quadrants, and '1010' would color opposite quadrants. '1111' would not appear to move with the default 'solid' rotor-style (below), but does show movement in some others. Ending zeroes (0) may be omitted, so '11' is the same as '1100', '101' the same as '1010'.
-```html
-<x-spinner rotor="101"></x-spinner>
-```
-
-#### rotor-style | cstyle = [ solid | dotted | dashed | double | ridge | groove | inset | outset ]
-Sets the appearance of the rotor using the available border-types. Different spinners can be created with varying combinations of rotor-style and weight.
-
-#### weight | wt = [ 0 .. 0.5 x cap ht | 1 .. 10 ]
-Sets the weight (thickness) of the rotor and trace. This allows you to tune a spinner to the surrounding typeface, and provides varying effects in combination with other attributes. Weight may be set as a decimal fraction of the size (diameter) of the spinner; a value greater than .5 will be rejected. Weight can also be set on a size scale from 1 to 10, stepping the thickness in even increments up to just under the spinner's radius. Any other value will be rejected. Unspecified and rejected weight attributes get the default weight, .195 (= 4 on the size scale).
-```html
-<x-spinner weight=".12"></x-spinner>
-<x-spinner weight="4"></x-spinner>
-```
-
-#### prefix | pre = [ text | HTML element ]
-Adds text or an HTML element right before the spinner. The spinner is styled as an `inline-block`, so it will stay on the same line as the prefix, unless the prefix itself forces a newline. It may be necessary to provide visual space in the prefix text, if the spinner has the default 0-width kerning.
-```html
-<x-spinner prefix="Searching "></x-spinner>
-```
-
-#### suffix | suf = [ text | HTML element ]
-Adds text or an HTML element right after the spinner. The spinner is styled as an `inline-block`, so the suffix will stay on the same line as the spinner, unless the suffix itself forces a newline. It may be necessary to provide visual space in the suffix text, if the spinner has the default 0-width kerning.
-```html
-<x-spinner suffix=" Recording"></x-spinner>
-```
-
-#### kerning | kern = [ length ]
-Adds right and left kerning to the spinner itself - but not to any prefix or suffix. Accepts standard css length units. Default is zero (0).
-TODO: Separate left and right kerning.
-```html
-<x-spinner prefix="Recording" suffix="Now" kern="2ch"></x-spinner>
+  <x-spinner trace-color="transparent"></x-spinner>
 ```
 
 #### background-color | bgclr = [ hex color | rgba() color | inherit | transparent ]
 Sets the background color for the spinner only, not its prefix, suffix, or back, because the element's background-color only applies within its border.
 
-#### back-color | bclr = [ hex color | rgba() color | inherit | transparent ]
-Add a minimally-formatted background to the entire tag, including any prefix and suffix, with some padding and  rounded corners set for now by arbitrary design diktat. The background is colored with this attribute, which may be any standard HTML color. Default is no back_color, and therefore no added background, padding, etc.
-Note that the spinner tag may be placed in another HTML element that provides background features, possibly with more options for styling.
-MAYBE TODO: more options for the background.
+#### back-color | bkclr = [ hex color | rgba() color | inherit | transparent ]
 ```html
-<x-spinner back-color="#ccccff"></x-spinner>
+  <x-spinner back-color="#ccccff"></x-spinner>
 ```
+Add a minimally-formatted background to the entire tag, including any prefix and suffix, with some padding and  rounded corners set for now by arbitrary design diktat. The background is colored with this attribute, which may be any standard HTML color. Default is no `back-color`, and therefore no added background, padding, etc.
+Note that the spinner tag may be placed in another HTML element that provides background features, possibly with more options for styling.
+MAYBE TODO: settable defaults and more options for the background.
+
+#### prefix | pre = [ text | HTML element ]
+```html
+  <x-spinner prefix="Searching "></x-spinner>
+```
+Adds text or an HTML element right before the spinner. The spinner is styled as an `inline-block`, so it will stay on the same line as the prefix, unless the prefix itself forces a newline. It may be necessary to provide visual space in the prefix text, or increase the spinner's default 0-width kerning.
+
+#### suffix | suf = [ text | HTML element ]
+```html
+  <x-spinner suffix=" Recording"></x-spinner>
+```
+Adds text or an HTML element right after the spinner. The spinner is styled as an `inline-block`, so the suffix will stay on the same line as the spinner, unless the suffix itself forces a newline. It may be necessary to provide visual space in the suffix text, or increase the spinner's default 0-width kerning.
+
+#### kerning | kern = [ length ]
+```html
+  <x-spinner prefix="Recording" suffix="Now" kern="2ch"></x-spinner>
+```
+Adds right and left kerning to the spinner itself - but not to any prefix or suffix. Accepts standard css length units. Default is zero (0).
+TODO: Separate left and right kerning.
+
+#### rotor-status | rstatus = [ running | paused ]
+```html
+  <x-spinner rotor-status="paused"></x-spinner>
+```
+May be used to start or stop the spinner's motion.
+
+### ARIA-Related Attributes
+In most use cases, spinners play a _presentational_ role, with no semantic meaning of their own. The context in which they are deployed provides any meaning to be detected by assistive systems such as screen readers. For example, a "Search" button that triggers a long-running database lookup might display a message such as "Searching..." along with a spinner as a visual indicator for sighted users. When the long search process completes and returns, the button's script deletes the "Searching..." message and its spinner, and displays the search results. The spinner in tbis context is passive to the action, and will no longer be available for any ARIA functionality once the long process returns.
+
+By default, the SpinnerElement is constructed for this presentational role. It is composed only of `<div>` and `<span>` elements, which have no intrinsic semantic value. A screen reader voicing some text that happens to include a spinner will read right past the spinner as though it wasn't there.
+
+Not having their own semantic roles, however, means that any text contained by `<div>` and `<span>` elements is directly available to assistive technologies. That allows a spinner's prefix and suffix to be detected and read, for example, by a screen reader. The self-contained spinner is far simpler to manage than e.g., a wait message with a span for the prefix, an image tag with the correct src path and styling to insert, align, and size the visual, including its 'alt' text or its own ARIA attributes to play well, and then a span for the suffix, all with their own document-wide unique ids.
+
+#### Spinners with ARIA Roles
+In some cases the spinner is part of more complex behavior. Perhaps the "Search" button above keeps the spinner displayed, but transforms its behavior, form, or prefix/suffix messages after the long process returns. Or the spinner itself could be "clickable" to trigger some event, and modifies itself when it does so. Contexts like these require providing more information and meta-data to assistive technologies.
+
+To accommodate contexts in which the spinner's state will need to be meaningful to assistive technologies, include the attribute `aria-wrap="true"` in the spinner's markup or set it programmatically. The standard spinner will then be wrapped in an additonal `<div>` element equipped with the appropriate `aria-` attributes provided by you or by default.
+
+#### aria-wrap | awrap = [ true | false ]
+If true causes the spinner to be constructed with a wrapper creating an ARIA live region around the spinner, providing access by assistive technologies. Default is 'false', leaving the spinner in a presentational role.
+
+The SpinnerElement's available ARIA attributes include a standard set, as follows:
+
+#### aria-role | arole = [ alert | status ]
+Of all the ARIA roles, 'alert' and 'status' are relevant for spinners. Default is 'alert'.
+
+#### aria-label | albl = [ text | {prefix suffix} ]
+Default is 'Current Status'.
+
+#### aria-labelledby | albldby = [ text | reference to other elem | {prefix suffix} ]
+Default is concatenated prefix suffix. May be a reference to another element in the DOM.
+
+#### aria-description | adesc = [ text ]
+Default is ''.
+
+#### aria-busy | abusy = [ true | false ]
+Default is 'true'.
+
+#### aria-live | alive = [ polite | assertive | off ]
+Default is 'polite'.
+
+#### aria-atomic = [ true | false ]
+Sets whether assistive technologies present the whole live region defined around the spinner (true) or only the changed portion. Default is 'true'.
+
+#### aria-relevant = [ additions | removals | text | all ]
+Describes the kind of change that will trigger assistive technologies. Default is 'text'.
+
+MDN has a good reference on ARIA attributes, at:
+
+[https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes)
+
 
 ### Technical Notes
 
@@ -239,5 +305,23 @@ If "x-spinner" conflicts with some other custom element's name, or you have some
 // customElements.define('x-spinner', SpinnerElement);
 customElements.define('x-MySpinnerName', SpinnerElement);
 ```
+
+### Customizing the Defaults
+
+The defaults for spinners may be customized, baking in your preferred attributes so it's not necessary to provide them in markup. Unless you specify otherwise, they will still assume the color and size of the text they're embedded in, like a text character.
+
+Where spinnerComponent.js loads, it provides a utility function to create additional spinners with different defaults:
+```
+  <script>
+    createSpinnerElement('x-fast-revspinner', { speed: '.5', dir: 'ccw'});
+  </script>
+```
+The first parameter is the name, which must start with 'x-'; the second parameter is an object with whatever attributes you want made default.
+
+The spinner created above would be marked up as `<x-fast-revspinner></x-fast-revspinner>`. With no additonal attributes, this spinner rotates in .5 second instead of 1 second, and spins counter-clockwise instead of clockwise.
+
+Note that the above script creates a new spinner element; the original spinner with the tag name 'x-spinner' is still available.
+
+
 
 Have Fun!

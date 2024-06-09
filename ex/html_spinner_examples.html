@@ -10,10 +10,10 @@ html {
 }
 body {
   font-family:  sans-serif;
-  max-width:    880px;
+  max-width:    760px;
   margin-left:  auto;
   margin-right: auto;
-  padding:      2em;
+  padding:      4px;
 }
 section,hr {
   max-width:720px;
@@ -80,7 +80,7 @@ button {
 </code>
 </div>
 </section>
-<hr style="max-width: 720px;margin-left:auto;margin-right:auto;">
+<hr>
 <section style="padding-left:2.4em;">
   <style>
     .spin1 {
@@ -103,11 +103,8 @@ button {
   <li> Works in all modern browsers</li>
   <li> May be entirely controlled in markup, or by script, or in combination</li>
   </ul>
-  <p>
-[See <a href="#rstyles">Rotor Styles</a>, below, for an organized view of variations.]
-  </p>
 </section>
-<hr style="max-width: 720px;margin-left:auto;margin-right:auto;">
+<hr>
 <section style="max-width: 720px;margin-left:auto;margin-right:auto;">
 <p>
 <b>Quick Start:</b><br>
@@ -122,13 +119,16 @@ button {
   <li><x-spinner rotor="1111" rstyle="dotted" sp=".5" color="green"></x-spinner> Fast Dotted Green:<br><code> &lt;x-spinner rstyle="dotted" sp=".5" color="green">&lt;/x-spinner> </code></li>
 </ol>
 </p>
+<p>
+[See <a href="#rstyles">Rotor Styles</a>, below, for an organized view of variations.]
+</p>
 </section>
-<hr style="max-width: 720px;margin-left:auto;margin-right:auto;">
+<hr>
 <section style="max-width:600px;margin-left:auto;margin-right:auto;">
 <h2 style="text-align:center">Motivation</h2>
 <p>
-I've grown frustrated with using animated images for "wait spinners", so
-now I've made a customizable spinner, the SpinnerElement,
+I'm fed up with the limitations of using animated images for "wait spinners".
+Now I've made a customizable spinner, the SpinnerElement,
 that works without images in any HTML layout.
 </p>
 <p>
@@ -148,9 +148,11 @@ But that's not the whole task...
 <p>
 What if the client has a color scheme the spinner should fit into?
 Or a typeface whose light weight makes the generic spinner look too bulky?
-Sizing someone's nice downloaded image spinner to fit its spot in the layout,
-especially if it's in a line of text, also takes time and attention.
+Sizing someone's nice downloaded spinner image to fit its spot in the layout also takes time and attention, especially if it's in a line of text.
 </p>
+</section>
+<hr>
+<section style="max-width: 720px;margin-left:auto;margin-right:auto;">
 <p>
 <b>Introducing the HTML SpinnerElement</b><br>
 The SpinnerElement is constructed automatically within your HTML when your page loads the Javascript
@@ -174,8 +176,7 @@ including an image file?
 Spinners do not rely on Javascript to run. When <code>spinnerComponent.js</code> loads,
 it executes once to construct the SpinnerElement class and attach it
 to the HTML document. When a spinner is rendered in markup, its internal css provides its format and rotation.
-<code>spinnerComponent.js</code> also provides optional programming controls that momentarily execute
-only when adding or modifying spinners.
+<code>spinnerComponent.js</code> also provides an optional programming interface whose methods momentarily execute only when adding or modifying spinners.
 </p>
 <p>
 Spinners follow ARIA accessibility guidelines. The rotors themselves are invisible to screen readers, because they have no content to read. Any included prefixes and suffixes will be seen and read. The spinner may also be marked as a "busy" area by assigning it the attribute <code>aria-wrap="true"</code>; it will then assume the role of communicating changes in status, such as when a long-running process completes.
@@ -189,10 +190,10 @@ that are standardized and broadly adopted by web browsers.
 </p>
 <p>
 Loading cost and time for <code>spinnerComponent.js</code> is minimal,
-with a file size less than 10k.
+with a file size less than 15k.
 </p>
 </section>
-<hr style="max-width: 720px;margin-left:auto;margin-right:auto;">
+<hr>
 <section style="max-width:600px;margin-left:auto;margin-right:auto;">
 <h2 style="text-align:center">Some Examples</h2>
 <p style="background-color:yellow;padding:2em;max-width:400px;margin-left:0;font-size:2em;">
@@ -405,133 +406,6 @@ Recording in Progress
 </div>
 </div>
 </section>
-<hr>
-<section>
-<style>
-	.sqr2crcl {
-	  font-size: 1.2em;
-	  @media screen and (min-width: 660px) {
-	  font-size: 1.6em;
-	  }
-	}
-</style>
-  <h3 style="text-align:center;"> How is this spinner made?</h3>
-  <p>
-These images illustrate how the <em>rotor</em> - the spinning part - is made from a square box HTML element with a border.
-One or more of the top, right, bottom, and left, borders are colored differently from the rest.
-Then the sides of the square are made round by giving the corners of the square a radius of 50% of its size.
-The result is four "quadrants" of the spinner to color and format for different spinners.
-  </p>
-  <div style="
-  display:grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap:1px;
-  justify-content:center;
-  text-align:center">
-<div>
-  <span class="sqr2crcl" style="
-    display: inline-block;
-    width:         1cap;
-    height:        1cap;
-    border:        .195cap solid rgba(0,80,80,.1);
-    border-top:    .195cap solid rgba(0,80,80,.75);
-  "></span>&rarr;<span class="sqr2crcl" style="
-    display: inline-block;
-    width:         1cap;
-    height:        1cap;
-    border-radius: 50%;
-    border:        .195cap solid rgba(0,80,80,.1);
-    border-top:    .195cap solid rgba(0,80,80,.75);
-  "></span>
-</div>
-<div>
-  <span class="sqr2crcl" style="
-    display: inline-block;
-    width:         1cap;
-    height:        1cap;
-    border:        .195cap solid rgba(0,80,80,.1);
-    border-top:    .195cap solid rgba(0,80,80,.75);
-    border-bottom: .195cap solid rgba(0,80,80,.75);
-  "></span>&rarr;<span class="sqr2crcl" style="
-    display: inline-block;
-    width:         1cap;
-    height:        1cap;
-    border-radius: 50%;
-    border:        .195cap solid rgba(0,80,80,.1);
-    border-top:    .195cap solid rgba(0,80,80,.75);
-    border-bottom: .195cap solid rgba(0,80,80,.75);
-  "></span>
-</div>
-<div>
-  <span class="sqr2crcl" style="
-    display: inline-block;
-    width:         1cap;
-    height:        1cap;
-    border:        .195cap solid rgba(0,80,80,.1);
-    border-top:    .195cap solid rgba(0,80,80,.75);
-    border-left:   .195cap solid rgba(0,80,80,.75);
-  "></span>&rarr;<span class="sqr2crcl" style="
-    display: inline-block;
-    width:         1cap;
-    height:        1cap;
-    border-radius: 50%;
-    border:        .195cap solid rgba(0,80,80,.1);
-    border-top:    .195cap solid rgba(0,80,80,.75);
-    border-left:   .195cap solid rgba(0,80,80,.75);
-  "></span>
-</div>
-<div>
-  <span class="sqr2crcl" style="
-    display: inline-block;
-    width:         1cap;
-    height:        1cap;
-    border:        .195cap solid rgba(0,80,80,.1);
-    border-top:    .195cap solid rgba(0,80,80,.75);
-    border-bottom: .195cap solid rgba(0,80,80,.75);
-    border-left:   .195cap solid rgba(0,80,80,.75);
-  "></span>&rarr;<span class="sqr2crcl" style="
-    display: inline-block;
-    width:         1cap;
-    height:        1cap;
-    border-radius: 50%;
-    border:        .195cap solid rgba(0,80,80,.1);
-    border-top:    .195cap solid rgba(0,80,80,.75);
-    border-bottom: .195cap solid rgba(0,80,80,.75);
-    border-left:   .195cap solid rgba(0,80,80,.75);
-  "></span>
-</div>
-<div>
-  <span class="sqr2crcl" style="
-    display: inline-block;
-    width:         1cap;
-    height:        1cap;
-    border:        .195cap solid rgba(0,80,80,.75);
-    border-top:    .195cap solid rgba(0,80,80,.75);
-    border-bottom: .195cap solid rgba(0,80,80,.75);
-    border-left:   .195cap solid rgba(0,80,80,.75);
-  "></span>&rarr;<span class="sqr2crcl" style="
-    display: inline-block;
-    width:         1cap;
-    height:        1cap;
-    border-radius: 50%;
-    border:        .195cap solid rgba(0,80,80,.75);
-    border-top:    .195cap solid rgba(0,80,80,.75);
-    border-bottom: .195cap solid rgba(0,80,80,.75);
-    border-left:   .195cap solid rgba(0,80,80,.75);
-  "></span>
-</div>
-  </div>
-  <p>
-The faint background of the borders is called the <em>trace</em>.
-It may also be any color, or transparent so it doesn't show at all.
-  </p>
-  <p>
-The spinning motion of the rotor is accomplished with the spinner's built-in
-css animation, rotating the (rounded) square 360&deg; in the number of seconds specified
-with <code>speed="[#]"</code>, rotating clockwise or counter-clockwise
-as specified with <code>direction="[ cw | ccw ]"</code>.
-  </p>
-</section>
 <hr id="rstyles">
 <section>
 <style>
@@ -718,6 +592,133 @@ using one of the spinner's built-in methods:
   ">Dotted&lt;/button>
 </code>
 </p>
+</section>
+<hr>
+<section>
+<style>
+	.sqr2crcl {
+	  font-size: 1.2em;
+	  @media screen and (min-width: 660px) {
+	  font-size: 1.6em;
+	  }
+	}
+</style>
+  <h3 style="text-align:center;"> How is this spinner made?</h3>
+  <p>
+These images illustrate how the <em>rotor</em> - the spinning part - is made from a square box HTML element with a border.
+One or more of the top, right, bottom, and left, borders are colored differently from the rest.
+Then the sides of the square are made round by giving the corners of the square a radius of 50% of its size.
+The result is four "quadrants" of the spinner to color and format for different spinners.
+  </p>
+  <div style="
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:1px;
+  justify-content:center;
+  text-align:center">
+<div>
+  <span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+  "></span>&rarr;<span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border-radius: 50%;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+  "></span>
+</div>
+<div>
+  <span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+  "></span>&rarr;<span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border-radius: 50%;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+  "></span>
+</div>
+<div>
+  <span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>&rarr;<span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border-radius: 50%;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>
+</div>
+<div>
+  <span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>&rarr;<span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border-radius: 50%;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>
+</div>
+<div>
+  <span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border:        .195cap solid rgba(0,80,80,.75);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>&rarr;<span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border-radius: 50%;
+    border:        .195cap solid rgba(0,80,80,.75);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>
+</div>
+  </div>
+  <p>
+The faint background of the borders is called the <em>trace</em>.
+It may also be any color, or transparent so it doesn't show at all.
+  </p>
+  <p>
+The spinning motion of the rotor is accomplished with the spinner's built-in
+css animation, rotating the (rounded) square 360&deg; in the number of seconds specified
+with <code>speed="[#]"</code>, rotating clockwise or counter-clockwise
+as specified with <code>direction="[ cw | ccw ]"</code>.
+  </p>
 </section>
 <hr>
 <section>

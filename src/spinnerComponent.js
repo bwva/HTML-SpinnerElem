@@ -23,13 +23,16 @@ class SpinnerElement extends HTMLElement {
       'kerning',            'kern',
       'rotor-status',       'rstatus',
       'aria-wrap',          'awrap',
-      'aria-role',          'role',
-      'aria-label',
-      'aria-busy',
-      'aria-live',
-      'aria-description',
+      'aria-role',          'arole',
+      'aria-label',         'albl',
+      'aria-labelledby',    'albldby',
+      'aria-busy',          'abusy',
+      'aria-live',          'alive',
+      'aria-description',   'adesc',
       // these are standard attributes:
-      'style', 'name', 'id'
+      'style', 'name', 'id',
+      // role is standard, aliased by aria-role & arole
+      'role'
   ];
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -72,13 +75,13 @@ class SpinnerElement extends HTMLElement {
       weight     :  alts.weight    || '0.195',
       direction  :  alts.direction || 'cw',
       rstatus    :  alts.rstatus   || 'running',
-      awrap      :  alts.awrap               || 'none',
+      awrap      :  alts.awrap               || 'ignore',
       ariaRole        : alts.ariaRole        || 'alert',
       ariaLive        : alts.ariaLive        || 'polite',
       ariaBusy        : alts.ariaBusy        || 'true',
       ariaAtomic      : alts.ariaAtomic      || 'true',
       ariaRelevant    : alts.ariaRelevant    || 'text',
-      ariaLabel       : alts.ariaLabel       || 'spinner-prefix spinner-suffix',
+      ariaLabel       : alts.ariaLabel       || 'Current Status',
       ariaLabelledBy  : alts.ariaLabelledBy  || 'spinner-prefix spinner-suffix',
       ariaDescription : alts.ariaDescription || ''
     };
@@ -146,6 +149,7 @@ class SpinnerElement extends HTMLElement {
       }
       return obj;
     }, {});
+
     let newAttributes = this.latestAttributes;
 
     const rtrcolor   = newAttributes['rotor-color']      || newAttributes['rclr']    || newAttributes['color']
@@ -163,15 +167,15 @@ class SpinnerElement extends HTMLElement {
     const direction  = newAttributes['direction']        || newAttributes['dir']     || spAttributes['direction']        || spAttributes['dir']     || defaults.direction;
     const weight     = newAttributes['weight']           || newAttributes['wt']      || spAttributes['weight']           || spAttributes['wt']      || defaults.weight;
 
-    const awrap           = newAttributes['aria-wrap']        || newAttributes['awrap']           || spAttributes['aria-wrap'] || spAttributes['awrap'] || defaults.awrap;
-    const ariaRole        = newAttributes['aria-role']        || newAttributes['role']            || spAttributes['aria-role'] || spAttributes['role']  || defaults.ariaRole;
-    const ariaLabel       = newAttributes['aria-label']       || spAttributes['aria-label']       || defaults.ariaLabel;
-    const ariaBusy        = newAttributes['aria-busy']        || spAttributes['aria-busy']        || defaults.ariaBusy;
-    const ariaLive        = newAttributes['aria-live']        || spAttributes['aria-live']        || defaults.ariaLive;
-    const ariaDescription = newAttributes['aria-description'] || spAttributes['aria-description'] || defaults.ariaDescription;
-    const ariaAtomic      = defaults.ariaAtomic;
-    const ariaRelevant    = defaults.ariaRelevant;
-    const ariaLabelledBy  = defaults.ariaLabelledBy;
+    const awrap           = newAttributes['aria-wrap']        || newAttributes['awrap']   || spAttributes['aria-wrap']        || spAttributes['awrap']   || defaults.awrap;
+    const ariaRole        = newAttributes['aria-role'] || newAttributes['arole'] || newAttributes['role'] || spAttributes['aria-role'] || spAttributes['arole'] || spAttributes['role'] || defaults.ariaRole;
+    const ariaLabel       = newAttributes['aria-label']       || newAttributes['albl']    || spAttributes['aria-label']       || spAttributes['albl']    || defaults.ariaLabel;
+    const ariaLabelledBy  = newAttributes['aria-labelledby']  || newAttributes['albldby'] || spAttributes['aria-labelledby']  || spAttributes['albldby'] || defaults.ariaLabelledBy;
+    const ariaBusy        = newAttributes['aria-busy']        || newAttributes['abusy']   || spAttributes['aria-busy']        || spAttributes['abusy']   || defaults.ariaBusy;
+    const ariaLive        = newAttributes['aria-live']        || newAttributes['alive']   || spAttributes['aria-live']        || spAttributes['alive']   || defaults.ariaLive;
+    const ariaDescription = newAttributes['aria-description'] || newAttributes['adesc']   || spAttributes['aria-description'] || spAttributes['adesc']   || defaults.ariaDescription;
+    const ariaAtomic      = newAttributes['aria-atomic']                                  || spAttributes['aria-atomic']      || defaults.ariaAtomic;
+    const ariaRelevant    = newAttributes['aria-relevant']                                || spAttributes['aria-relevant']    || defaults.ariaRelevant;
 
     // using weight to get the rotor weight
     let rWeight;
@@ -198,11 +202,12 @@ class SpinnerElement extends HTMLElement {
 
     // composing the spinner element
     const spinnerHTML  = `<div><span id="spinner-prefix">${prefix}</span><span id="rotor"></span><span id="spinner-suffix">${suffix}</span></div>`;
-    const markup       = (awrap === 'none' || awrap === 'presentation' || awrap === 'ignore') ? `${spinnerHTML}` :
+    const markup       = ( (!awrap) || awrap === 'none' || awrap === 'presentation' || awrap === 'ignore') ? `${spinnerHTML}` :
       `<div id="ariaRegion" role="${ariaRole}" aria-live="${ariaLive}" aria-busy="${ariaBusy}"
         aria-atomic="${ariaAtomic}" aria-relevant="${ariaRelevant}" aria-label="${ariaLabel}"
         aria-labelledby="${ariaLabelledBy}" aria-description="${ariaDescription}">${spinnerHTML}</div>`;
 
+    // option back with arbitrary properties
     const backStyle = bkcolor ?
       `background-color: ${bkcolor};
          padding:           .191em .38em .191em .38em;
@@ -212,6 +217,7 @@ class SpinnerElement extends HTMLElement {
           color:            inherit;
 `;
 
+    // check whether cap units are available; fake it if not
     const circleBorderSpinnerCss  = CSS.supports('width', '1cap') ?
 `border-radius: 50%;
           width:            1cap;
@@ -232,6 +238,7 @@ class SpinnerElement extends HTMLElement {
           border-right:     calc(.14em * ${rWeight}) ${rtrstyle} ${right_color};
 `;
 
+    // the main template, incorporating constants and templates above
     this.shadowRoot.innerHTML = `
       <style>
         @keyframes spinner {

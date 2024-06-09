@@ -209,7 +209,9 @@ In most use cases, spinners play a _presentational_ role, with no semantic meani
 
 By default, the SpinnerElement is constructed for this presentational role. It is composed only of `<div>` and `<span>` elements, which have no intrinsic semantic value. A screen reader voicing some text that happens to include a spinner will read right past the spinner as though it wasn't there.
 
-Not having their own semantic roles, however, means that any text contained by `<div>` and `<span>` elements is directly available to assistive technologies. That allows a spinner's prefix and suffix to be detected and read, for example, by a screen reader. The self-contained spinner is far simpler to manage than e.g., a wait message with a span for the prefix, an image tag with the correct src path and styling to insert, align, and size the visual, including its 'alt' text or its own ARIA attributes to play well, and then a span for the suffix, all with their own document-wide unique ids.
+Not having their own semantic roles, however, means that any text contained by `<div>` and `<span>` elements is directly available to assistive technologies. That allows a spinner's prefix and suffix to be detected and read, for example, by a screen reader.
+
+>A self-contained spinner, including its prefix and suffix, is far simpler to manage than a wait message composed of a span for the prefix, an image tag with the correct src path and styling to insert, align, and size the visual, including its 'alt' text or its own ARIA attributes to play well, and then a span for the suffix, all with their own document-wide unique ids.
 
 #### Spinners with ARIA Roles
 In some cases the spinner is part of more complex behavior. Perhaps the "Search" button above keeps the spinner displayed, but transforms its behavior, form, or prefix/suffix messages after the long process returns. Or the spinner itself could be "clickable" to trigger some event, and modifies itself when it does so. Contexts like these require providing more information and meta-data to assistive technologies.
@@ -224,7 +226,7 @@ The SpinnerElement's available ARIA attributes include a standard set, as follow
 #### aria-role | arole = [ alert | status ]
 Of all the ARIA roles, 'alert' and 'status' are relevant for spinners. Default is 'alert'.
 
-#### aria-label | albl = [ text | {prefix suffix} ]
+#### aria-label | albl = [ text ]
 Default is 'Current Status'.
 
 #### aria-labelledby | albldby = [ text | reference to other elem | {prefix suffix} ]

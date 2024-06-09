@@ -6,10 +6,6 @@ The spinner is constructed as a bordered circle with one or more of its border q
 
 Here is a sample page showing some variations: <a href="https://bvadata.info/html_spinner_examples.html">https://bvadata.info/html_spinner_examples.html</a>
 
-Here are some CodePens:
-- <a href="https://codepen.io/bwva/pen/PovZgEP">Spinners as List Bullet Markers</a>
-- <a href="https://codepen.io/bwva/pen/wvbMZVd">Spinner Rotor Types Varied by Weight and Rotor Style</a>
-
 ## Installation
 
 To use the spinner component in your project:

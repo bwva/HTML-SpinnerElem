@@ -8,10 +8,10 @@ Here is a sample page showing some variations: <a href="https://bvadata.com/html
 
 To use the spinner component in your project:
  - download and open `HTML-SpinnerElem` from GitHub;
- - from the included /src directory, move the script `spinner-component.js` to where your web scripts are located;
+ - from the included /src directory, move the script `spinnerComponent.js` to where your web scripts are located; 
  - invoke the script in your HTML to load it:
 ```html
-<script src="./MyScriptDirectory/spinner-component.js"></script>
+<script src="./MyScriptDirectory/spinnerComponent.js"></script>
 ```
 
 ## What is it?
@@ -22,9 +22,9 @@ The underlying SpinnerElement is constructed from a bit of HTML with some stylin
 SpinnerElements are self-contained, and need no additional images, css, HTML elements, frameworks, or scripts. At the same time, SpinnerElements are versatile in HTML markup and highly scriptable for dynamic applications.
 
 ## Usage
-Loading the `spinner-component.js` Javascript file automatically constructs a spinner web component and makes it available as an element in the current DOM.
+Loading the `spinnerComponent.js` Javascript file automatically constructs a spinner web component and makes it available as an element in the current DOM.
 ```html
-<script src="./MyScriptDirectory/spinner-component.js"></script>
+<script src="./MyScriptDirectory/spinnerComponent.js"></script>
 ```
 
 ### HTML Tag

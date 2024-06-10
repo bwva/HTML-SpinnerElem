@@ -210,7 +210,7 @@ In most use cases, spinners play a _presentational_ role, with no semantic meani
 
 For example, a "Search" button that triggers a long-running database lookup might display a message such as "Searching..." along with a spinner as a visual indicator for sighted users. When the long search process completes and returns, the button's script deletes the "Searching..." message and its spinner, and displays the search results.
 
-The spinner in tbis context is passive to the action, and will no longer be available for any ARIA functionality once the long process returns. However, the display and removal of the message and spinner are events that could be detected by an ARIA-aware region, so ARIA compatibility is assurred.
+The spinner in this context is passive to the action, and will no longer be available for any ARIA functionality once the long process returns. However, the display and removal of the message and spinner are events that could be detected by an ARIA-aware region, so ARIA compatibility is maintained.
 
 By default, the SpinnerElement is constructed for this presentational role. It is composed only of `<div>` and `<span>` elements, which have no intrinsic semantic value. A screen reader voicing some text that happens to include a spinner will read right past the spinner as though it wasn't there.
 
@@ -221,7 +221,7 @@ Not having their own semantic roles, however, means that any text contained by `
 #### Spinners with ARIA Roles
 In some cases the spinner is part of more complex behavior. Perhaps the "Search" button above keeps the spinner displayed, but transforms its behavior, form, or prefix/suffix messages after the long process returns. Or the spinner itself could be "clickable" to trigger some event, and modifies itself when it does so. Contexts like these require providing more information and meta-data to assistive technologies.
 
-To accommodate contexts in which the spinner's state will need to be meaningful to assistive technologies, include the attribute `aria-wrap="true"` in the spinner's markup or set it programmatically. The standard spinner will then be wrapped in an additonal `<div>` element equipped with the appropriate `aria-` attributes provided by you or by default.
+To accommodate contexts in which changes in the spinner's state will need to be meaningful to assistive technologies, include the attribute `aria-wrap="true"` in the spinner's markup or set it programmatically. The standard spinner will then be wrapped in an additonal `<div>` element equipped with the appropriate `aria-` attributes provided by you or by default.
 
 #### aria-wrap | awrap = [ true | false ]
 If true causes the spinner to be constructed with a wrapper creating an ARIA live region around the spinner, providing access by assistive technologies. Default is 'false', leaving the spinner in a presentational role.
@@ -288,7 +288,7 @@ You also can get programmatic access to a spinner in your HTML if it has a known
   <x-spinner id='spinner_03'></x-spinner>
 
   // in some script:
-  const sp = getElementById('spinner_03');
+  const sp = document.getElementById('spinner_03');
   sp.setAttributes( { speed: '2', color: 'green' } );
 ```
 
@@ -329,7 +329,7 @@ The defaults for spinners may be customized, baking in your preferred attributes
   createSpinnerElement('x-fast-revspinner', { sp: '.5', dir: 'ccw', wt: '3'});
 </script>
 ```
-This new spinner differs from the default spinner by spinning counter-clockwise, one spin per half second instead of per one second, and with weight level 3 instead of 4. Calling createSpinnerElement(name, options) adds a spinner element to the DOM, available for use in markup and programmatically. The above would provide for spinners like this, with the same capabilities as the deafult spinner element:
+This new spinner differs from the default spinner by spinning counter-clockwise, one spin per half second instead of per one second, and with weight level 3 instead of 4. Calling createSpinnerElement(name, options) adds a spinner element to the DOM, available for use in markup and programmatically. The above would provide for spinners like this, with the same capabilities as the default spinner element:
 ```
   <x-fast-revspinner></x-fast-revspinner>
 ```

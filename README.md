@@ -2,7 +2,7 @@
 
 Create a customizable spinner as an HTML web component.
 
-Here is a sample page showing some variations: <a href="https://bvadata.info/html_spinner_examples.html">https://bvadata.info/html_spinner_examples.html</a>
+Here is a sample page showing some variations: <a href="https://bvadata.com/html_spinner_examples.html">https://bvadata.com/html_spinner_examples.html</a>
 
 ## Installation
 

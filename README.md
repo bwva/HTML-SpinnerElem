@@ -2,8 +2,6 @@
 
 Create a customizable spinner as an HTML web component.
 
-The spinner is constructed as a bordered circle with one or more of its border quadrants colored, rotating at a specified rate and direction.
-
 Here is a sample page showing some variations: <a href="https://bvadata.info/html_spinner_examples.html">https://bvadata.info/html_spinner_examples.html</a>
 
 ## Installation
@@ -21,8 +19,6 @@ The spinner is a custom web component that you can treat like any inline HTML ta
 
 The underlying SpinnerElement is constructed from a bit of HTML with some styling, plus css transformations to rotate it.
 
-The spinner is created as a circle with a rotor. The rotor is just part of the circle's border, colored distinctly from the rest of the border.
-
 SpinnerElements are self-contained, and need no additional images, css, HTML elements, frameworks, or scripts. At the same time, SpinnerElements are versatile in HTML markup and highly scriptable for dynamic applications.
 
 ## Usage
@@ -30,8 +26,6 @@ Loading the `spinner-component.js` Javascript file automatically constructs a sp
 ```html
 <script src="./MyScriptDirectory/spinner-component.js"></script>
 ```
-
-_Note: GitHub can't allow installation of custom web components, so no examples are embedded here. See the `/ex` directory for an HTML doc with lots of examples. I have also placed this doc online, loading the latest production version of `spinner-component.js`, at [my own site](https://bvadata.info/html_spinner_examples.html).
 
 ### HTML Tag
 The spinner can be placed in your HTML as an inline-block element with the following tag:
@@ -173,6 +167,9 @@ Default is a light gray - rgba(20, 20, 20, .1).
 ```
 
 #### background-color | bgclr = [ hex color | rgba() color | inherit | transparent ]
+```html
+  <x-spinner background-color="#ccccff"></x-spinner>
+```
 Sets the background color within the border of the spinner only - not its prefix, suffix, or back.
 
 #### back-color | bkclr = [ hex color | rgba() color | inherit | transparent ]

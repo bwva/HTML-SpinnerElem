@@ -309,31 +309,62 @@ function createSpinnerElement(tagName, defaultOptions = {}) {
   return CustomSpinnerElement;
 }
 
-/* Some basic external functions */
+function getSpinner( trySpinner ) {
+  if (trySpinner instanceof SpinnerElement) {
+    return trySpinner;
+  }
+  else if (typeof trySpinner === 'string') {
+    const maybeSpinner = document.querySelector(trySpinner);
+    if (maybeSpinner instanceof SpinnerElement) {
+      return maybeSpinner;
+    }
+  } else {
+    console.warn('Invalid argument for Spinner. Expected a SpinnerElement instance or a selector string.');
+    return;
+  }
+}
 
-function insertSpinner(spinner,target,options) {
+function getSpinners( spinnerRef = 'x-spinner') {
+  const maybeSpinners = document.querySelectorAll(spinnerRef);
+  let GoodSpinners = [];
+  maybeSpinners.forEach( spinner => {
+    if ( spinner instanceof SpinnerElement ) {
+      GoodSpinners.push(spinner);
+    }
+  });
+  return GoodSpinners;
+}
+
+/* Some basic example external functions */
+
+function insertSpinner(spinner,target) {
+  const thisSp = getSpinner(spinner);
+  if (!thisSp) {
+    console.warn('Invalid argument for Spinner. Expected a SpinnerElement instance or a selector string.');
+    return;
+  }
   const targetElement = (typeof target === 'string') ?
     document.querySelector(target) : target;
   targetElement.innerHTML = '';
-  targetElement.appendChild(spinner);
+  targetElement.appendChild(thisSp);
 }
 
-function appendSpinner(spinner,target,options) {
+function appendSpinner(spinner,target) {
+  const thisSp = getSpinner(spinner);
+  if (!thisSp) {
+    console.warn('Invalid argument for Spinner. Expected a SpinnerElement instance or a selector string.');
+    return;
+  }
   const targetElement = (typeof target === 'string') ?
     document.querySelector(target) : target;
-  targetElement.appendChild(spinner);
+  targetElement.appendChild(thisSp);
 }
 
 function removeSpinner(spinner) {
-  if (spinner instanceof SpinnerElement) {
-    spinner.remove();
+  const thisSp = getSpinner(spinner);
+  if (!thisSp) {
+    console.warn('Invalid argument for Spinner. Expected a SpinnerElement instance or a selector string.');
+    return;
   }
-  else if (typeof spinner === 'string') {
-    const spinnerElement = document.querySelector(spinner);
-    if (spinnerElement instanceof SpinnerElement) {
-      spinnerElement.remove();
-    }
-  } else {
-    console.warn('Invalid argument for removeSpinner. Expected a SpinnerElement instance or a selector string.');
-  }
+  thisSp.remove();
 }

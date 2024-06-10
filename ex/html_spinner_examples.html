@@ -471,7 +471,19 @@ Recording in Progress
   targetSpinners.forEach(spinner => {
     spinner.setRotor('outset')
   });
-">Outset</button>
+">Outset</button> &nbsp; | &nbsp;
+<button onclick="
+  if (this.innerHTML === 'Stop Everything!') {
+    const targetSpinners = getSpinners('.demoSpnr');
+    targetSpinners.forEach(spinner => { spinner.pause() });
+    this.innerHTML = 'OK. Carry On.'
+  }
+  else {
+    const targetSpinners = getSpinners('.demoSpnr');
+    targetSpinners.forEach(spinner => { spinner.run() });
+    this.innerHTML = 'Stop Everything!';
+  }
+">Stop Everything!</button>
 </div>
 <hr>
 <div style="font-family:sans-serif;color:green;">
@@ -843,6 +855,7 @@ and also some examples such as a copy of this page.
   createSpinnerElement('x-fast-revspinner', { sp: '.5', dir: 'ccw'});
 </script>
 <script>
+// for the list bullets example
 document.addEventListener('DOMContentLoaded', function() {
   const listItems = document.querySelectorAll('.spin1 li');
   const spinOpts = {

@@ -323,7 +323,7 @@ Checks whether on object is a spinner or a string that references a spinner. If 
 Checks for valid spinners based on parameter, and returns an array of the spinner objects found. If no parameter is provided, collects spinners with the default tag name 'x-spinner', which would be ALL spinners unless others were created with `createSpinnerElement`.
 
 #### createSpinnerElement( newSpinnerName, spinnerOptions )
-The defaults for spinners may be customized, baking in your preferred attributes so it's not necessary to provide them in markup. Calling createSpinnerElement(name, options) adds a spinner element to the DOM, available for use in markup and programmatically. Unless you specify otherwise, instances of the new spinner will still assume the color and size of the text they're embedded in, like a text character would.
+The defaults for spinners may be customized, baking in your preferred attributes so it's not necessary to provide them in markup. Calling `createSpinnerElement(name, options)` adds a spinner element to the DOM, available for use in markup and programmatically. Unless you specify otherwise, instances of the new spinner will still assume the color and size of the text they're embedded in, like a text character would.
 ```
 <script>
   createSpinnerElement('x-fast-revspinner', { sp: '.5', dir: 'ccw', wt: '3'});

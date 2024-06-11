@@ -323,13 +323,13 @@ Checks whether on object is a spinner or a string that references a spinner. If 
 Checks for valid spinners based on parameter, and returns an array of the spinner objects found. If no parameter is provided, collects spinners with the default tag name 'x-spinner', which would be ALL spinners unless others were created with `createSpinnerElement`.
 
 #### createSpinnerElement( newSpinnerName, spinnerOptions )
-The defaults for spinners may be customized, baking in your preferred attributes so it's not necessary to provide them in markup. Unless you specify otherwise, they will still assume the color and size of the text they're embedded in, like a text character would.
+The defaults for spinners may be customized, baking in your preferred attributes so it's not necessary to provide them in markup. Calling createSpinnerElement(name, options) adds a spinner element to the DOM, available for use in markup and programmatically. Unless you specify otherwise, instances of the new spinner will still assume the color and size of the text they're embedded in, like a text character would.
 ```
 <script>
   createSpinnerElement('x-fast-revspinner', { sp: '.5', dir: 'ccw', wt: '3'});
 </script>
 ```
-This new spinner differs from the default spinner by spinning counter-clockwise, one spin per half second instead of per one second, and with weight level 3 instead of 4. Calling createSpinnerElement(name, options) adds a spinner element to the DOM, available for use in markup and programmatically. The above would provide for spinners like this, with the same capabilities as the default spinner element:
+This new spinner differs from the standard spinner by defaulting to spinning counter-clockwise, one spin per half second instead of per one second, and with weight level 3 instead of 4; otherwise it has the same capabilities as the standard spinner element. It would be added to markup like this, with any additional attributes added as needed:
 ```
   <x-fast-revspinner></x-fast-revspinner>
 ```
@@ -341,7 +341,7 @@ When using createSpinnerElement to make a new spinner:
 
 In markup, custom web components must **always** include a closing tag.
 
-Note that createSpinnerElement() creates a new spinner element; the original spinner with the tag name 'x-spinner' is still available.
+Note that createSpinnerElement() creates a new spinner element; the standard spinner with the tag name 'x-spinner' is still available.
 
 ### Spinner Methods
 

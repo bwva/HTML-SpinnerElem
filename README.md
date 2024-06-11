@@ -8,7 +8,7 @@ Here is a sample page showing some variations: <a href="https://bvadata.com/html
 
 To use the spinner component in your project:
  - download and open `HTML-SpinnerElem` from GitHub;
- - from the included /src directory, move the script `spinnerComponent.js` to where your web scripts are located; 
+ - from the included /src directory, move the script `spinnerComponent.js` to where your web scripts are located;
  - invoke the script in your HTML to load it:
 ```html
 <script src="./MyScriptDirectory/spinnerComponent.js"></script>
@@ -333,7 +333,15 @@ This new spinner differs from the default spinner by spinning counter-clockwise,
 ```
   <x-fast-revspinner></x-fast-revspinner>
 ```
-Note that the above script creates a new spinner element; the original spinner with the tag name 'x-spinner' is still available.
+When using createSpinnerElement to make a new spinner:
+ - the name **must** contain a hyphen ('-');
+ - the name **must** avoid standard reserved words in HTML;
+ - the name _should_ be all lower case;
+ - the name is _recommended_ to start with the `x-` prefix.
+
+In markup, custom web components must **always** include a closing tag.
+
+Note that createSpinnerElement() creates a new spinner element; the original spinner with the tag name 'x-spinner' is still available.
 
 ### Spinner Methods
 
@@ -449,7 +457,7 @@ Returns a string encompassing the entire shadow DOM fragment of the spinner, for
 ## Technical Notes
 
 #### No dependencies - No side effects
-When a web page/app loads this script (`spinner-component.js`), the spinner web component is constructed as an instance of the script's SpinnerElement class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other element or layout structure. The spinner may inherit styling from surrounding HTML, and its styling may be set programmatically. But the styling used to create the SpinnerElement, including such crucial css as `box-sizing`, will have no effect outside the spinner.
+When a web page/app loads this script (`spinnerComponent.js`), the spinner web component is constructed as an instance of the script's SpinnerElement class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other element or layout structure. The spinner may inherit styling from surrounding HTML, and its styling may be set programmatically. But the styling used to create the SpinnerElement, including such crucial css as `box-sizing`, will have no effect outside the spinner.
 
 #### Spinner Size
 The spinner derives its size from whatever `font-size` applies to it. If possible it is equal to the typographic size unit `cap`, which is meant to be the height of the capital letter "H" in the font-size for the given typeface. Having the spinner sized to 1 `cap` aligns the spinner with the base line of the surrounding type, and doesn't alter the line height or the visual flow of the text line it's on. In browsers whose css doesn't recognize the `cap` unit, the SpinnerElement approximates the cap size. The idea is to make the spinner act like a character in the line it's on.
@@ -462,25 +470,6 @@ How is the `font-size` assigned to the spinner?
 
 #### How is this Spinner Made?
 This spinner is made from a square box with a border. One or more of the top, right, bottom, and left, borders are colored differently from the rest. Then the sides of the square are made round by giving the corners of the square a radius of 50% of its size. The result is four "quadrants" of the spinner to color and format to create different rotors.
-
-#### The Spinner's Tag Name
-The SpinnerElement class creates the spinner with the tag "x-spinner", as in the barebones spinner:
-```
-<x-spinner></x-spinner>
-```
-Custom web components have two requirements:
-- tag names must start with "x-", and
-- they always have a closing tag.
-
-After creating the SpinnerElement class, `spinner-component.js` executes the command
-```
-customElements.define('x-spinner', SpinnerElement);
-```
-If "x-spinner" conflicts with some other custom element's name, or you have some other reason to use a different name, that would be where you would put your preferred name:
-```
-// customElements.define('x-spinner', SpinnerElement);
-customElements.define('x-MySpinnerName', SpinnerElement);
-```
 
 
 Have Fun!

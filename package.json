@@ -1,8 +1,8 @@
 {
   "name": "HTML-SpinnerElem",
-  "version": "0.96.4",
+  "version": "1.0.0",
   "description": "A Javascript class for creating a custom web component to insert a spinner with options.",
-  "main": "spinner-component.js",
+  "main": "spinnerComponent.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

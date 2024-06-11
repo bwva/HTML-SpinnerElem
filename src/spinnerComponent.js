@@ -1,3 +1,6 @@
+/* spinnerComponent.js v1.0.0 */
+/* 2024-06-10 */
+
 class SpinnerElement extends HTMLElement {
   constructor( options = {} ) {
     super();
@@ -139,6 +142,32 @@ class SpinnerElement extends HTMLElement {
     return this.shadowRoot ? this.shadowRoot.innerHTML : '';
   }
 
+  set prefix(value) {
+    const pref = this.shadowRoot.querySelector('#spinner-prefix');
+    pref.textContent = value;
+  }
+  get prefix() {
+    const pref = this.shadowRoot.querySelector('#spinner-prefix');
+    return pref.textContent;
+  }
+  set suffix(value) {
+    const pref = this.shadowRoot.querySelector('#spinner-suffix');
+    pref.textContent = value;
+  }
+  get suffix() {
+    const pref = this.shadowRoot.querySelector('#spinner-suffix');
+    return pref.textContent;
+  }
+  // Experimental
+  set rotor(value) {
+    const pref = this.shadowRoot.querySelector('#rotor');
+    pref.textContent = value;
+  }
+  get rotor() {
+    const pref = this.shadowRoot.querySelector('#rotor');
+    return pref.textContent;
+  }
+
   // The main show
   render() {
     const defaults     = this.setDefaults( {  } ); // { rotor: '1010' }
@@ -202,79 +231,83 @@ class SpinnerElement extends HTMLElement {
 
     // composing the spinner element
     const spinnerHTML  = `<div><span id="spinner-prefix">${prefix}</span><span id="rotor"></span><span id="spinner-suffix">${suffix}</span></div>`;
-    const markup       = ( (!awrap) || awrap === 'none' || awrap === 'presentation' || awrap === 'ignore') ? `${spinnerHTML}` :
-      `<div id="ariaRegion" role="${ariaRole}" aria-live="${ariaLive}" aria-busy="${ariaBusy}"
+    const markup       =
+      ( !awrap || awrap === 'none' || awrap === 'presentation' || awrap === 'ignore' )
+      ? `${spinnerHTML}`
+      : `<div id="ariaRegion" role="${ariaRole}" aria-live="${ariaLive}" aria-busy="${ariaBusy}"
         aria-atomic="${ariaAtomic}" aria-relevant="${ariaRelevant}" aria-label="${ariaLabel}"
         aria-labelledby="${ariaLabelledBy}" aria-description="${ariaDescription}">${spinnerHTML}</div>`;
 
     // option back with arbitrary properties
-    const backStyle = bkcolor ?
-      `background-color: ${bkcolor};
-         padding:           .191em .38em .191em .38em;
-         border-radius:     .33em;
-         color:             ${rtrcolor};
-`   : `background-color: transparent;
-          color:            inherit;
+    const backStyle = bkcolor
+      ? `  background-color: ${bkcolor};
+  padding:           .191em .38em .191em .38em;
+  border-radius:     .33em;
+  color:             ${rtrcolor};
+`
+      : `  background-color: transparent;
+color:            inherit;
 `;
 
     // check whether cap units are available; fake it if not
-    const circleBorderSpinnerCss  = CSS.supports('width', '1cap') ?
-`border-radius: 50%;
-          width:            1cap;
-          height:           1cap;
-          border:           calc(1cap * ${rWeight}) ${rtrstyle} ${tracecolor};
-          border-top:       calc(1cap * ${rWeight}) ${rtrstyle} ${top_color};
-          border-bottom:    calc(1cap * ${rWeight}) ${rtrstyle} ${bottom_color};
-          border-left:      calc(1cap * ${rWeight}) ${rtrstyle} ${left_color};
-          border-right:     calc(1cap * ${rWeight}) ${rtrstyle} ${right_color};
-` :
-`          // approximation:
-          width:            .7em;
-          height:           .7em;
-          border:           calc(.14em * ${rWeight}) ${rtrstyle} ${tracecolor};
-          border-top:       calc(.14em * ${rWeight}) ${rtrstyle} ${top_color};
-          border-bottom:    calc(.14em * ${rWeight}) ${rtrstyle} ${bottom_color};
-          border-left:      calc(.14em * ${rWeight}) ${rtrstyle} ${left_color};
-          border-right:     calc(.14em * ${rWeight}) ${rtrstyle} ${right_color};
+    const circleBorderSpinnerCss  = CSS.supports('width', '1cap')
+      ? `
+  border-radius: 50%;
+  width:            1cap;
+  height:           1cap;
+  border:           calc(1cap * ${rWeight}) ${rtrstyle} ${tracecolor};
+  border-top:       calc(1cap * ${rWeight}) ${rtrstyle} ${top_color};
+  border-bottom:    calc(1cap * ${rWeight}) ${rtrstyle} ${bottom_color};
+  border-left:      calc(1cap * ${rWeight}) ${rtrstyle} ${left_color};
+  border-right:     calc(1cap * ${rWeight}) ${rtrstyle} ${right_color};
+`
+      : `  // approximation:
+  width:            .7em;
+  height:           .7em;
+  border:           calc(.14em * ${rWeight}) ${rtrstyle} ${tracecolor};
+  border-top:       calc(.14em * ${rWeight}) ${rtrstyle} ${top_color};
+  border-bottom:    calc(.14em * ${rWeight}) ${rtrstyle} ${bottom_color};
+  border-left:      calc(.14em * ${rWeight}) ${rtrstyle} ${left_color};
+  border-right:     calc(.14em * ${rWeight}) ${rtrstyle} ${right_color};
 `;
 
     // the main template, incorporating constants and templates above
-    this.shadowRoot.innerHTML = `
-      <style>
-        @keyframes spinner {
-          0%   { transform: rotate( ${rtFrom} ); }
-          100% { transform: rotate( ${rtTo} ); }
-        }
-        span {
-          box-sizing:       border-box;
-          display:          inline-block;
-          padding:          0;
-          white-space:      pre;
-        }
-        span#rotor {
-          animation: spinner ${speed}s linear infinite ${rstatus};
-          margin-left:      ${kerning};
-          margin-right:     ${kerning};
-          background-color: ${bgcolor};
-          ${circleBorderSpinnerCss}
-        }
-        div {
-          display:          inline-block;
-          padding:          0;
-          margin:           0;
-          color:            ${rtrcolor};
-          ${backStyle}
-        }
-        div#ariaRegion {
-          background-color: ${bkcolor};
-          padding:          .191em .38em .191em .38em;
-          border:           1.6pt dotted ${rtrcolor};
-          border-radius:    .33em;
-          color:            ${rtrcolor};
-        }
-      </style>
-      ${markup}
-    `;
+    this.shadowRoot.innerHTML =
+`
+<style>
+  @keyframes spinner {
+    0%   { transform: rotate( ${rtFrom} ); }
+    100% { transform: rotate( ${rtTo} ); }
+  }
+  span {
+    box-sizing:       border-box;
+    display:          inline-block;
+    padding:          0;
+    white-space:      pre;
+  }
+  span#rotor {
+    animation: spinner ${speed}s linear infinite ${rstatus};
+    margin-left:      ${kerning};
+    margin-right:     ${kerning};
+    background-color: ${bgcolor};
+    ${circleBorderSpinnerCss}
+  }
+  div {
+    display:          inline-block;
+    padding:          0;
+    margin:           0;
+    color:            ${rtrcolor};
+    ${backStyle}
+  }
+  div#ariaRegion {
+    padding:          .191em .38em .191em .38em;
+    border:           1.6pt dotted ${rtrcolor};
+    border-radius:    .33em;
+    color:            ${rtrcolor};
+  }
+</style>
+${markup}
+`;
   }  // end of render()
 
   connectedCallback() {
@@ -368,3 +401,26 @@ function removeSpinner(spinner) {
   }
   thisSp.remove();
 }
+
+/*
+Copyright (c) 2024 Bruce Van Allen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+

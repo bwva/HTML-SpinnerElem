@@ -218,8 +218,8 @@ Recording in Progress
 <x-spinner color="#ff0000" rotor="0101" wt="8" speed="1" direction="cw" back-color=transparent "></x-spinner>
 </p>
 <hr>
-<div style="color:#ff0000; font-size:2em;">
-<x-spinner prefix="Research " suffix=" takes time." kern="0ch" wt=".195" speed=".75" rotor="1110" direction="cw" back-color="#ffff00" trace-color="transparent"></x-spinner>
+<div style="color:rgba(92, 51, 23, 1); font-size:2em;">
+<x-spinner prefix="Research " suffix=" takes time." kern="0ch" wt=".195" speed=".75" rotor="1110" direction="cw" back-color="rgba(92, 51, 23, 0.2)" trace-color="transparent"></x-spinner>
 </div>
 <hr>
 <button type="button" onclick="
@@ -253,7 +253,7 @@ Recording in Progress
 ">Scan</button>
 <p style="font-size:4em;margin-top:0;margin-bottom:0;">
 <!-- These attributes define the spinner when first loaded -->
-<x-spinner id="sp6" rstatus="paused" rotor="1" color="#ddd" sp="1.5" tclr="#ccf"  wt="8" dir="ccw" kern="0em" role="status"  aria-wrap='true' aria-live="assertive" aria-label="Click for action!"></x-spinner><br>
+<x-spinner id="sp6" rstatus="paused" rotor="1" color="#ddd" sp="1.5" tclr="#ccf" wt="8" dir="ccw" kern="0em" role="status"  aria-wrap='true' aria-live="assertive" aria-label="Click for action!"></x-spinner><br>
 </p>
 <hr>
 <button type="button" onclick="
@@ -277,6 +277,8 @@ Recording in Progress
 <h2 id="searching" style="color:red;"> &nbsp; </h2>
 <hr>
 <button type="button" onclick="
+  const pausebtn = document.getElementById('pauseBtn');
+  pausebtn.style.visibility = 'visible';
   const spng  = document.getElementById('spinning');
   if (this.innerHTML=='Spin It') {
     const sp  = new SpinnerElement( {} );
@@ -284,28 +286,29 @@ Recording in Progress
     setItemValue(spng.id, '');
     spng.appendChild(sp);
     sp.setStyle( {'font-size': '3em'} );
-    sp.setAttributes({color: 'turquoise', prefix: 'Spinning ... ', rstyle: 'double', role: 'alert', 'aria-wrap': 'true' });
+    sp.setAttributes({color: 'turquoise', prefix: 'Spinning ', rstyle: 'double', role: 'alert', 'aria-wrap': 'true' });
     this.innerHTML='Stop It';
   }
   else {
     clearItem(spng.id);
-    setItemValue(spng.id, '');
+    setItemValue(spng.id, ' &nbsp; ');
+    pausebtn.style.visibility = 'hidden';
     this.innerHTML='Spin It';
   }
-">Spin It</button> &nbsp; <button type="button" onclick="
+">Spin It</button> &nbsp; <button type="button" id="pauseBtn" style="visibility:hidden;" onclick="
   const sp  = document.getElementById('thisSpinner');
   if (!sp) {return};
-  if (this.innerHTML == 'Roll It') {
-    if (sp) {sp.setPrefix('Rolling ... ')};
-    this.innerHTML = 'Unroll It';
+  if (this.innerHTML == 'Pause') {
+    sp.setPrefix('Paused   ')
+    sp.pause();
+    this.innerHTML = 'Resume';
   }
   else {
-    sp.setPrefix('Spinning ... ');
-    this.innerHTML = 'Roll It';
-  }">Roll It</button>
-<p id="spinning"> &nbsp; </p>
-<div id="dump"></div>
-
+    sp.setPrefix('Spinning ');
+    sp.go();
+    this.innerHTML = 'Pause';
+  }">Pause</button>
+<h2 id="spinning"> &nbsp; </h2>
 <hr>
 <button type="button" role='alert' style="font-weight:bold;height:1.6em;width:12ch;font-size:1.4em" onclick="
   if (this.innerHTML=='Run') {
@@ -771,8 +774,33 @@ marked up with no added attributes as </span>
 <p>
 A few of the spinners in the big table above are this type. Do you see them?
 </p>
+
 <p>
-Note that the above script creates a new spinner element; the original spinner
+This page has another script to create a third "proprietary" spinner for the Acme company:
+<code style="white-space: pre-wrap;">
+  &lt;script>
+    createSpinnerElement('acme-spnr-06', { sp: '.33', wt: '6', rtr: '101', dir: 'cw' });
+  &lt;/script>
+</code>
+</p>
+<p>
+<span style="color:magenta;">The third spinner comes out like &rarr; <acme-spnr-06></acme-spnr-06>,
+marked up with no added attributes as </span>
+<code style="white-space: pre-wrap;">
+  &lt;acme-spnr-06>&lt;/acme-spnr-06>
+</code>
+</p>
+<p>
+<b>Naming custom spinners:</b>
+<ul>
+	<li>the name <strong>must</strong> contain a hyphen ('-');</li>
+	<li>the name <strong>must</strong> avoid standard reserved words in HTML;</li>
+	<li>the name <em>should</em> be all lower case;</li>
+	<li>the name is <em>recommended</em> to start with the `x-` prefix.</li>
+</ul>
+</p>
+<p>
+Note that the above scripts using `createSpinnerElement` add <em>new</em> spinner elements to the DOM; the original spinner
 with the tag name 'x-spinner' is still available.
 </p>
 </section>
@@ -837,9 +865,9 @@ as the "src" of an HTML &lt;script> element:
 </code>
 </p>
 <p>
-The best source for the latest production release of <code> spinnerComponent.js </code> is from my account at <a href="https://github.com/bwva/HTML-SpinnerElem">GitHub.com</a>.
+The best source for the latest production release of <code> spinnerComponent.js </code> is from my account at <a href="https://github.com/bwva/HTML-SpinnerElem/releases/latest">GitHub.com</a>.
 That release comes with a README file with documentation
-and also some examples such as a copy of this page.
+and also a copy of this page.
 </p>
 </section>
 <section>
@@ -853,6 +881,10 @@ and also some examples such as a copy of this page.
 <script>
   // Create a new spinner with a faster default speed & reverse spin
   createSpinnerElement('x-fast-revspinner', { sp: '.5', dir: 'ccw'});
+</script>
+<script>
+  // Create a new spinner with
+  createSpinnerElement('acme-spnr-06', { sp: '.33', wt: '6', rtr: '101', dir: 'cw' });
 </script>
 <script>
 // for the list bullets example

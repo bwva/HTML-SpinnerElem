@@ -111,9 +111,11 @@ Attributes may be specified in markup, in options for `new SpinnerElement(option
   kerning | kern
   rotor-status | rstatus
 ```
-An additional set of ARIA-related attributes is available for cases when the spinner has a semantic rather than a presentational role, as decribed further below. The standard ARIA trigger `role` is duplicated for completeness below with `aria-role` and `arole`:
+An additional set of ARIA-related attributes is available for cases when the spinner has a semantic rather than a presentational role, as described further below. These are available if the attribute `aria-wrap` is set to `true`. The standard ARIA trigger `role` is duplicated for completeness below with `aria-role` and `arole`:
 ```
+  // add ARIA detection
   aria-wrap | awrap
+  // ARIA attributes applicable to spinners
   aria-role | arole
   aria-label | albl
   aria-labelledby | albldby
@@ -217,6 +219,8 @@ The spinner in this context is passive to the action, and will no longer be avai
 By default, the SpinnerElement is constructed for this presentational role. It is composed only of `<div>` and `<span>` elements, which have no intrinsic semantic value. A screen reader voicing some text that happens to include a spinner will read right past the spinner as though it wasn't there.
 
 Not having their own semantic roles, however, means that any text contained by `<div>` and `<span>` elements is directly available to assistive technologies. That allows a spinner's prefix and suffix to be detected and read, for example, by a screen reader.
+
+Another visual design aspect of a spinner is its <strong>color scheme</strong>. For some sighted users, the spectrum of colors they see may not have the same distinctions as the "standard" color palettes and names would suggest. Differences in intensity and contrast between adjacent colors, such as type over a background, can make or break readability. Official specs: <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG)</a>. Whocanuse: <a href="https://www.whocanuse.com">whocanuse.com</a>.
 
 >I think this illustrates why I like the SpinnerElement. A self-contained spinner, including its prefix and suffix, is far simpler to manage than a wait message composed of a span for the prefix, an image tag with the correct src path and styling to insert, align, and size the visual, including its 'alt' text and its own ARIA attributes to play well, and then a span for the suffix, all with their own document-wide unique ids.
 

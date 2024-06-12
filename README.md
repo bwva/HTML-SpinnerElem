@@ -172,7 +172,7 @@ Default is a light gray - rgba(20, 20, 20, .1).
 ```html
   <x-spinner background-color="#ccccff"></x-spinner>
 ```
-Sets the background color within the border of the spinner only - not its prefix, suffix, or back.
+Sets the background color within the border of the spinner only - not its prefix, suffix, or back. Default is transparent.
 
 #### back-color | bkclr = [ hex color | rgba() color | inherit | transparent ]
 ```html
@@ -322,7 +322,7 @@ The spinnerComponent.js script also loads a few utility functions for use extern
 Checks whether on object is a spinner or a string that references a spinner. If so, it returns the spinner; if not, it returns undefined. Note that if multiple spinners are found because the string is a class name used by multiple spinners, for example, only the first spinner is returned. See getSpinners.
 
 #### getSpinners( spinnerObj | spinner id | spinner name | spinner class | 'x-spinner' )
-Checks for valid spinners based on parameter, and returns an array of the spinner objects found. If no parameter is provided, collects spinners with the default tag name 'x-spinner', which would be ALL spinners unless others were created with `createSpinnerElement`.
+Checks for valid spinners based on the parameter, and returns an array of the spinner objects found. If no parameter is provided, collects spinners with the default tag name 'x-spinner', which would be ALL spinners unless others were created with `createSpinnerElement`.
 
 #### createSpinnerElement( newSpinnerName, spinnerOptions )
 The defaults for spinners may be customized, baking in your preferred attributes so it's not necessary to provide them in markup. Calling `createSpinnerElement(name, options)` adds a spinner element to the DOM, available for use in markup and programmatically. Unless you specify otherwise, instances of the new spinner will still assume the color and size of the text they're embedded in, like a text character would.

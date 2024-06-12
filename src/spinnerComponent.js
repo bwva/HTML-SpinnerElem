@@ -11,6 +11,7 @@ class SpinnerElement extends HTMLElement {
     this.rendered = false;
   }
 
+  // setting up attributes the spinner will observe
   static observedAttributes = [
       'rotor',              'rtr',
       'rotor-style',        'rstyle',
@@ -38,6 +39,7 @@ class SpinnerElement extends HTMLElement {
       'role'
   ];
 
+  // capture changes to attributes after instantiation
   attributeChangedCallback(name, oldValue, newValue) {
     if (this.observedAttributesSet.has(name)) {
       this.latestAttributes[name] = newValue || '';
@@ -45,6 +47,7 @@ class SpinnerElement extends HTMLElement {
     }
   }
 
+  // incorporate one or more observed attributes
   setAttributes( options = {} ) {
     this.latestAttributes = {};
     Object.entries(options).forEach(([key, value]) => {
@@ -57,12 +60,15 @@ class SpinnerElement extends HTMLElement {
     });
   }
 
+  // shortcut for setting style properties
   setStyle( style = {} ) {
     Object.entries(style).forEach(([property, value]) => {
       this.style.setProperty(property, value);
     });
   }
 
+  // enables deep modification of the default defaults
+  // rarely needed!
   setDefaults( alts = {} ) {
     const defaults = {
       rotor      :  alts.rotor     || '1000',
@@ -112,12 +118,14 @@ class SpinnerElement extends HTMLElement {
     this.setAttribute('rstatus', newStatus);
   }
 
+  // show and hide cause layout shifts
   show() {
     this.style.setProperty('display', 'inline-block')
   }
   hide() {
     this.style.setProperty('display', 'none')
   }
+  // veil and unveil don't change layout
   veil() {
     this.style.setProperty('visibility', 'hidden')
   }
@@ -206,7 +214,7 @@ class SpinnerElement extends HTMLElement {
     const ariaAtomic      = newAttributes['aria-atomic']                                  || spAttributes['aria-atomic']      || defaults.ariaAtomic;
     const ariaRelevant    = newAttributes['aria-relevant']                                || spAttributes['aria-relevant']    || defaults.ariaRelevant;
 
-    // using weight to get the rotor weight
+    // using `weight` to get the rotor thickness
     let rWeight;
     if (weight <= .5 && weight > 0) {
       rWeight  = weight;
@@ -218,14 +226,14 @@ class SpinnerElement extends HTMLElement {
       rWeight  = defaults.weight;
     }
 
-    // using rotor to get the border coloring
+    // using `rotor` to get the border coloring
     const rtr_pat     = rotor.split('');
     const top_color   = rtr_pat[0] == 1 ? rtrcolor : tracecolor;
     const left_color  = rtr_pat[1] == 1 ? rtrcolor : tracecolor;
     const bottom_color= rtr_pat[2] == 1 ? rtrcolor : tracecolor;
     const right_color = rtr_pat[3] == 1 ? rtrcolor : tracecolor;
 
-    // using direction to get clockwise/counter-clockwise
+    // using `direction` to get clockwise/counter-clockwise
     const rtFrom      = '0deg';
     const rtTo        = direction === 'cw' ? '360deg' : '-360deg';
 
@@ -238,15 +246,17 @@ class SpinnerElement extends HTMLElement {
         aria-atomic="${ariaAtomic}" aria-relevant="${ariaRelevant}" aria-label="${ariaLabel}"
         aria-labelledby="${ariaLabelledBy}" aria-description="${ariaDescription}">${spinnerHTML}</div>`;
 
-    // option back with arbitrary properties
+    // optional back with arbitrary properties
     const backStyle = bkcolor
-      ? `  background-color: ${bkcolor};
+      ? `
+  background-color: ${bkcolor};
   padding:           .191em .38em .191em .38em;
   border-radius:     .33em;
   color:             ${rtrcolor};
 `
-      : `  background-color: transparent;
-color:            inherit;
+      : `
+  background-color: transparent;
+  color:            inherit;
 `;
 
     // check whether cap units are available; fake it if not
@@ -342,6 +352,8 @@ function createSpinnerElement(tagName, defaultOptions = {}) {
   return CustomSpinnerElement;
 }
 
+// see if an object or name resolves to a spinner;
+// return it if so
 function getSpinner( trySpinner ) {
   if (trySpinner instanceof SpinnerElement) {
     return trySpinner;
@@ -357,6 +369,8 @@ function getSpinner( trySpinner ) {
   }
 }
 
+// see if an object reference resolves to one or more spinners;
+// return them if so
 function getSpinners( spinnerRef = 'x-spinner') {
   const maybeSpinners = document.querySelectorAll(spinnerRef);
   let GoodSpinners = [];

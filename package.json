@@ -1,6 +1,6 @@
 {
   "name": "HTML-SpinnerElem",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Javascript class for creating a custom web component to insert a spinner with options.",
   "main": "spinnerComponent.js",
   "scripts": {

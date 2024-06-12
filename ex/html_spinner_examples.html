@@ -165,7 +165,7 @@ including an image file?
 	<li>Versatility via familiar HTML tag attribute assignments;
 	<li>Programmability - if you want it;</li>
 	<li>Works like a text character in HTML layouts;</li>
-	<li>Takes the size and color of its surroundings (unless you specify otherwise);</li>
+	<li style="color:red;">Takes the size and color <x-spinner></x-spinner> of its surroundings - unless you specify otherwise;</li>
 	<li>Include text or another HTML element as prefix and/or suffix;</li>
 	<li>No visual degradation at any scale;</li>
 	<li>Can be tuned to specifications in your style book or branding guide;</li>
@@ -436,15 +436,15 @@ Recording in Progress
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
-    spinner.setRotor('dotted')
-  });
-">Dotted</button> &nbsp;
-<button type="button" onclick="
-  const targetSpinners = document.querySelectorAll('.demoSpnr');
-  targetSpinners.forEach(spinner => {
     spinner.setRotor('double')
   });
 ">Double</button> &nbsp;
+<button type="button" onclick="
+  const targetSpinners = document.querySelectorAll('.demoSpnr');
+  targetSpinners.forEach(spinner => {
+    spinner.setRotor('dotted')
+  });
+">Dotted</button> &nbsp;
 <button type="button" onclick="
   const targetSpinners = document.querySelectorAll('.demoSpnr');
   targetSpinners.forEach(spinner => {
@@ -739,7 +739,7 @@ as specified with <code>direction="[ cw | ccw ]"</code>.
 <section>
 <h2 style="text-align:center;">
 <x-fast-revspinner></x-fast-revspinner>
-You Can Even Customize the Defaults!
+You Can Make Your Own Base Spinner With Customized Defaults!
 <x-fast-revspinner></x-fast-revspinner>
 </h2>
 <p>

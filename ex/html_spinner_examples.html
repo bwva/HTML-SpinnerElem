@@ -179,7 +179,7 @@ to the HTML document. When a spinner is rendered in markup, its internal css pro
 <code>spinnerComponent.js</code> also provides an optional programming interface whose methods momentarily execute only when adding or modifying spinners.
 </p>
 <p>
-Spinners follow ARIA accessibility guidelines. The rotors themselves are invisible to screen readers, because they have no content to read. Any included prefixes and suffixes will be seen and read. The spinner may also be marked as a "busy" area by assigning it the attribute <code>aria-wrap="true"</code>; it will then assume the role of communicating changes in status, such as when a long-running process completes.
+Spinners follow ARIA accessibility guidelines. The rotors themselves are invisible to screen readers, because they have no content to read. Any included prefixes and suffixes will be seen and read. The spinner may also be marked as a "live" area by assigning it the attribute <code>aria-wrap="true"</code>; it will then assume the role of communicating changes in status, such as when a long-running process completes.
 </p>
 <p>
 The SpinnerElement is self-contained. Spinners have no side-effects on the rest of the layout, and multiple
@@ -894,7 +894,7 @@ document.addEventListener('DOMContentLoaded', function() {
     rtr:           '101',
     color:         'red',
     bgclr:         'gold',
-    tclr:          'green'
+    tclr:          'blue'
   };
   listItems.forEach(function(item) {
     const spinner = new SpinnerElement( spinOpts );

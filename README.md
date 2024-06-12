@@ -306,7 +306,7 @@ Here some attributes are set in `spinOpts`, and then provided to the SpinnerElem
     rtr:           '101',
     'rotor-color': 'red',
     wt:            '2',
-    tclr:          'green'
+    tclr:          'blue'
   };
   const spinner = new SpinnerElement( spinOpts );
 ```

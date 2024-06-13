@@ -92,7 +92,7 @@ class SpinnerElement extends HTMLElement {
       ariaRelevant    : alts.ariaRelevant    || 'text',
       ariaLabel       : alts.ariaLabel       || 'Current Status',
       ariaLabelledBy  : alts.ariaLabelledBy  || 'spinner-prefix spinner-suffix',
-      ariaDescription : alts.ariaDescription || ''
+      ariaDescription : alts.ariaDescription || ' '
     };
     return defaults;
   }
@@ -242,7 +242,7 @@ class SpinnerElement extends HTMLElement {
     const markup       =
       ( !awrap || awrap === 'none' || awrap === 'presentation' || awrap === 'ignore' )
       ? `${spinnerHTML}`
-      : `<div id="ariaRegion" role="${ariaRole}" aria-live="${ariaLive}" aria-busy="${ariaBusy}"
+      : `<div role="${ariaRole}" aria-live="${ariaLive}" aria-busy="${ariaBusy}"
         aria-atomic="${ariaAtomic}" aria-relevant="${ariaRelevant}" aria-label="${ariaLabel}"
         aria-labelledby="${ariaLabelledBy}" aria-description="${ariaDescription}">${spinnerHTML}</div>`;
 
@@ -308,12 +308,6 @@ class SpinnerElement extends HTMLElement {
     margin:           0;
     color:            ${rtrcolor};
     ${backStyle}
-  }
-  div#ariaRegion {
-    padding:          .191em .38em .191em .38em;
-    border:           1.6pt dotted ${rtrcolor};
-    border-radius:    .33em;
-    color:            ${rtrcolor};
   }
 </style>
 ${markup}

@@ -261,7 +261,7 @@ Recording in Progress
 <button type="button" onclick="
   if (this.innerHTML == 'Search') {
     let spn = `&lt;x-spinner id='spinMe'>&lt;/x-spinner>`;
-    setItemValue('searching', spn );
+    document.getElementById('searching').innerHTML = spn;
     const spinM = document.getElementById('spinMe');
     spinM.setAttribute('sp', '.5');
     spinM.setAttribute('rotor-style', 'double');
@@ -272,7 +272,7 @@ Recording in Progress
     this.innerHTML = 'Cancel';
   }
   else {
-    setItemValue('searching', ' &nbsp; ');
+    document.getElementById('searching').innerHTML = ' &nbsp; ';
     this.innerHTML = 'Search';
   }
 ">Search</button>
@@ -285,15 +285,14 @@ Recording in Progress
   if (this.innerHTML=='Spin It') {
     const sp  = new SpinnerElement( {} );
     sp.id    = 'thisSpinner';
-    setItemValue(spng.id, '');
+    spng.innerHTML = '';
     spng.appendChild(sp);
     sp.setStyle( {'font-size': '3em'} );
     sp.setAttributes({color: 'turquoise', prefix: 'Spinning ', rstyle: 'double', role: 'status', 'aria-wrap': 'true' });
     this.innerHTML='Stop It';
   }
   else {
-    clearItem(spng.id);
-    setItemValue(spng.id, ' &nbsp; ');
+    spng.innerHTML = ' &nbsp; ';
     pausebtn.style.visibility = 'hidden';
     this.innerHTML='Spin It';
   }
@@ -902,7 +901,6 @@ and also a copy of this page.
 </p>
 </section>
 <hr>
-<script src="./scripts/KALE.js"></script>
 <script src="./scripts/spinnerComponent.js"></script>
 <script>
   // Create a new spinner with a faster default speed & reverse spin

@@ -312,6 +312,30 @@ Recording in Progress
   }">Pause</button>
 <p id="spinning"> &nbsp; </p>
 <hr>
+<p id="pace" style="font-size:2em;">
+<button type="button" onclick="
+  if (this.innerHTML=='Pace Me') {
+    this.currentSpeedIdx = 0;
+    this.innerHTML = 'Step';
+  }
+  const speeds = [ '0.1', '0.25', '0.5', '0.75', '1', '1.5', '2', '4', 'Reset' ];
+  if (getSpinner('#sp2')) { removeSpinner('#sp2') }
+  const sp2  = new SpinnerElement({id: 'sp2'});
+  appendSpinner(sp2, '#pace');
+  let curSpd = speeds[this.currentSpeedIdx];
+  if (curSpd === 'Reset') {
+    this.innerHTML = 'Pace Me';
+    removeSpinner('#sp2');
+    this.currentSpeedIdx = 0;
+  }
+  else {
+  	let ss = curSpd === '1' ? '' : 's';
+    sp2.setAttributes({'color': 'blue', 'speed': curSpd, kern: '1ch', 'prefix': 'Rotation in', 'suffix': curSpd + ' second' + ss});
+    this.currentSpeedIdx += 1;
+  }
+">Pace Me</button>
+</p>
+<hr>
 <button type="button" role='alert' style="font-weight:bold;height:1.6em;width:12ch;font-size:1.4em" onclick="
   if (this.innerHTML=='Run') {
     const sp  = new SpinnerElement;

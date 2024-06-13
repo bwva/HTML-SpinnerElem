@@ -233,6 +233,7 @@ Recording in Progress
     spin6.setAttribute('rstyle', 'dotted');
     spin6.setAttribute('suf', ' Chasing!');
     spin6.style.fontStyle = 'italic';
+    spin6.style.color = '#00dd00';
     this.innerHTML = 'Scan';
   } else {
     // set attributes in one op with spinner's .setAttributes method
@@ -247,6 +248,7 @@ Recording in Progress
       rotor:        '1'
     });
     spin6.style.fontStyle = 'normal';
+    spin6.style.color = '#ddd';
     this.innerHTML = 'Chase';
   }
   console.log( spin6.toString() );

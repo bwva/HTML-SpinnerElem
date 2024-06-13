@@ -253,7 +253,7 @@ Recording in Progress
 ">Scan</button>
 <p style="font-size:4em;margin-top:0;margin-bottom:0;">
 <!-- These attributes define the spinner when first loaded -->
-<x-spinner id="sp6" rstatus="paused" rotor="1" color="#ddd" sp="1.5" tclr="#ccf" wt="8" dir="ccw" kern="0em" role="status"  aria-wrap='true' aria-live="assertive" aria-label="Click for action!"></x-spinner><br>
+<x-spinner id="sp6" rstatus="paused" rotor="1" color="#ddd" sp="1.5" tclr="#ccf" wt="8" dir="ccw" kern="0em" role="status"  aria-wrap='true'></x-spinner><br>
 </p>
 <hr>
 <button type="button" onclick="
@@ -286,7 +286,7 @@ Recording in Progress
     setItemValue(spng.id, '');
     spng.appendChild(sp);
     sp.setStyle( {'font-size': '3em'} );
-    sp.setAttributes({color: 'turquoise', prefix: 'Spinning ', rstyle: 'double', role: 'alert', 'aria-wrap': 'true' });
+    sp.setAttributes({color: 'turquoise', prefix: 'Spinning ', rstyle: 'double', role: 'status', 'aria-wrap': 'true' });
     this.innerHTML='Stop It';
   }
   else {
@@ -308,7 +308,7 @@ Recording in Progress
     sp.go();
     this.innerHTML = 'Pause';
   }">Pause</button>
-<h2 id="spinning"> &nbsp; </h2>
+<p id="spinning"> &nbsp; </p>
 <hr>
 <button type="button" role='alert' style="font-weight:bold;height:1.6em;width:12ch;font-size:1.4em" onclick="
   if (this.innerHTML=='Run') {

@@ -197,7 +197,7 @@ with a file size less than 20k.
 </p>
 </section>
 <hr>
-<section style="max-width:600px;margin-left:auto;margin-right:auto;">
+<section style="margin-left:auto;margin-right:auto;">
 <h2 style="text-align:center">Some Examples</h2>
 <p style="background-color:yellow;padding:2em;margin-left:0;font-size:2em;">
 <x-spinner prefix="We'll be right back ... " rotor="1" trace-color="transparent" back-color="white" color="red"></x-spinner>
@@ -227,11 +227,11 @@ with a file size less than 20k.
 </code>
 <hr>
 <p style="font-size:2em;">
-<x-spinner onclick="this.stopGo()" rotor="1111" rstyle="dotted" wt="3" sp="1" tclr="rgba(255,255,0,1)" kern="1ch" suffix="Click to Start/Stop"></x-spinner>
+<x-spinner onclick="this.stopGo()" rotor="101" rstyle="dotted" wt="3" sp="1" tclr="rgba(255,51,0,1)" kern="1ch" suffix="Click to Start/Stop"></x-spinner>
 </p>
 <code style="white-space: pre-wrap;">
 &lt;p style="font-size:2em;">
-&lt;x-spinner onclick="this.stopGo()" rotor="1111" rstyle="dotted" wt="3" sp="1" tclr="rgba(255,255,0,1)" kern="1ch" suffix="Click to Start/Stop">&lt;/x-spinner>
+&lt;x-spinner onclick="this.stopGo()" rotor="101" rstyle="dotted" wt="3" sp="1" tclr="rgba(255,51,0,1)" kern="1ch" suffix="Click to Start/Stop">&lt;/x-spinner>
 &lt;/p>
 </code>
 <hr>
@@ -286,6 +286,7 @@ Recording in Progress
     spin6.style.color = '#ccc';
     this.innerHTML = 'Chase';
   }
+  // Show the rendered spinner in the console:
   console.log( spin6.toString() );
 ">Scan</button>
 <p style="font-size:4em;margin-top:0;margin-bottom:0;">
@@ -322,6 +323,7 @@ Recording in Progress
     spin6.style.color = '#ccc';
     this.innerHTML = 'Chase';
   }
+  // Show the rendered spinner in the console:
   console.log( spin6.toString() );
 ">Scan&lt;/button>
 &lt;p style="font-size:4em;margin-top:0;margin-bottom:0;">
@@ -375,7 +377,7 @@ Recording in Progress
 </code>
 <hr>
 <p style="font-size:3em;margin-top:0;margin-bottom:0;">
-<button type="button" onclick="
+<button type="button" style="width:6em;" onclick="
   const pausebtn = document.getElementById('pauseBtn');
   pausebtn.style.visibility = 'visible';
   const spng  = document.getElementById('spinning');
@@ -392,7 +394,7 @@ Recording in Progress
     pausebtn.style.visibility = 'hidden';
     this.innerHTML='Spin It';
   }
-">Spin It</button> &nbsp; <button type="button" id="pauseBtn" style="visibility:hidden;" onclick="
+">Spin It</button> &nbsp; <button type="button" id="pauseBtn" style="visibility:hidden;width:6em;" onclick="
   const sp  = document.getElementById('thisSpinner');
   if (!sp) {return};
   if (this.innerHTML == 'Pause') {
@@ -409,7 +411,7 @@ Recording in Progress
 </p>
 <code style="white-space: pre-wrap;">
 &lt;p style="font-size:3em;margin-top:0;margin-bottom:0;">
-&lt;button type="button" onclick="
+&lt;button type="button" style="width:6em;" onclick="
   const pausebtn = document.getElementById('pauseBtn');
   pausebtn.style.visibility = 'visible';
   const spng  = document.getElementById('spinning');
@@ -426,7 +428,7 @@ Recording in Progress
     pausebtn.style.visibility = 'hidden';
     this.innerHTML='Spin It';
   }
-">Spin It&lt;/button> &nbsp; &lt;button type="button" id="pauseBtn" style="visibility:hidden;" onclick="
+">Spin It&lt;/button> &nbsp; &lt;button type="button" id="pauseBtn" style="visibility:hidden;width:6em;" onclick="
   const sp  = document.getElementById('thisSpinner');
   if (!sp) {return};
   if (this.innerHTML == 'Pause') {
@@ -1105,9 +1107,15 @@ and also a copy of this page's HTML file you can inspect for examples.
 </p>
 </section>
 <section>
-<p style="text-align:center;color:purple;">
-<x-spinner rstyle="double" rotor="101" style="font-size:60em;line-height:1.0;"></x-spinner>
+<p>
+  <x-spinner rstyle="double" rotor="101" style="font-size:60em;line-height:1.0;color:purple;margin:auto;"></x-spinner>
 </p>
+<code style="white-space: pre-wrap;">
+&lt;p>
+  &lt;x-spinner rstyle="double" rotor="101" style="font-size:60em;line-height:1.0;color:purple;margin:auto;">&lt;/x-spinner>
+&lt;/p>
+</code>
+
 </section>
 <hr>
 <script src="./scripts/spinnerComponent.js"></script>

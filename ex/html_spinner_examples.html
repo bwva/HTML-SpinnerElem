@@ -14,6 +14,7 @@ body {
   margin-left:  auto;
   margin-right: auto;
   padding:      4px;
+  background-color: #fffff3;
 }
 section,hr {
   max-width:720px;
@@ -76,6 +77,7 @@ button {
   margin-right: auto;
   ">
 <code style="white-space: pre-wrap;">
+Here's the markup for one of the above. Can you see which one?
 &lt;x-spinner rotor="1111" color="red" wt="3" dir="ccw" rstyle="dotted">&lt;/x-spinner>
 </code>
 </div>
@@ -120,7 +122,8 @@ button {
 </ol>
 </p>
 <p>
-[See <a href="#rstyles">Rotor Styles</a>, below, for an organized view of variations.]
+See <a href="#rstyles">Rotor Styles</a>, below, for an organized view of variations.<br>
+See the README file in the <a href="#sources">Sources</a> download for extensive instructions and documentation.
 </p>
 </section>
 <hr>
@@ -196,31 +199,63 @@ with a file size less than 15k.
 <hr>
 <section style="max-width:600px;margin-left:auto;margin-right:auto;">
 <h2 style="text-align:center">Some Examples</h2>
-<p style="background-color:yellow;padding:2em;max-width:400px;margin-left:0;font-size:2em;">
+<p style="background-color:yellow;padding:2em;margin-left:0;font-size:2em;">
 <x-spinner prefix="We'll be right back ... " rotor="1" trace-color="transparent" back-color="white" color="red"></x-spinner>
 </p>
+<code style="white-space: pre-wrap;">
+&lt;p style="background-color:yellow;padding:2em;margin-left:0;font-size:2em;">
+&lt;x-spinner prefix="We'll be right back ... " rotor="1" trace-color="transparent" back-color="white" color="red">&lt;/x-spinner>
+&lt;/p>
+</code>
 <hr>
 <p style="color:green; font-size:2em;">
 <x-spinner prefix="Is it moving?" kerning="1ch" rotor="101" wt=".195" bgclr="gold" tclr="red" bkclr="rgba(0,55,255,.25)"></x-spinner>
 </p>
+<code style="white-space: pre-wrap;">
+&lt;p style="color:green; font-size:2em;">
+&lt;x-spinner prefix="Is it moving?" kerning="1ch" rotor="101" wt=".195" bgclr="gold" tclr="red" bkclr="rgba(0,55,255,.25)">&lt;/x-spinner>
+&lt;/p>
+</code>
 <hr>
 <p style="font-size:2em;">
 <x-spinner onclick="this.stopGo()" rotor="101" wt=".495" sp="2" tclr="rgba(255,255,0,1)" kern="1ch" suffix="Restricted"></x-spinner>
 </p>
+<code style="white-space: pre-wrap;">
+&lt;p style="font-size:2em;">
+&lt;x-spinner onclick="this.stopGo()" rotor="101" wt=".495" sp="2" tclr="rgba(255,255,0,1)" kern="1ch" suffix="Restricted">&lt;/x-spinner>
+&lt;/p>
+</code>
 <hr>
 <p style="font-size:2em;">
 <x-spinner onclick="this.stopGo()" rotor="1111" rstyle="dotted" wt="3" sp="1" tclr="rgba(255,255,0,1)" kern="1ch" suffix="Click to Start/Stop"></x-spinner>
 </p>
+<code style="white-space: pre-wrap;">
+&lt;p style="font-size:2em;">
+&lt;x-spinner onclick="this.stopGo()" rotor="1111" rstyle="dotted" wt="3" sp="1" tclr="rgba(255,255,0,1)" kern="1ch" suffix="Click to Start/Stop">&lt;/x-spinner>
+&lt;/p>
+</code>
 <hr>
 <p style="font-size:2.4em;color:#ff0000;">
 <x-spinner color="#ff0000" rotor="101" wt="8" speed="1" direction="cw" back-color=transparent ></x-spinner>
 Recording in Progress
 <x-spinner color="#ff0000" rotor="0101" wt="8" speed="1" direction="cw" back-color=transparent "></x-spinner>
 </p>
+<code style="white-space: pre-wrap;">
+&lt;p style="font-size:2.4em;color:#ff0000;">
+&lt;x-spinner color="#ff0000" rotor="101" wt="8" speed="1" direction="cw" back-color=transparent >&lt;/x-spinner>
+Recording in Progress
+&lt;x-spinner color="#ff0000" rotor="0101" wt="8" speed="1" direction="cw" back-color=transparent ">&lt;/x-spinner>
+&lt;/p>
+</code>
 <hr>
 <div style="color:rgba(92, 51, 23, 1); font-size:2em;">
 <x-spinner prefix="Research " suffix=" takes time." kern="0ch" wt=".195" speed=".75" rotor="1110" direction="cw" back-color="rgba(92, 51, 23, 0.2)" trace-color="transparent"></x-spinner>
 </div>
+<code style="white-space: pre-wrap;">
+&lt;div style="color:rgba(92, 51, 23, 1); font-size:2em;">
+&lt;x-spinner prefix="Research " suffix=" takes time." kern="0ch" wt=".195" speed=".75" rotor="1110" direction="cw" back-color="rgba(92, 51, 23, 0.2)" trace-color="transparent">&lt;/x-spinner>
+&lt;/div>
+</code>
 <hr>
 <button type="button" onclick="
   const spin6 = document.getElementById('sp6');
@@ -257,8 +292,46 @@ Recording in Progress
 <!-- These attributes define the spinner when first loaded -->
 <x-spinner id="sp6" rstatus="paused" rotor="1" color="#ddd" sp="1.5" tclr="#ccf" wt="8" dir="ccw" kern="0em" role="status"  aria-wrap='true'></x-spinner><br>
 </p>
+<code style="white-space: pre-wrap;">
+&lt;button type="button" onclick="
+  const spin6 = document.getElementById('sp6');
+  if (this.innerHTML === 'Chase') {
+    // set attributes individually with JS built-in .setAttribute
+    spin6.setAttribute('rotor-color', '#00dd00');
+    spin6.setAttribute('direction', 'cw');
+    spin6.setAttribute('sp', '.4');
+    spin6.setAttribute('wt', '3');
+    spin6.setAttribute('rstyle', 'dotted');
+    spin6.setAttribute('suf', ' Chasing!');
+    spin6.style.fontStyle = 'italic';
+    spin6.style.color = '#00dd00';
+    this.innerHTML = 'Scan';
+  } else {
+    // set attributes in one op with spinner's .setAttributes method
+    spin6.setAttributes({
+      color:        '#ddd',
+      direction:    'ccw',
+      sp:           '1.5',
+      wt:           '8',
+      suf:          ' Scanning...',
+      rstyle:       'solid',
+      rstatus:      'running',
+      rotor:        '1'
+    });
+    spin6.style.fontStyle = 'normal';
+    spin6.style.color = '#ccc';
+    this.innerHTML = 'Chase';
+  }
+  console.log( spin6.toString() );
+">Scan&lt;/button>
+&lt;p style="font-size:4em;margin-top:0;margin-bottom:0;">
+&lt;!-- These attributes define the spinner when first loaded -->
+&lt;x-spinner id="sp6" rstatus="paused" rotor="1" color="#ddd" sp="1.5" tclr="#ccf" wt="8" dir="ccw" kern="0em" role="status"  aria-wrap='true'>&lt;/x-spinner>&lt;br>
+&lt;/p>
+</code>
 <hr>
 <button type="button" onclick="
+  // Yes, start a spinner element from raw text
   if (this.innerHTML == 'Search') {
     let spn = `&lt;x-spinner id='spinMe'>&lt;/x-spinner>`;
     document.getElementById('searching').innerHTML = spn;
@@ -267,7 +340,7 @@ Recording in Progress
     spinM.setAttribute('rotor-style', 'double');
     spinM.setAttribute('pre', 'Searching ... ');
     spinM.setAttribute('direction', 'cw');
-    spinM.setAttribute('trace-color', 'transparent' );  // '#ffff00'
+    spinM.setAttribute('trace-color', 'transparent' );
     console.log( spinM.toString() );
     this.innerHTML = 'Cancel';
   }
@@ -277,7 +350,31 @@ Recording in Progress
   }
 ">Search</button>
 <h2 id="searching" style="color:red;"> &nbsp; </h2>
+<code style="white-space: pre-wrap;">
+&lt;button type="button" onclick="
+  // Yes, start a spinner element from raw text
+  // Note need to use '&amp;lt;' instead of '&lt;'
+  if (this.innerHTML == 'Search') {
+    let spn = `&amp;lt;x-spinner id='spinMe'>&amp;lt;/x-spinner>`;
+    document.getElementById('searching').innerHTML = spn;
+    const spinM = document.getElementById('spinMe');
+    spinM.setAttribute('sp', '.5');
+    spinM.setAttribute('rotor-style', 'double');
+    spinM.setAttribute('pre', 'Searching ... ');
+    spinM.setAttribute('direction', 'cw');
+    spinM.setAttribute('trace-color', 'transparent' );
+    console.log( spinM.toString() );
+    this.innerHTML = 'Cancel';
+  }
+  else {
+    document.getElementById('searching').innerHTML = ' &nbsp; ';
+    this.innerHTML = 'Search';
+  }
+">Search&lt;/button>
+&lt;h2 id="searching" style="color:red;"> &nbsp; &lt;/h2>
+</code>
 <hr>
+<p style="font-size:3em;margin-top:0;margin-bottom:0;">
 <button type="button" onclick="
   const pausebtn = document.getElementById('pauseBtn');
   pausebtn.style.visibility = 'visible';
@@ -287,8 +384,7 @@ Recording in Progress
     sp.id    = 'thisSpinner';
     spng.innerHTML = '';
     spng.appendChild(sp);
-    sp.setStyle( {'font-size': '3em'} );
-    sp.setAttributes({color: 'turquoise', prefix: 'Spinning ', rstyle: 'double', role: 'status', 'aria-wrap': 'true' });
+    sp.setAttributes({color: 'turquoise', suffix: ' Spinning', rstyle: 'double', role: 'status', 'aria-wrap': 'true' });
     this.innerHTML='Stop It';
   }
   else {
@@ -300,16 +396,52 @@ Recording in Progress
   const sp  = document.getElementById('thisSpinner');
   if (!sp) {return};
   if (this.innerHTML == 'Pause') {
-    sp.setPrefix('Paused   ')
+    sp.setSuffix(' Paused')
     sp.pause();
     this.innerHTML = 'Resume';
   }
   else {
-    sp.setPrefix('Spinning ');
+    sp.setSuffix(' Spinning ');
     sp.go();
     this.innerHTML = 'Pause';
-  }">Pause</button>
-<p id="spinning"> &nbsp; </p>
+  }">Pause</button> &nbsp; &nbsp;
+<span id="spinning"> &nbsp; </span>
+</p>
+<code style="white-space: pre-wrap;">
+&lt;p style="font-size:3em;margin-top:0;margin-bottom:0;">
+&lt;button type="button" onclick="
+  const pausebtn = document.getElementById('pauseBtn');
+  pausebtn.style.visibility = 'visible';
+  const spng  = document.getElementById('spinning');
+  if (this.innerHTML=='Spin It') {
+    const sp  = new SpinnerElement( {} );
+    sp.id    = 'thisSpinner';
+    spng.innerHTML = '';
+    spng.appendChild(sp);
+    sp.setAttributes({color: 'turquoise', suffix: ' Spinning', rstyle: 'double', role: 'status', 'aria-wrap': 'true' });
+    this.innerHTML='Stop It';
+  }
+  else {
+    spng.innerHTML = ' &nbsp; ';
+    pausebtn.style.visibility = 'hidden';
+    this.innerHTML='Spin It';
+  }
+">Spin It&lt;/button> &nbsp; &lt;button type="button" id="pauseBtn" style="visibility:hidden;" onclick="
+  const sp  = document.getElementById('thisSpinner');
+  if (!sp) {return};
+  if (this.innerHTML == 'Pause') {
+    sp.setSuffix(' Paused')
+    sp.pause();
+    this.innerHTML = 'Resume';
+  }
+  else {
+    sp.setSuffix(' Spinning ');
+    sp.go();
+    this.innerHTML = 'Pause';
+  }">Pause&lt;/button> &nbsp; &nbsp;
+&lt;span id="spinning"> &nbsp; &lt;/span>
+&lt;/p>
+</code>
 <hr>
 <p id="pace" style="font-size:2em;">
 <button type="button" onclick="
@@ -334,6 +466,31 @@ Recording in Progress
   }
 ">Pace Me</button>
 </p>
+<code style="white-space: pre-wrap;">
+&lt;p id="pace" style="font-size:2em;">
+&lt;button type="button" onclick="
+  if (this.innerHTML=='Pace Me') {
+    this.currentSpeedIdx = 0;
+    this.innerHTML = 'Step';
+  }
+  const speeds = [ '0.1', '0.25', '0.5', '0.75', '1', '1.5', '2', '4', 'Reset' ];
+  if (getSpinner('#sp2')) { removeSpinner('#sp2') }
+  const sp2  = new SpinnerElement({id: 'sp2'});
+  appendSpinner(sp2, '#pace');
+  let curSpd = speeds[this.currentSpeedIdx];
+  if (curSpd === 'Reset') {
+    this.innerHTML = 'Pace Me';
+    removeSpinner('#sp2');
+    this.currentSpeedIdx = 0;
+  }
+  else {
+  	let ss = curSpd === '1' ? '' : 's';
+    sp2.setAttributes({'color': 'blue', 'speed': curSpd, kern: '1ch', 'prefix': 'Rotation in', 'suffix': curSpd + ' second' + ss});
+    this.currentSpeedIdx += 1;
+  }
+">Pace Me&lt;/button>
+&lt;/p>
+</code>
 <hr>
 <button type="button" role='alert' style="font-weight:bold;height:1.6em;width:12ch;font-size:1.4em" onclick="
   if (this.innerHTML=='Run') {
@@ -348,9 +505,33 @@ Recording in Progress
   }
 
 ">Run</button>
+<code style="white-space: pre-wrap;">
+&lt;button type="button" role='alert' style="font-weight:bold;height:1.6em;width:12ch;font-size:1.4em" onclick="
+  if (this.innerHTML=='Run') {
+    const sp  = new SpinnerElement;
+    sp.id     = 'thatSpinner';
+    this.innerHTML = '';
+    this.appendChild(sp);
+    sp.setAttributes({'color': 'purple', 'prefix': 'Cancel '});
+  }
+  else {
+    this.innerHTML='Run';
+  }
+
+">Run&lt;/button>
+</code>
 <hr>
 <div style="font-size:2em;">
-<div style="display:grid;grid-template-columns: 4em 4em;">
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
+<div style="display:inline-block;font-size:.8rem;">
+Click to View
+</div>
+<div id="here0" style="display:inline-block;width:3em;text-align:center;font-size:.8rem;">Example</div>
+<div style="font-size:.8rem;display:inline-block;">
+Layout: External Functions and Spinner Methods:
+</div>
+</div>
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
 <div style="display:inline-block;">
 <button type="button" onclick="
   if (this.innerHTML === 'Insert It') {
@@ -365,9 +546,15 @@ Recording in Progress
   }
 ">Insert It</button>
 </div>
-<div id="here1" style="display:inline-block;border-bottom:1pt blue solid;width:3em;text-align:center;"></div>
+<div id="here1" style="display:inline-block;width:3em;text-align:center;"></div>
+<div>
+<code style="white-space: pre-wrap;font-size:.8rem;display:inline-block;">
+insertSpinner(sp1,'#here1');
+removeSpinner( [ sp1 | '#sp1_id' ] );
+</code>
 </div>
-<div style="display:grid;grid-template-columns: 4em 4em;">
+</div>
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
 <div style="display:inline-block;">
 <button type="button" onclick="
   if (this.innerHTML === 'Append It') {
@@ -382,9 +569,15 @@ Recording in Progress
   }
 ">Append It</button>
 </div>
-<div id="here2" style="display:inline-block;border-bottom:1pt blue solid;width:3em;text-align:center;"> Hi </div>
+<div id="here2" style="display:inline-block;width:3em;text-align:center;"> Hi </div>
+<div>
+<code style="white-space: pre-wrap;font-size:.8rem;display:inline-block;">
+appendSpinner(sp2,'#here2');
+removeSpinner( [ sp2 | '#sp2_id' ] );
+</code>
 </div>
-<div style="display:grid;grid-template-columns: 4em 4em;">
+</div>
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
 <div style="display:inline-block;">
 <button type="button" onclick="
   const sp3 = document.getElementById('sp3_id');
@@ -398,9 +591,14 @@ Recording in Progress
   }
 ">Show It</button>
 </div>
-<div id="here3" style="display:inline-block;border-bottom:1pt blue solid;width:3em;text-align:center;"> |<x-spinner id="sp3_id" style="display:none;"></x-spinner>| </div>
+<div id="here3" style="display:inline-block;width:3em;text-align:center;"> |<x-spinner id="sp3_id" style="display:none;"></x-spinner>| </div>
+<div>
+<code style="white-space: pre-wrap;font-size:.8rem;display:inline-block;">
+sp3.show();  sp3.hide();
+</code>
 </div>
-<div style="display:grid;grid-template-columns: 4em 4em;">
+</div>
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
 <div style="display:inline-block;">
 <button type="button" onclick="
   const sp4 = document.getElementById('sp4_id');
@@ -414,9 +612,14 @@ Recording in Progress
   }
 ">Unveil It</button>
 </div>
-<div id="here4" style="display:inline-block;border-bottom:1pt blue solid;width:3em;text-align:center;"> |<x-spinner id="sp4_id" style="visibility:hidden;"></x-spinner>| </div>
+<div id="here4" style="display:inline-block;width:3em;text-align:center;"> |<x-spinner id="sp4_id" style="visibility:hidden;"></x-spinner>| </div>
+<div>
+<code style="white-space: pre-wrap;font-size:.8rem;display:inline-block;">
+sp4.unveil();  sp4.veil();
+</code>
 </div>
-<div style="display:grid;grid-template-columns: 4em 4em;">
+</div>
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
 <div style="display:inline-block;">
 <button type="button" onclick="
   let sp5 = document.getElementById('sp5_id');
@@ -430,7 +633,12 @@ Recording in Progress
   }
 ">Start It</button>
 </div>
-<div id="here5" style="display:inline-block;border-bottom:1pt blue solid;width:3em;text-align:center;"> <x-spinner id="sp5_id" rstatus="paused"></x-spinner> </div>
+<div id="here5" style="display:inline-block;width:3em;text-align:center;"> <x-spinner id="sp5_id" rstatus="paused"></x-spinner> </div>
+<div>
+<code style="white-space: pre-wrap;font-size:.8rem;display:inline-block;">
+sp5.run(); sp5.stop();
+</code>
+</div>
 </div>
 </div>
 </section>
@@ -763,8 +971,9 @@ as specified with <code>direction="[ cw | ccw ]"</code>.
 <hr>
 <section>
 <h2 style="text-align:center;">
+You Can Make Your Own Base Spinner<br>
 <x-fast-revspinner></x-fast-revspinner>
-You Can Make Your Own Base Spinner With Customized Defaults!
+With Customized Defaults!
 <x-fast-revspinner></x-fast-revspinner>
 </h2>
 <p>
@@ -891,8 +1100,8 @@ as the "src" of an HTML &lt;script> element:
 </p>
 <p>
 The best source for the latest production release of <code> spinnerComponent.js </code> is from my account at <a href="https://github.com/bwva/HTML-SpinnerElem/releases/latest">GitHub.com</a>.
-That release comes with a README file with documentation
-and also a copy of this page.
+That release comes with a README file with <b>documentation</b>
+and also a copy of this page's HTML file you can inspect for examples.
 </p>
 </section>
 <section>

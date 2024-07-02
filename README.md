@@ -277,7 +277,7 @@ The outer `div` provides the font color and size. The attributes of the spinner 
 - `suffix=" takes time."` adding text after the spinner;
 - `speed=".75"` sets the speed to one rotation every .75 seconds;
 - `rotor="1110"` sets the moving part to three quadrants of the circle;
-- `direction="cw"` sets the rotation to clockwise (but that's the default, so this isn't really need for clockwise);
+- `direction="cw"` sets the rotation to clockwise (but that's the default, so this isn't really needed for clockwise);
 - `back-color="#ffff00"` creates a background with that color (bright yellow) and adds padding and rounded corners to the background;
 - `trace-color="transparent"` hides the spinner's trace - the non-colored quadrants of the circle, which is normally visible as a light gray.
 

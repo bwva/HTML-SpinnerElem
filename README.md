@@ -34,6 +34,10 @@ Loading the `spinnerComponent.js` Javascript file automatically constructs a spi
 ```html
 <script src="./MyScriptDirectory/spinnerComponent.js"></script>
 ```
+OR
+```html
+<script src="https://cdn.jsdelivr.net/gh/bwva/HTML-SpinnerElem/src/spinnerComponent.js"></script>
+```
 
 ### HTML Tag
 The spinner can be placed in your HTML as an inline-block element with the following tag:

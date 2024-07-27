@@ -8,12 +8,18 @@ Here is a sample page showing some variations: <a href="https://bvadata.com/html
 
 ## Installation
 
+### Install on your site
 To use the spinner component in your project:
  - download and open `HTML-SpinnerElem` from GitHub;
  - from the included /src directory, move the script `spinnerComponent.js` to where your web scripts are located;
  - invoke the script in your HTML to load it:
 ```html
 <script src="./MyScriptDirectory/spinnerComponent.js"></script>
+```
+### Load from CDN
+You can load the script from jsdeliver.net:
+```html
+<script src="https://cdn.jsdelivr.net/gh/bwva/HTML-SpinnerElem/src/spinnerComponent.js"></script>
 ```
 
 ## What is it?

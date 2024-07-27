@@ -7,9 +7,9 @@ Create a customizable spinner as an HTML web component.
 Here is a sample page showing some variations: <a href="https://bvadata.com/html_spinner_examples.html">https://bvadata.com/html_spinner_examples.html</a>
 
 ## Installation
+To use the spinner component in your project:
 
 ### Install on your site
-To use the spinner component in your project:
  - download and open `HTML-SpinnerElem` from GitHub;
  - from the included /src directory, move the script `spinnerComponent.js` to where your web scripts are located;
  - invoke the script in your HTML to load it:

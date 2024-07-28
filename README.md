@@ -72,7 +72,7 @@ const sp	= new SpinnerElement;
 sp.setAttribute('id','spinner_01');
 sp.setAttribute('name','RedSpinner');
 // OR
-sp.id		= 'spinner_02';  // See Note below
+sp.id		= 'spinner_02';
 // etc.
 ```
 Later...
@@ -81,8 +81,6 @@ for (const Sp of document.getElementsByName('RedSpinner)) {
 	Sp.setAttribute('speed', '2');
 }
 ```
-  _Note: Element attributes are not always interchangeable with Javascript object properties with the same names - be careful._
-
 Finally, the SpinnerElement comes with its own methods for setting attributes and styles:
 ```
 const sp = new SpinnerElement;
@@ -103,9 +101,9 @@ See "Scripting API" below for details.
 
 The spinner web component accepts several attributes that modify its appearance or behavior.
 
-Each attribute has both a full and an abbreviated name; in general good programming practice calls for descriptive names. It's up to you - you can always refer back to this README in five years when you're trying to figure out what they mean.
+Each attribute has both a full and an abbreviated name; in general good programming practice calls for descriptive names. It's up to you - you can always refer back to this README in five years to refresh your memory.
 
-Attributes may be specified in markup, in options for `new SpinnerElement(options)`, and programmatically. The following are available plus the standard attributes `style`, `id`, and `name`. Each attribute is described below:
+Attributes may be specified in markup, in options for `new SpinnerElement(options)`, and programmatically. The following are available along with the standard attributes `style`, `id`, `class`, and `name`. Each attribute is described below:
 ```
   speed | sp
   rotor | rtr
@@ -134,7 +132,7 @@ An additional set of ARIA-related attributes is available for cases when the spi
   aria-description | adesc
 ```
 
-Other attributes appropriate to inline elements may always be assigned to spinners via the built-in Javascript `setAttribute` method or in markup.
+Other attributes appropriate to inline elements may always be assigned to spinners in markup or via the built-in Javascript `setAttribute` method.
 
 #### speed | sp = [ # ]
 ```html
@@ -158,7 +156,7 @@ Sets the direction of spin. Default is clockwise ('cw').
 ```html
   <x-spinner rotor-style="dotted"></x-spinner>
 ```
-Sets the appearance of the rotor using the available border-types. Different spinners can be created with varying combinations of rotor-style and weight. Default is `solid`.
+Sets the appearance of the rotor using the available CSS border-types. Different spinners can be created with varying combinations of rotor-style and weight. Default is `solid`.
 
 #### weight | wt = [ 0 .. 0.5 | 1 .. 10 ]
 ```html
@@ -190,7 +188,7 @@ Sets the background color within the border of the spinner only - not its prefix
 ```html
   <x-spinner back-color="#ccccff"></x-spinner>
 ```
-Setting a back-color forces addition of a minimally-formatted background to the entire tag, including any prefix and suffix, with some padding and  rounded corners set for now by arbitrary design diktat. The background is colored with the `back-color`/`bkclr` attribute, which may be any HTML color expression. Default is no `back-color`, and therefore no added background, padding, etc.
+Setting a back-color forces addition of a minimally-formatted background to the entire tag, including any prefix and suffix, with some padding and  rounded corners set for now by arbitrary design diktat. The background is colored with the `back-color`/`bkclr` attribute, which may be any valid CSS color value. Default is no `back-color`, and therefore no added background, padding, etc.
 Note that the parent element of a spinner can provide more options for styling.
 MAYBE TODO: settable `back` defaults and more options for the background.
 
@@ -228,9 +226,9 @@ The spinner in this context is passive to the action, and will no longer be avai
 
 By default, the SpinnerElement is constructed for this presentational role. It is composed only of `<div>` and `<span>` elements, which have no intrinsic semantic value. A screen reader voicing some text that happens to include a spinner will read right past the spinner as though it wasn't there.
 
-Not having their own semantic roles, however, means that any text contained by `<div>` and `<span>` elements is directly available to assistive technologies. That allows a spinner's prefix and suffix to be detected and read, for example, by a screen reader.
+At the same time, with `<div>` and `<span>` elements not having their own semantic roles, any text they contain is directly available to assistive technologies. That allows a spinner's prefix and suffix to be detected and read, for example, by a screen reader.
 
-Another visual design aspect of a spinner is its <strong>color scheme</strong>. For some sighted users, the spectrum of colors they see may not have the same distinctions as the "standard" color palettes and names would suggest. Differences in intensity and contrast between adjacent colors, such as type over a background, can make or break readability. Official specs: <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG)</a>. Whocanuse: <a href="https://www.whocanuse.com">whocanuse.com</a>.
+Another visual design aspect of a spinner is its <strong>color scheme</strong>. For some sighted users, the spectrum of colors they see may not have the same distinctions among hues as the "standard" color palettes and names would suggest. Along with hue, differences in intensity and contrast between adjacent colors, such as type over a background, can make or break readability. Official specs: <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG)</a>. Whocanuse: <a href="https://www.whocanuse.com">whocanuse.com</a>.
 
 Finally, <strong>movement</strong> on the screen can be problematic for some sighted users, especially if it rapidly alternates contrasting shades. Often this can be eliminated by choosing a slower speed for the spinner, and can be reduced by selecting less-sharply contrasting colors.
 
@@ -475,7 +473,7 @@ Returns a string encompassing the entire shadow DOM fragment of the spinner, for
 ## Technical Notes
 
 #### No dependencies - No side effects
-When a web page/app loads this script (`spinnerComponent.js`), the spinner web component is constructed as an instance of the script's SpinnerElement class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other element or layout structure. The spinner may inherit styling from surrounding HTML, and its styling may be set programmatically. But the styling used to create the SpinnerElement, including such crucial css as `box-sizing`, will have no effect outside the spinner.
+When a web page/app loads this script (`spinnerComponent.js`), the spinner web component is constructed as an instance of the script's SpinnerElement class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other element or layout structure. By default, a spinner inherits the type size as well as color from its immediately surrounding text. The spinner may inherit additional styling from surrounding HTML, and its styling may be set programmatically. Any styling used to create the SpinnerElement, or applied to it programmatically, will have no effect outside the spinner except from its display role as a character in a line. 
 
 #### Spinner Size
 The spinner derives its size from whatever `font-size` applies to it. If possible it is equal to the typographic size unit `cap`, which is meant to be the height of the capital letter "H" in the font-size for the given typeface. Having the spinner sized to 1 `cap` aligns the spinner with the base line of the surrounding type, and doesn't alter the line height or the visual flow of the text line it's on. In browsers whose css doesn't recognize the `cap` unit, the SpinnerElement approximates the cap size. The idea is to make the spinner act like a character in the line it's on.

@@ -17,7 +17,7 @@ To use the spinner component in your project:
 <script src="./MyScriptDirectory/spinnerComponent.js"></script>
 ```
 ### Load from CDN
-You can load the script from jsdeliver.net:
+You can load the script from jsdelivr.net:
 ```html
 <script src="https://cdn.jsdelivr.net/gh/bwva/HTML-SpinnerElem/src/spinnerComponent.js"></script>
 ```

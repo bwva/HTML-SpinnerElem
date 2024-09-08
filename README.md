@@ -259,7 +259,7 @@ May be used to start or stop the spinner's motion.
 ### ARIA-Related Attributes
 In most use cases, spinners play a _presentational_ role, with no semantic meaning of their own. The context in which they are deployed provides any meaning to be detected by assistive systems such as screen readers.
 
-For example, a "Search" button that triggers a long-running database lookup might display a message such as "Searching..." along with a spinner as a visual indicator for sighted users. When the long search process completes and returns, the button's script deletes the "Searching..." message and its spinner, and displays the search results.
+For example, the script for a "Search" button that triggers a long-running database lookup might display a message such as "Searching..." along with a spinner as a visual indicator for sighted users. When the long search process completes and returns, the button's script deletes the "Searching..." message and its spinner, and displays the search results.
 
 The spinner in this context is passive to the action, and will no longer be available for any ARIA functionality once the long process returns. However, the display and removal of the message and spinner are events that could be detected by an ARIA-aware region, so ARIA compatibility is maintained.
 

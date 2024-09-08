@@ -27,6 +27,8 @@ The spinner is a custom web component that you can treat like any inline HTML ta
 
 The underlying SpinnerElement is constructed from a bit of HTML with some styling, plus css transformations to rotate it.
 
+The constructed custom element is added to the "shadow DOM", encapsulating its component HTML elements and style sheet to prevent impacts or naming collisions with the rest of the HTML document and its style properties.
+
 SpinnerElements are self-contained, and need no additional images, css, HTML elements, frameworks, or scripts. At the same time, SpinnerElements are versatile in HTML markup and highly scriptable for dynamic applications.
 
 ## Usage
@@ -81,7 +83,7 @@ for (const Sp of document.getElementsByName('RedSpinner)) {
 	Sp.setAttribute('speed', '2');
 }
 ```
-Finally, the SpinnerElement comes with its own methods for setting attributes and styles:
+The SpinnerElement also comes with its own programming interface, with methods for setting attributes and styles:
 ```
 const sp = new SpinnerElement;
 sp.setAttributes({
@@ -96,6 +98,43 @@ sp.setStyle({
 ```
 
 See "Scripting API" below for details.
+
+### Export a Static Spinner
+You can save a spinner as a fragment of plain HTML and some associated CSS properties. This is called a "static" spinner because once created it may be deployed without having `spinnerComponent.js` loaded or any other script executing.
+
+Standard "dynamic" spinners created with `spinnerComponent.js` are embedded in the shadow DOM to prevent the spinner's CSS properties from affecting the rest of the web page. Currently the only way to put something into the shadow DOM is via Javascript, which is why dynamic spinners need `spinnerComponent.js` to be loaded every time.
+
+A static spinner fragment is inserted where needed in the main document, and its CSS is added to the document's CSS stylesheets or `style` elements. If you export a spinner, be sure to check for naming collisions among CSS selectors and HTML element identifiers - you might not want the spinner's styling to spill over to other elements or vice versa.
+
+Many aspects of a static spinner may still be changed by directly modifying its associated CSS properties; however, a static spinner does not retain the programming interface of the dynamic spinners instantiated by `spinnerComponent.js`.
+
+To save a static spinner, create an HTML document that loads `spinnerComponent.js`. Using direct markup or by scripting, design the spinner with the features you want. Remember that static spinners, like dynamic ones, automatically inherit their surrounding color and (font) size unless you specify otherwise; often inheritance is exactly what you want, in which case leave color and size unspecified in the spinner. Once you have the spinner you want, you can use its `toString()` method to obtain the spinner fragment and its CSS. One way is to log the string in the web browser's console, and copying the code from there.
+```
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8" />
+<meta name="viewport"  content="width=device-width, initial-scale=1.0" />
+<title>Make a Spinner</title>
+<body>
+<div id="spinnerDiv"></div>
+<script src="./scripts/spinnerComponent.js"></script>
+<!-- OR:
+<script src="https://cdn.jsdelivr.net/gh/bwva/HTML-SpinnerElem/src/spinnerComponent.js"></script>
+-->
+<script>
+  const saveSpinner = new SpinnerElement({
+    // properties
+  });
+  appendSpinner(saveSpinner, "#spinnerDiv");
+  // Show the rendered spinner in the console:
+  console.log( saveSpinner.toString() );
+</script>
+</body>
+</html>
+```
+The above minimal page is included in this distribution's `ex` directory, as `saveSpinner.html`.
+
+The examples file, `html_spinner_examples.html`, has a demonstration showing the shadow DOM contents in a textarea element instead of in the console.
 
 ## Attributes
 
@@ -293,6 +332,8 @@ The outer `div` provides the font color and size. The attributes of the spinner 
 
 The SpinnerElement provides methods for programmatically creating, deploying, and modifying spinners via Javascript.
 
+Note that the scripting API is only available for dynamic spinners, which require having the `spinnerComponent.js` script loaded. Exported static spinners (see "Export a Static Spinner" above) load and operate without javascript, and do not have access to the spinner component API.
+
 ### The SpinnerElement Class
 
 The main spinner constructor is automatically executed when the document loads the `spinnerComponent.js` script. This creates the default spinner element and attaches it to the HTML DOM for use plain or with added attributes and styling. As described under "Attributes" above, the form and behavior of the default spinner may be entirely controlled via direct markup in the HTML. For that usage, there is no need to call `new SpinnerElement`.
@@ -330,7 +371,7 @@ Remember to quote the hypenated versions of the attribute names if you use them 
 
 ### Additional Functions
 
-The spinnerComponent.js script also loads a few utility functions for use externally.
+The `spinnerComponent.js` script also loads a few utility functions for use externally.
 
 #### getSpinner( spinnerObj | spinner id | spinner name | spinner class )
 Checks whether on object is a spinner or a string that references a spinner. If so, it returns the spinner; if not, it returns undefined. Note that if multiple spinners are found because the string is a class name used by multiple spinners, for example, only the first spinner is returned. See getSpinners.
@@ -473,7 +514,7 @@ Returns a string encompassing the entire shadow DOM fragment of the spinner, for
 ## Technical Notes
 
 #### No dependencies - No side effects
-When a web page/app loads this script (`spinnerComponent.js`), the spinner web component is constructed as an instance of the script's SpinnerElement class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other element or layout structure. By default, a spinner inherits the type size as well as color from its immediately surrounding text. The spinner may inherit additional styling from surrounding HTML, and its styling may be set programmatically. Any styling used to create the SpinnerElement, or applied to it programmatically, will have no effect outside the spinner except from its display role as a character in a line. 
+When a web page/app loads this script (`spinnerComponent.js`), the spinner web component is constructed as an instance of the script's SpinnerElement class. The class contains and encapsulates all of the HTML, DOM instructions, and css needed by the spinner. No other assets are needed, and creating and using this component does not impinge on any other element or layout structure. By default, a spinner inherits the type size as well as color from its immediately surrounding text. The spinner may inherit additional styling from surrounding HTML, and its styling may be set programmatically. Any styling used to create the SpinnerElement, or applied to it programmatically, will have no effect outside the spinner except from its display role as a character in a line.
 
 #### Spinner Size
 The spinner derives its size from whatever `font-size` applies to it. If possible it is equal to the typographic size unit `cap`, which is meant to be the height of the capital letter "H" in the font-size for the given typeface. Having the spinner sized to 1 `cap` aligns the spinner with the base line of the surrounding type, and doesn't alter the line height or the visual flow of the text line it's on. In browsers whose css doesn't recognize the `cap` unit, the SpinnerElement approximates the cap size. The idea is to make the spinner act like a character in the line it's on.

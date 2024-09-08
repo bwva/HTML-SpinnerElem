@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8" />
+<meta name="viewport"  content="width=device-width, initial-scale=1.0" />
+<title>Make a Spinner</title>
+<body>
+<div id="spinnerDiv"></div>
+<script src="./scripts/spinnerComponent.js"></script>
+<!-- OR:
+<script src="https://cdn.jsdelivr.net/gh/bwva/HTML-SpinnerElem/src/spinnerComponent.js"></script>
+-->
+<script>
+  const saveSpinner = new SpinnerElement({
+    // properties
+  });
+  appendSpinner(saveSpinner, "#spinnerDiv");
+  // Show the rendered spinner in the console:
+  console.log( saveSpinner.toString() );
+</script>
+</body>
+</html>

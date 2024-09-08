@@ -83,7 +83,7 @@ for (const Sp of document.getElementsByName('RedSpinner)) {
 	Sp.setAttribute('speed', '2');
 }
 ```
-The SpinnerElement also comes with its own programming interface, with methods for setting attributes and styles:
+The SpinnerElement also comes with its own programming interface, with methods for setting attributes and styles [note the ending 's' of `.setAttributes()` - this and `.setStyle()` are methods provided by `spinnerComponent.js`]:
 ```
 const sp = new SpinnerElement;
 sp.setAttributes({

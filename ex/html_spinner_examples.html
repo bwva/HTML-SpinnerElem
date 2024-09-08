@@ -24,6 +24,12 @@ section,hr {
 li {
   margin-bottom: 0.2em
 }
+textarea {
+	width:96%;
+	margin-right:auto
+	margin-left:auto;
+	max-width:720px;
+}
 button {
   @supports (width: 1cap) {
     vertical-align: calc(1em - 1cap);
@@ -104,6 +110,7 @@ Here's the markup for one of the above. Can you see which one?
   <li> Compatible with standard HTML, css, and Javascript</li>
   <li> Works in all modern browsers</li>
   <li> May be entirely controlled in markup, or by script, or in combination</li>
+  <li> A custom spinner can be easily saved as plain HTML and CSS </li>
   </ul>
 </section>
 <hr>
@@ -168,7 +175,7 @@ including an image file?
 	<li>Versatility via familiar HTML tag attribute assignments;
 	<li>Programmability - if you want it;</li>
 	<li>Works like a text character in HTML layouts;</li>
-	<li style="color:red;">Takes the size and color <x-spinner></x-spinner> of its surroundings - unless you specify otherwise;</li>
+	<li style="color:red;font-size:1.4em;">Takes the size and color <x-spinner></x-spinner> of its surroundings - unless you specify otherwise;</li>
 	<li>Include text or another HTML element as prefix and/or suffix;</li>
 	<li>No visual degradation at any scale;</li>
 	<li>Can be tuned to specifications in your style book or branding guide;</li>
@@ -181,6 +188,32 @@ it executes once to construct the SpinnerElement class and attach it
 to the HTML document. When a spinner is rendered in markup, its internal css provides its format and rotation.
 <code>spinnerComponent.js</code> also provides an optional programming interface whose methods momentarily execute only when adding or modifying spinners.
 </p>
+<section style="max-width:600px;margin-left:auto;margin-right:auto;">
+<h4 style="text-align:center">Side Topic: Static Spinners</h4>
+<p>
+Once created, a specific spinner may be saved as plain HTML and CSS, needing no further Javascript.
+If that is the only spinner for the page/site, loading spinnerComponent.js is not necessary.
+The saved spinner is a small HTML fragment composed of 'div' and 'span' elements,
+along with a 'style' element with properties that control the spinner's appearance and rotation.
+</p>
+<p>
+Any spinner may be saved, either by stringifying it from a script,
+or by extracting it from the rendered html of the page it's created on.
+Some of the examples below put the stringified spinner in the web browser's console, where they can be copied.
+One example, the button "Add and View" (<a href="#save">See</a>) adds a spinner and shows its stringified source.
+</p>
+<p>
+The source of a dynamic spinner is normally hidden in the shadow DOM,
+and instances of the spinner may be varied in the same document by varying the attributes of the
+x-spinner element wherever it's placed.
+A saved spinner uses the inner HTML and CSS directly in the main DOM, removing the need for any Javascript,
+but also introducing potential HTML and CSS naming collisions, requiring that any variations
+to be done directly in the spinner-related CSS, and, of course, removing its Javascript API methods.
+</p>
+<p>
+A saved spinner will still inherit the size and color of the text and markup it's placed in.
+</p>
+</section>
 <p>
 Spinners follow ARIA accessibility guidelines. The rotors themselves are invisible to screen readers, because they have no content to read. Any included prefixes and suffixes will be seen and read. The spinner may also be marked as a "live" area by assigning it the attribute <code>aria-wrap="true"</code>; it will then assume the role of communicating changes in status, such as when a long-running process completes.
 </p>
@@ -642,6 +675,41 @@ sp5.run(); sp5.stop();
 </code>
 </div>
 </div>
+</div>
+</section>
+<hr id="save">
+<section>
+<button onclick="
+	const tgt = document.getElementById('saveSp');
+	const saveTgt = document.getElementById('saveArea');
+	const showArea = document.getElementById('showSp');
+	if (this.innerHTML=='Add and View') {
+		const saveSpinner = new SpinnerElement({
+			id: 'sp_save',
+			rotor:'1111',
+			rstyle:'dotted',
+			wt:'5',
+			color:'magenta',
+			kerning: '1ch',
+			suffix: 'Here is the embedded HTML and CSS for this spinner:'
+		});
+		appendSpinner(saveSpinner,tgt);
+		const spStr = saveSpinner.toString();
+		saveTgt.style.height = '48em';
+		saveTgt.innerHTML = spStr;
+		showArea.style.display = 'block';
+		this.innerHTML = 'Hide';
+    }
+    else {
+    	removeSpinner('#sp_save');
+    	saveTgt.innerHTML = '';
+		saveTgt.style.height = '2em';
+		showArea.style.display = 'none';
+    	this.innerHTML = 'Add and View';
+    }
+">Add and View</button> <div id="saveSp" style="display:inline-block;"></div>
+<div id="showSp" style="display:none;margin-top:1em;">
+<textarea id="saveArea"></textarea>
 </div>
 </section>
 <hr id="rstyles">
@@ -1107,6 +1175,12 @@ as the "src" of an HTML &lt;script> element:
 The best source for the latest production release of <code> spinnerComponent.js </code> is from my account at <a href="https://github.com/bwva/HTML-SpinnerElem">GitHub.com</a>.
 That release comes with a README file with <b>documentation</b>
 and also a copy of this page's HTML file you can inspect for examples.
+</p>
+<p>
+You can simply embed the script from a cdn, jsdelivr.net, which taps my latest release on Github:
+<code style="white-space: pre-wrap;">
+  &lt;script src="https://cdn.jsdelivr.net/gh/bwva/HTML-SpinnerElem/src/spinnerComponent.js">&lt;/script>
+</code>
 </p>
 </section>
 <section>

@@ -539,5 +539,6 @@ How is the `font-size` assigned to the spinner?
 #### How is this Spinner Made?
 This spinner is made from a square box with a border. One or more of the top, right, bottom, and left, borders are colored differently from the rest. Then the sides of the square are made round by giving the corners of the square a radius of 50% of its size. The result is four "quadrants" of the spinner to color and format to create different rotors.
 
+<img width="719" alt="Screenshot 2024-09-09 at 8 32 25 AM" src="https://github.com/user-attachments/assets/c64e788f-b33b-4a51-bd1c-335b4c41826f">
 
 Have Fun!

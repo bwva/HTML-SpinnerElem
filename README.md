@@ -351,7 +351,7 @@ The main spinner constructor is automatically executed when the document loads t
 
 >It's possible to get finely-tuned spinners that meet your needs purely by using HTML tag markup - without ever writing a line of Javascript.
 
-You also can get programmatic access to a spinner in your HTML if it has a known name, id, or class.
+If you place a spinner in your HTML markup directly, you can get programmatic access to it by assigning it a name, id, or class:
 ```
   <x-spinner id='spinner_03'></x-spinner>
 
@@ -520,7 +520,7 @@ Changes the spinner's style.visibility property to 'visible'
   const sp  = new SpinnerElement( {} );
   console.log( sp.toString() );
 ```
-Returns a string encompassing the entire shadow DOM fragment of the spinner, for debugging
+Returns a string encompassing the entire shadow DOM fragment of the spinner, for debugging and exporting
 
 ## Technical Notes
 

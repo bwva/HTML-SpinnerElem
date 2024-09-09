@@ -105,7 +105,7 @@ sp.name		= 'RedSpinner';
 ```
 Later...
 ```
-for (const Sp of document.getElementsByName('RedSpinner)) {
+for (const Sp of document.getElementsByName('RedSpinner')) {
 	Sp.setAttribute('speed', '2');
 }
 ```

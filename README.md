@@ -46,17 +46,22 @@ The spinner can be placed in your HTML as an inline-block element with the follo
 ```html
 <x-spinner></x-spinner>
 ```
+  _Note: Custom web components always require closing tags._
+  
 The above basic spinner will inherit the text color and size of its containing element, and rotate a single border quadrant clockwise once per second.
 
-  _Note: Custom web components always require closing tags._
+The spinner element accepts several attributes to vary its appearance and behavior. Attributes may be applied in markup like any other HTML element.
 
-In the HTML spinner tag, the usual attributes, such as `id=` or `style=`, may be assigned:
+```html
+<x-spinner rotor-style='dotted' speed='0.5'></x-spinner>
+```
+See "Attributes" below for details.
+
+The usual HTML attributes, such as `id=` or `style=`, may also be assigned in the HTML spinner markup:
 ```html
 <x-spinner style="font-style:italic;"></x-spinner>
 ```
 [ Wait - _font-style_? See `prefix` and `suffix` attributes below. ]
-
-See "Attributes" below for details.
 
 ### Scripting
 A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. You may use Javascript's built-in .setAttribute method to set any attributes, and the .style attribute itself to set style properties; this may be done before or after appending the spinner to the HTML.

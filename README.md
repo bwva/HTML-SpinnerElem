@@ -64,31 +64,11 @@ The usual HTML attributes, such as `id=` or `style=`, may also be assigned in th
 [ Wait - _font-style_? See `prefix` and `suffix` attributes below. ]
 
 ### Scripting
-A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. You may use Javascript's built-in .setAttribute method to set any attributes, and the .style attribute itself to set style properties; this may be done before or after appending the spinner to the HTML.
-```
-const spng = document.getElementById('ElemToPutSpinnerIn');
-const sp   = new SpinnerElement;
-sp.setAttribute('speed','1.5');
-spng.appendChild(sp);
-sp.setAttribute('color','turquoise');
-sp.style['font-size'] = '1em';
-```
-You can also programmatically assign identifiers, such as a name or id, to the spinner, allowing access to it from elsewhere:
-```
-const sp	= new SpinnerElement;
-sp.setAttribute('id','spinner_01');
-sp.setAttribute('name','RedSpinner');
-// OR
-sp.id		= 'spinner_02';
-// etc.
-```
-Later...
-```
-for (const Sp of document.getElementsByName('RedSpinner)) {
-	Sp.setAttribute('speed', '2');
-}
-```
-The SpinnerElement also comes with its own programming interface, with methods for setting attributes and styles. Note the ending 's' of `.setAttributes()` - this method and `.setStyle()` are provided by `spinnerComponent.js`:
+A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. 
+
+The SpinnerElement's programming interface provides methods for setting attributes and styles: `.setAttributes()` and `.setStyle()`. 
+
+_Note the ending 's' of `.setAttributes()` - as distinguished from Javascript's built-in `.setAttribute()` method._
 ```
 const sp = new SpinnerElement;
 sp.setAttributes({
@@ -104,14 +84,40 @@ sp.setStyle({
 
 See "Scripting API" below for details.
 
+You may also use Javascript's built-in `.setAttribute()` method to set any attributes, and the `.style` attribute itself to set style properties; this may be done before or after appending the spinner to the HTML.
+```
+const spng = document.getElementById('ElemToPutSpinnerIn');
+const sp   = new SpinnerElement;
+sp.setAttribute('speed','1.5');
+spng.appendChild(sp);
+sp.setAttribute('color','turquoise');
+sp.style['font-size'] = '1em';
+```
+Your scripts can programmatically assign identifiers, such as a name or id, to the spinner, allowing access to it from elsewhere:
+```
+const sp	= new SpinnerElement;
+sp.setAttribute('id','spinner_01');
+sp.setAttribute('name','RedSpinner');
+// OR
+sp.id		= 'spinner_02';
+sp.name		= 'RedSpinner';
+// etc.
+```
+Later...
+```
+for (const Sp of document.getElementsByName('RedSpinner)) {
+	Sp.setAttribute('speed', '2');
+}
+```
+
 ### Export a Static Spinner
 You can save a spinner as a fragment of plain HTML and some associated CSS properties. This is called a "static" spinner because once created it may be deployed without having `spinnerComponent.js` loaded or any other script executing.
 
 Standard "dynamic" spinners created with `spinnerComponent.js` are embedded in the shadow DOM to prevent the spinner's CSS properties from affecting the rest of the web page. Currently the only way to put something into the shadow DOM is via Javascript, which is why dynamic spinners need `spinnerComponent.js` to be loaded every time.
 
-A static spinner fragment is inserted where needed in the main document, and its CSS is added to the document's CSS stylesheets or `style` elements. If you export a spinner, be sure to check for naming collisions among CSS selectors and HTML element identifiers - you might not want the spinner's styling to spill over to other elements or vice versa.
+A static spinner fragment is inserted where needed in the main document, not the shadow DOM, and its CSS is added to the document's CSS stylesheets or `style` elements. If you export a spinner, be sure to check for naming collisions among CSS selectors and HTML element identifiers - you might not want the spinner's styling to spill over to other elements or vice versa.
 
-Many aspects of a static spinner may still be changed by directly modifying its associated CSS properties; however, a static spinner does not retain the programming interface of the dynamic spinners instantiated by `spinnerComponent.js`.
+Features of a static spinner may be varied by directly modifying its associated CSS properties; however, a static spinner does not retain the programming interface of the dynamic spinners instantiated by `spinnerComponent.js`.
 
 To save a static spinner, create an HTML document that loads `spinnerComponent.js`. Using direct markup or by scripting, design the spinner with the features you want. Remember that static spinners, like dynamic ones, automatically inherit their surrounding color and (font) size unless you specify otherwise; often inheritance is exactly what you want, in which case leave color and size unspecified in the spinner. Once you have the spinner you want, you can use its `toString()` method to obtain the spinner fragment and its CSS. One way is to log the string in the web browser's console, and copying the code from there.
 ```

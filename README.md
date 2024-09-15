@@ -115,7 +115,7 @@ You can save a spinner as a fragment of plain HTML and some associated CSS prope
 
 Standard "dynamic" spinners created with `spinnerComponent.js` are embedded in the shadow DOM to prevent the spinner's CSS properties from affecting the rest of the web page. Currently the only way to put something into the shadow DOM is via Javascript, which is why dynamic spinners need `spinnerComponent.js` to be loaded every time.
 
-A static spinner fragment is inserted where needed in the main document, not the shadow DOM, and its CSS is added to the document's CSS stylesheets or `style` elements. If you export a spinner, be sure to check for naming collisions among CSS selectors and HTML element identifiers - you might not want the spinner's styling to spill over to other elements or vice versa.
+A static spinner fragment is inserted where needed in the main document, not the shadow DOM, and its CSS is added to the document's CSS stylesheets or `style` elements. If you export a spinner, be sure to check for naming collisions among CSS selectors and HTML element identifiers - you might not want the spinner's styling to spill over to other elements or vice versa. If you have multiple instances of a static spinner, they may all use the same id as long as you want their css attributes such as color, speed, and rotor style to be the same.
 
 Features of a static spinner may be varied by directly modifying its associated CSS properties; however, a static spinner does not retain the programming interface of the dynamic spinners instantiated by `spinnerComponent.js`.
 

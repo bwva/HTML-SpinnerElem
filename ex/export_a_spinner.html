@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport"  content="width=device-width, initial-scale=1.0" />
+<link rel="icon"       href="./favicon.ico" />
+<link rel="stylesheet" href="./css/standard_layout_01.css" />
+<title>Make A Custom Spinner</title>
+</head>
+<body>
+<div class="wrapper">
+  <header class="main-head">
+<fast-spinner></fast-spinner> &nbsp; Export a Custom Spinner &nbsp; <slow-spinner></slow-spinner>
+  </header>
+  <article class="content">
+    <h1>Generate a Static Spinner</h1>
+<p>
+Here is a line of text<span id="demoSpP"><demo-spinner></demo-spinner></span>with a spinner. Set its attributes from choices to the left.
+</p>
+<button onclick="
+	const tgtSp = getSpinner('demo-spinner');
+	const showArea = document.getElementById('saveArea');
+	const showDiv = document.getElementById('showSp');
+	const spStr = tgtSp.toString();
+	showArea.innerHTML = spStr;
+	if (this.innerHTML=='Show') {
+		showSp.style.display = 'block';
+		this.innerHTML = 'Hide';
+    }
+    else {
+		showSp.style.display = 'none';
+    	this.innerHTML = 'Show';
+    }
+">Show</button> <div id="saveSp" style="display:inline-block;"></div>
+<div id="showSp" style="display:none;margin-top:1em;">
+<textarea id="saveArea" style="width:96%;height:40em;"></textarea>
+</div>
+<p>
+You can save a spinner as a fragment of plain HTML and some associated CSS properties. This is called a "static" spinner because once created it may be deployed without having spinnerComponent.js loaded or any other script executing.
+</p>
+<p>
+Standard "dynamic" spinners created with spinnerComponent.js are embedded in the shadow DOM to prevent the spinner's CSS properties from affecting the rest of the web page. Currently the only way to put something into the shadow DOM is via Javascript, which is why dynamic spinners need spinnerComponent.js to be loaded every time.
+</p>
+<p>
+A static spinner fragment is inserted where needed in the main document, not the shadow DOM, and its CSS is added to the document's CSS stylesheets or style elements. If you export a spinner, be sure to check for naming collisions among CSS selectors and HTML element identifiers - you might not want the spinner's styling to spill over to other elements or vice versa. If you have multiple instances of a static spinner, they may all use the same id as long as you want their css attributes such as color, speed, and rotor style to be the same.
+</p>
+<p>
+Features of a static spinner may be varied by directly modifying its associated CSS properties; however, a static spinner does not retain the programming interface of the dynamic spinners instantiated by spinnerComponent.js.
+</p>
+  </article>
+  <aside class="side">
+    <label class="attrLabel">Rotor: <select name="rotor" class="attr">
+      <option value="1000">1000</option>
+      <option value="1010">1010</option>
+      <option value="1100">1100</option>
+      <option value="1110">1110</option>
+      <option value="1111">1111</option>
+    </select></label><hr>
+    <label class="attrLabel">Rotor Style: <select name="rstyle" class="attr">
+      <option value="solid">solid</option>
+      <option value="dotted">dotted</option>
+      <option value="double">double</option>
+      <option value="ridge">ridge</option>
+      <option value="groove">groove</option>
+      <option value="inset">inset</option>
+      <option value="outset">outset</option>
+    </select></label><hr>
+    <label class="attrLabel">Weight: <select name="weight" class="attr">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4" selected>4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select></label><hr>
+    <label class="attrLabel">Speed: <select name="speed" class="attr">
+      <option value="0.1">0.1</option>
+      <option value="0.25">0.25</option>
+      <option value="0.5">0.5</option>
+      <option value="0.75">0.75</option>
+      <option value="1" selected>1</option>
+      <option value="1.5">1.5</option>
+      <option value="2">2</option>
+      <option value="4">4</option>
+    </select></label><hr>
+    <label class="attrLabel">Rotor Color: <input type="color" name="rclr" value="" class="attr"></label><hr>
+    <label class="attrLabel">Trace Color: <input type="color" name="tclr" value="#dddddd" class="attr"></label><hr>
+    <label class="attrLabel">Inner Color: <input type="color" name="bgclr" value="inherit" class="attr"></label><hr>
+    <label class="attrLabel">Back Color: <input type="color" name="bkclr" value="" class="attr"></label><hr>
+    <label class="attrLabel">Size: <select name="font-size" class="attr">
+      <option value="" selected>inherit</option>
+      <option value="0.8em">0.8em</option>
+      <option value="1em">1em</option>
+      <option value="1.2em">1.2em</option>
+      <option value="2em">2em</option>
+      <option value="2.5em">2.5em</option>
+      <option value="3em">3em</option>
+      <option value="4em">4em</option>
+    </select></label><hr>
+    <label class="attrLabel">Kerning: <select name="kern" class="attr">
+      <option value="" selected>inherit</option>
+      <option value="0.2ch">0.2ch</option>
+      <option value="0.4ch">0.4ch</option>
+      <option value="0.6ch">0.6ch</option>
+      <option value="0.8ch">0.8ch</option>
+      <option value="1ch">1ch</option>
+      <option value="1.2ch">1.2ch</option>
+      <option value="1.5ch">1.5ch</option>
+      <option value="2ch">2ch</option>
+    </select></label><hr>
+    <label class="attrLabel">Direction: <select name="direction" class="attr">
+      <option value="cw" selected>clockwise</option>
+      <option value="ccw">counter-clockwise</option>
+    </select></label><hr>
+    <label class="attrLabel">Prefix: <input type="test" name="prefix" value="" class="attr"></label><hr>
+    <label class="attrLabel">Suffix: <input type="test" name="suffix" value="" class="attr"></label><hr>
+  </aside>
+  <footer class="main-footer">
+  <nav>
+  <ul>
+  <li><a href="./html_spinner_examples.html">Spinner Examples</a></li>
+  <li><a href="https://github.com/bwva/HTML-SpinnerElem">GitHub Repo</a></li>
+  </ul>
+  </nav>
+  </footer>
+</div>
+</body>
+
+<script src="./scripts/KALE.js"></script>
+<script src="./scripts/spinnerComponent.js"></script>
+<script>
+	createSpinnerElement('fast-spinner', { speed: '.5', rotor: '1111', rstyle: 'dotted', color: 'red'});
+	createSpinnerElement('slow-spinner', { speed: '2', rotor: '1010', rstyle: 'double', color: 'chartreuse', dir: 'ccw'});
+	createSpinnerElement('demo-spinner', { });
+</script>
+<script>
+  function demoSpinner() {
+	  const demoSp = document.getElementsByTagName('demo-spinner')[0];
+	  const attrItems = document.querySelectorAll('.attr');
+	  attrItems.forEach(function(item) {
+		const attrName = item.name;
+		let attrVal = item.value;
+		if (attrName.match(/.*clr$/)) {
+		  if (attrVal === '#000000') {
+		    if (attrName === 'tclr') {
+		      demoSp.setAttribute(attrName, '#dddddd');
+		    }
+		    else {
+				demoSp.setAttribute(attrName, '');
+		    }
+		  }
+		  else {
+		    demoSp.setAttribute(attrName, attrVal);
+		  }
+		}
+		else if (attrName === 'font-size') {
+		  demoSp.setStyle({ 'font-size': attrVal });
+		}
+		else {
+		  demoSp.setAttribute(attrName, attrVal);
+		}
+	 });
+	 insertSpinner(demoSp, '#demoSpP');
+	 const saveTgt = document.getElementById('saveArea');
+     const spStr = demoSp.toString();
+     saveTgt.innerHTML = spStr;
+  }
+ demoSpinner();
+ registerEventByClass('attr', 'change', demoSpinner)
+</script>
+
+</html>

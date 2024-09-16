@@ -238,7 +238,7 @@ class SpinnerElement extends HTMLElement {
     const rtTo        = direction === 'cw' ? '360deg' : '-360deg';
 
     // composing the spinner element
-    const spinnerHTML  = `<div><span id="spinner-prefix">${prefix}</span><span id="rotor"></span><span id="spinner-suffix">${suffix}</span></div>`;
+    const spinnerHTML  = `<div id="spinner-wrap"><span id="spinner-prefix">${prefix}</span><span id="rotor"></span><span id="spinner-suffix">${suffix}</span></div>`;
     const markup       =
       ( !awrap || awrap === 'none' || awrap === 'presentation' || awrap === 'ignore' )
       ? `${spinnerHTML}`
@@ -289,20 +289,24 @@ class SpinnerElement extends HTMLElement {
     0%   { transform: rotate( ${rtFrom} ); }
     100% { transform: rotate( ${rtTo} ); }
   }
-  span {
+  span#spinner-prefix, span#spinner-suffix {
     box-sizing:       border-box;
     display:          inline-block;
     padding:          0;
     white-space:      pre;
   }
   span#rotor {
+    box-sizing:       border-box;
+    display:          inline-block;
+    padding:          0;
+    white-space:      pre;
     animation: spinner ${speed}s linear infinite ${rstatus};
     margin-left:      ${kerning};
     margin-right:     ${kerning};
     background-color: ${bgcolor};
     ${circleBorderSpinnerCss}
   }
-  div {
+  div#spinner-wrap {
     display:          inline-block;
     padding:          0;
     margin:           0;

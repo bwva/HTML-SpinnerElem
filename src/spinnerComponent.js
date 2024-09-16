@@ -242,7 +242,7 @@ class SpinnerElement extends HTMLElement {
     const markup       =
       ( !awrap || awrap === 'none' || awrap === 'presentation' || awrap === 'ignore' )
       ? `${spinnerHTML}`
-      : `<div role="${ariaRole}" aria-live="${ariaLive}" aria-busy="${ariaBusy}"
+      : `<div id="aria-wrapper" role="${ariaRole}" aria-live="${ariaLive}" aria-busy="${ariaBusy}"
         aria-atomic="${ariaAtomic}" aria-relevant="${ariaRelevant}" aria-label="${ariaLabel}"
         aria-labelledby="${ariaLabelledBy}" aria-description="${ariaDescription}">${spinnerHTML}</div>`;
 

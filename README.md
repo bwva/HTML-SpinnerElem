@@ -47,7 +47,7 @@ The spinner can be placed in your HTML as an inline-block element with the follo
 <x-spinner></x-spinner>
 ```
   _Note: Custom web components always require closing tags._
-  
+
 The above basic spinner will inherit the text color and size of its containing element, and rotate a single border quadrant clockwise once per second.
 
 The spinner element accepts several attributes to vary its appearance and behavior. Attributes may be applied in markup like any other HTML element.
@@ -64,9 +64,9 @@ The usual HTML attributes, such as `id=` or `style=`, may also be assigned in th
 [ Wait - _font-style_? See `prefix` and `suffix` attributes below. ]
 
 ### Scripting
-A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear. 
+A spinner element may be added programmatically by calling `new SpinnerElement` to create the spinner, and then appending the spinner to the HTML element where you want it to appear.
 
-The SpinnerElement's programming interface provides methods for setting attributes and styles: `.setAttributes()` and `.setStyle()`. 
+The SpinnerElement's programming interface provides methods for setting attributes and styles: `.setAttributes()` and `.setStyle()`.
 
 _Note the ending 's' of `.setAttributes()` - as distinguished from Javascript's built-in `.setAttribute()` method._
 ```
@@ -115,37 +115,11 @@ You can save a spinner as a fragment of plain HTML and some associated CSS prope
 
 Standard "dynamic" spinners created with `spinnerComponent.js` are embedded in the shadow DOM to prevent the spinner's CSS properties from affecting the rest of the web page. Currently the only way to put something into the shadow DOM is via Javascript, which is why dynamic spinners need `spinnerComponent.js` to be loaded every time.
 
-A static spinner fragment is inserted where needed in the main document, not the shadow DOM, and its CSS is added to the document's CSS stylesheets or `style` elements. If you export a spinner, be sure to check for naming collisions among CSS selectors and HTML element identifiers - you might not want the spinner's styling to spill over to other elements or vice versa. If you have multiple instances of a static spinner, they may all use the same id as long as you want their css attributes such as color, speed, and rotor style to be the same.
+An exported static spinner fragment is inserted where needed in the main document, not the shadow DOM, and its CSS is added to the document's CSS stylesheets or `style` elements. If you export a spinner, be sure to check for naming collisions among CSS selectors and HTML element identifiers - you might not want the spinner's styling to spill over to other elements or vice versa. If you have multiple instances of a static spinner, they may all use the same id as long as you want their css attributes such as color, speed, and rotor style to be the same.
 
 Features of a static spinner may be varied by directly modifying its associated CSS properties; however, a static spinner does not retain the programming interface of the dynamic spinners instantiated by `spinnerComponent.js`.
 
-To save a static spinner, create an HTML document that loads `spinnerComponent.js`. Using direct markup or by scripting, design the spinner with the features you want. Remember that static spinners, like dynamic ones, automatically inherit their surrounding color and (font) size unless you specify otherwise; often inheritance is exactly what you want, in which case leave color and size unspecified in the spinner. Once you have the spinner you want, you can use its `toString()` method to obtain the spinner fragment and its CSS. One way is to log the string in the web browser's console, and copying the code from there.
-```
-<!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8" />
-<meta name="viewport"  content="width=device-width, initial-scale=1.0" />
-<title>Make a Spinner</title>
-<body>
-<div id="spinnerDiv"></div>
-<script src="./scripts/spinnerComponent.js"></script>
-<!-- OR:
-<script src="https://cdn.jsdelivr.net/gh/bwva/HTML-SpinnerElem/src/spinnerComponent.js"></script>
--->
-<script>
-  const saveSpinner = new SpinnerElement({
-    // properties
-  });
-  appendSpinner(saveSpinner, "#spinnerDiv");
-  // Show the rendered spinner in the console:
-  console.log( saveSpinner.toString() );
-</script>
-</body>
-</html>
-```
-The above minimal page is included in this distribution's `ex` directory, as `saveSpinner.html`.
-
-The examples file, `html_spinner_examples.html`, has a demonstration showing the shadow DOM contents in a textarea element instead of in the console.
+See export_a_spinner.html in the `ex` directory of this distribution to generate your own.
 
 ## Attributes
 

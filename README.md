@@ -119,7 +119,7 @@ An exported static spinner fragment is inserted where needed in the main documen
 
 Features of a static spinner may be varied by directly modifying its associated CSS properties; however, a static spinner does not retain the programming interface of the dynamic spinners instantiated by `spinnerComponent.js`.
 
-See export_a_spinner.html in the `ex` directory of this distribution to generate your own.
+See `export_a_spinner.html` in the `ex` directory of this distribution to generate your own.
 
 ## Attributes
 

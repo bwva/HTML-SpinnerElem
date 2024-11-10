@@ -4,7 +4,7 @@ Create a customizable spinner as an HTML web component.
 
 <img width="964" alt="x-spinner_samples-01" src="https://github.com/bwva/HTML-SpinnerElem/assets/5401990/1aaa8556-7906-44a6-a5f7-15567de0e3d5">
 
-Here is a sample page showing some variations: <a href="https://brucevanallen.com/html_spinner_examples.html">https://brucevanallen.com/html_spinner_examples.html</a>
+Here is a sample page showing some variations: <a href="https://bwva.github.io/HTML-SpinnerElem/">https://bwva.github.io/HTML-SpinnerElem/</a>
 
 ## Installation
 To use the spinner component in your project:

@@ -1,1 +1,1221 @@
-<h1>Hi There!</H1> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"  content="width=device-width, initial-scale=1.0" />
+<link rel="icon"    href="./favicon.ico">
+<style>
+html {
+  min-height: 100%;
+}
+body {
+  font-family:  sans-serif;
+  max-width:    760px;
+  margin-left:  auto;
+  margin-right: auto;
+  padding:      4px;
+  background-color: #fffff3;
+}
+section,hr {
+  max-width:720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+li {
+  margin-bottom: 0.2em
+}
+textarea#saveArea {
+	width:96%;
+	margin-right:auto
+	margin-left:auto;
+	max-width:720px;
+}
+button {
+  @supports (width: 1cap) {
+    vertical-align: calc(1em - 1cap);
+  }
+  @supports not (width: 1cap) {
+    vertical-align: .33em;
+  }
+}
+</style>
+<title>HTML-Spinner Examples</title>
+</head>
+<body>
+<h1 style="text-align:center">
+<x-spinner color="red" wt="3"></x-spinner> Spun-out with Spinner Images?
+<x-spinner color="red" wt="3" dir="ccw"></x-spinner>
+</h1>
+<h2 style="text-align:center">
+<x-fast-revspinner color="green" wt="3"></x-fast-revspinner> Try the HTML Spinner Element
+<x-fast-revspinner color="green" wt="3" direction="cw"></x-fast-revspinner>
+</h2>
+<hr>
+<section>
+<div style="
+  width:        90%;
+  text-align:   center;
+  margin-left:  auto;
+  margin-right: auto;
+  display:      grid;
+  grid-template-columns: repeat(12, 1fr);
+  justify-content: center;
+  gap:          1px;
+  font-size:    3em;
+">
+<x-spinner rotor="100" color="green" wt="1" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="100" wt="4" sp="0.33" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="101" color="blue" wt="10" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="101" wt="1" tclr="rgba(0,55,255,.25)" rstyle="dotted"></x-spinner>
+<x-spinner rotor="101" wt="4" tclr="rgba(0,55,255,.25)" rstyle="dotted"></x-spinner>
+<x-spinner rotor="1111" color="red" wt="3" dir="ccw" rstyle="dotted"></x-spinner>
+<x-spinner rotor="1111" color="#0f0" wt="8" tclr="rgba(0,55,255,.25)" rstyle="dotted"></x-spinner>
+<x-spinner rotor="11" wt="2" tclr="rgba(0,55,255,.25)" rstyle="double"></x-spinner>
+<x-spinner rotor="11" color="purple" wt="4" tclr="rgba(0,55,255,.25)" rstyle="double"></x-spinner>
+<x-spinner rotor="11" wt="10" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="111" color="pink" wt="3" tclr="rgba(0,55,255,.25)"></x-spinner>
+<x-spinner rotor="111" color="blue" wt="10" tclr="rgba(0,55,255,.25)"></x-spinner>
+</div>
+<div style="
+  width:        90%;
+  text-align:   center;
+  margin-left:  auto;
+  margin-right: auto;
+  ">
+<code style="white-space: pre-wrap;">
+Here's the markup for one of the above. Can you see which one?
+&lt;x-spinner rotor="1111" color="red" wt="3" dir="ccw" rstyle="dotted">&lt;/x-spinner>
+</code>
+</div>
+</section>
+<hr>
+<section style="padding-left:2.4em;">
+  <style>
+    .spin1 {
+      list-style: none;
+      padding: 0;
+    }
+    .spin1 li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5em;
+    }
+    .spin1 li x-spinner {
+      margin-right: 0.5em;
+    }
+  </style>
+  <ul class="spin1" style="font-size:1.6em;">
+  <li> Customizable</li>
+  <li> No Dependencies or Frameworks</li>
+  <li> Compatible with standard HTML, css, and Javascript</li>
+  <li> Works in all modern browsers</li>
+  <li> May be entirely controlled in markup, or by script, or in combination</li>
+  <li> A custom spinner can be easily saved as plain HTML and CSS </li>
+  </ul>
+</section>
+<hr>
+<section style="max-width: 720px;margin-left:auto;margin-right:auto;">
+<p>
+<b>Quick Start:</b><br>
+<ol style="font-size:1.2em;">
+<li>Get the script <code> spinnerComponent.js </code> (see <a href="#sources">Sources</a>, below)
+  <li>Place it where your scripts are, e.g., in a <code>./scripts</code> directory</li>
+  <li>In your HTML, load the script:
+  <code style="white-space: pre-wrap;">
+  &lt;script src="./scripts/spinnerComponent.js">&lt;/script></code></li>
+  <li>Place a spinner where you want it</li>
+  <li><x-spinner></x-spinner> Default: <code> &lt;x-spinner>&lt;/x-spinner> </code></li>
+  <li><x-spinner rotor="1111" rstyle="dotted" sp=".5" color="green"></x-spinner> Fast Dotted Green:<br><code> &lt;x-spinner rstyle="dotted" sp=".5" color="green">&lt;/x-spinner> </code></li>
+</ol>
+</p>
+<p>
+See <a href="#rstyles">Rotor Styles</a>, below, for an organized view of variations.<br>
+See the README file in the <a href="#sources">Sources</a> download for extensive instructions and documentation.
+</p>
+</section>
+<hr>
+<section style="max-width:600px;margin-left:auto;margin-right:auto;">
+<h2 style="text-align:center">Motivation</h2>
+<p>
+I'm fed up with the limitations of using animated images for "wait spinners".
+Now I've made a customizable spinner, the SpinnerElement,
+that works without images in any HTML layout.
+</p>
+<p>
+Good web interface design shows what's happening.
+A long background process calls for some kind of indicator,
+especially if no other action is possible on the page until
+that process completes (or bails out). The most common indicators are
+<dfn>progress bars</dfn> and <dfn>wait spinners</dfn>. Here I'm focused on
+a better option for wait spinners<x-spinner></x-spinner>.
+</p>
+<p>
+I need ways let my clients know their data-oriented sites are busy, not dead.
+For convenience, I've settled for a few generic animated GIFs that I bet you've seen.
+The alternative is designing a new one, or searching through millions of spinner images online.
+But that's not the whole task...
+</p>
+<p>
+What if the client has a color scheme the spinner should fit into?
+Or a typeface whose light weight makes the generic spinner look too bulky?
+Sizing someone's nice downloaded spinner image to fit its spot in the layout also takes time and attention, especially if it's in a line of text.
+</p>
+</section>
+<hr>
+<section style="max-width: 720px;margin-left:auto;margin-right:auto;">
+<p>
+<b>Introducing the HTML SpinnerElement</b><br>
+The SpinnerElement is constructed automatically within your HTML when your page loads the Javascript
+<code>spinnerComponent.js</code>.
+</p>
+<p>
+Yes, Javascript. Why is loading a Javascript-based spinner better than
+including an image file?
+<ul>
+	<li>Versatility via familiar HTML tag attribute assignments;
+	<li>Programmability - if you want it;</li>
+	<li>Works like a text character in HTML layouts;</li>
+	<li style="color:red;font-size:1.4em;">Takes the size and color <x-spinner></x-spinner> of its surroundings - unless you specify otherwise;</li>
+	<li>Include text or another HTML element as prefix and/or suffix;</li>
+	<li>No visual degradation at any scale;</li>
+	<li>Can be tuned to specifications in your style book or branding guide;</li>
+	<li>Focus on what you want, not where to download it or how to make it.</li>
+</ul>
+</p>
+<p>
+Spinners do not rely on Javascript to run. When <code>spinnerComponent.js</code> loads,
+it executes once to construct the SpinnerElement class and attach it
+to the HTML document. When a spinner is rendered in markup, its internal css provides its format and rotation.
+<code>spinnerComponent.js</code> also provides an optional programming interface whose methods momentarily execute only when adding or modifying spinners.
+</p>
+<section style="max-width:600px;margin-left:auto;margin-right:auto;">
+<h4 style="text-align:center">Side Topic: Static Spinners</h4>
+<p>
+Once created, a specific spinner may be saved as plain HTML and CSS, needing no further Javascript.
+If that is the only spinner for the page/site, loading spinnerComponent.js is not necessary.
+The saved spinner is a small HTML fragment composed of 'div' and 'span' elements,
+along with a 'style' element with properties that control the spinner's appearance and rotation.
+</p>
+<p>
+Any spinner may be saved, either by stringifying it from a script,
+or by extracting it from the rendered html of the page it's created on.
+Some of the examples below put the stringified spinner in the web browser's console, where they can be copied.
+One example, the button "Add and View" adds a spinner and shows its stringified source.
+</p>
+<p>
+The source of a dynamic spinner is normally hidden in the shadow DOM,
+and instances of the spinner may be varied in the same document by varying the attributes of the
+x-spinner element wherever it's placed.
+A saved spinner uses the inner HTML and CSS directly in the main DOM, removing the need for any Javascript,
+but also introducing potential HTML and CSS naming collisions, requiring any variations
+to be done directly in the spinner-related CSS, and, of course, removing its Javascript methods.
+</p>
+<p>
+A saved spinner will still inherit the size and color of the text and markup it's placed in.
+</p>
+</section>
+<p>
+Spinners follow ARIA accessibility guidelines. The rotors themselves are invisible to screen readers, because they have no content to read. Any included prefixes and suffixes will be seen and read. The spinner may also be marked as a "live" area by assigning it the attribute <code>aria-wrap="true"</code>; it will then assume the role of communicating changes in status, such as when a long-running process completes.
+</p>
+<p>
+The SpinnerElement is self-contained. Spinners have no side-effects on the rest of the layout, and multiple
+spinners in the same layout have no effect on each other. Being encapsulated also keeps the SpinnerElement
+compatible with other web app resources, scripts, modules, and frameworks.
+Creation of the SpinnerElement utilizes HTML, css, and Javascript capabilities
+that are standardized and broadly adopted by web browsers.
+</p>
+<p>
+Loading cost and time for <code>spinnerComponent.js</code> is minimal,
+with a file size less than 20k.
+</p>
+</section>
+<hr>
+<section style="margin-left:auto;margin-right:auto;">
+<h2 style="text-align:center">Some Examples</h2>
+<p style="background-color:yellow;padding:2em;margin-left:0;font-size:2em;">
+<x-spinner prefix="We'll be right back ... " rotor="1" trace-color="transparent" back-color="white" color="red"></x-spinner>
+</p>
+<code style="white-space: pre-wrap;">
+&lt;p style="background-color:yellow;padding:2em;margin-left:0;font-size:2em;">
+&lt;x-spinner prefix="We'll be right back ... " rotor="1" trace-color="transparent" back-color="white" color="red">&lt;/x-spinner>
+&lt;/p>
+</code>
+<hr>
+<p style="color:blue; font-size:2em;">
+<x-spinner prefix="Is it moving?" kerning="1ch" rotor="101" wt=".195" bgclr="gold" tclr="red" bkclr="rgba(0,55,255,.25)"></x-spinner>
+</p>
+<code style="white-space: pre-wrap;">
+&lt;p style="color:blue; font-size:2em;">
+&lt;x-spinner prefix="Is it moving?" kerning="1ch" rotor="101" wt=".195" bgclr="gold" tclr="red" bkclr="rgba(0,55,255,.25)">&lt;/x-spinner>
+&lt;/p>
+</code>
+<hr>
+<p style="font-size:2em;">
+<x-spinner onclick="this.stopGo()" rotor="101" wt=".495" sp="2" tclr="rgba(255,255,0,1)" kern="1ch" suffix="Restricted"></x-spinner>
+</p>
+<code style="white-space: pre-wrap;">
+&lt;p style="font-size:2em;">
+&lt;x-spinner onclick="this.stopGo()" rotor="101" wt=".495" sp="2" tclr="rgba(255,255,0,1)" kern="1ch" suffix="Restricted">&lt;/x-spinner>
+&lt;/p>
+</code>
+<hr>
+<p style="font-size:2em;">
+<x-spinner onclick="this.stopGo()" rotor="101" rstyle="dotted" wt="3" sp="1" tclr="rgba(255,51,0,1)" kern="1ch" suffix="Click to Start/Stop"></x-spinner>
+</p>
+<code style="white-space: pre-wrap;">
+&lt;p style="font-size:2em;">
+&lt;x-spinner onclick="this.stopGo()" rotor="101" rstyle="dotted" wt="3" sp="1" tclr="rgba(255,51,0,1)" kern="1ch" suffix="Click to Start/Stop">&lt;/x-spinner>
+&lt;/p>
+</code>
+<hr>
+<p style="font-size:2.4em;color:#ff0000;">
+<x-spinner color="#ff0000" rotor="101" wt="8" speed="1" direction="cw" back-color=transparent ></x-spinner>
+Recording in Progress
+<x-spinner color="#ff0000" rotor="0101" wt="8" speed="1" direction="cw" back-color=transparent "></x-spinner>
+</p>
+<code style="white-space: pre-wrap;">
+&lt;p style="font-size:2.4em;color:#ff0000;">
+&lt;x-spinner color="#ff0000" rotor="101" wt="8" speed="1" direction="cw" back-color=transparent >&lt;/x-spinner>
+Recording in Progress
+&lt;x-spinner color="#ff0000" rotor="0101" wt="8" speed="1" direction="cw" back-color=transparent ">&lt;/x-spinner>
+&lt;/p>
+</code>
+<hr>
+<div style="color:rgba(92, 51, 23, 1); font-size:2em;">
+<x-spinner prefix="Research " suffix=" takes time." kern="0ch" wt=".195" speed=".75" rotor="1110" direction="cw" back-color="rgba(92, 51, 23, 0.2)" trace-color="transparent"></x-spinner>
+</div>
+<code style="white-space: pre-wrap;">
+&lt;div style="color:rgba(92, 51, 23, 1); font-size:2em;">
+&lt;x-spinner prefix="Research " suffix=" takes time." kern="0ch" wt=".195" speed=".75" rotor="1110" direction="cw" back-color="rgba(92, 51, 23, 0.2)" trace-color="transparent">&lt;/x-spinner>
+&lt;/div>
+</code>
+<hr>
+<button type="button" onclick="
+  const spin6 = document.getElementById('sp6');
+  if (this.innerHTML === 'Chase') {
+    // set attributes individually with JS built-in .setAttribute
+    spin6.setAttribute('rotor-color', '#00dd00');
+    spin6.setAttribute('direction', 'cw');
+    spin6.setAttribute('sp', '.4');
+    spin6.setAttribute('wt', '3');
+    spin6.setAttribute('rstyle', 'dotted');
+    spin6.setAttribute('suf', ' Chasing!');
+    spin6.style.fontStyle = 'italic';
+    spin6.style.color = '#00dd00';
+    this.innerHTML = 'Scan';
+  } else {
+    // set attributes in one op with spinner's .setAttributes method
+    spin6.setAttributes({
+      color:        '#ddd',
+      direction:    'ccw',
+      sp:           '1.5',
+      wt:           '8',
+      suf:          ' Scanning...',
+      rstyle:       'solid',
+      rstatus:      'running',
+      rotor:        '1'
+    });
+    spin6.style.fontStyle = 'normal';
+    spin6.style.color = '#ccc';
+    this.innerHTML = 'Chase';
+  }
+  // Show the rendered spinner in the console:
+  console.log( spin6.toString() );
+">Scan</button>
+<p style="font-size:4em;margin-top:0;margin-bottom:0;">
+<!-- These attributes define the spinner when first loaded -->
+<x-spinner id="sp6" rstatus="paused" rotor="1" color="#ddd" sp="1.5" tclr="#ccf" wt="8" dir="ccw" kern="0em" role="status"  aria-wrap='true'></x-spinner><br>
+</p>
+<code style="white-space: pre-wrap;">
+&lt;button type="button" onclick="
+  const spin6 = document.getElementById('sp6');
+  if (this.innerHTML === 'Chase') {
+    // set attributes individually with JS built-in .setAttribute
+    spin6.setAttribute('rotor-color', '#00dd00');
+    spin6.setAttribute('direction', 'cw');
+    spin6.setAttribute('sp', '.4');
+    spin6.setAttribute('wt', '3');
+    spin6.setAttribute('rstyle', 'dotted');
+    spin6.setAttribute('suf', ' Chasing!');
+    spin6.style.fontStyle = 'italic';
+    spin6.style.color = '#00dd00';
+    this.innerHTML = 'Scan';
+  } else {
+    // set attributes in one op with spinner's .setAttributes method
+    spin6.setAttributes({
+      color:        '#ddd',
+      direction:    'ccw',
+      sp:           '1.5',
+      wt:           '8',
+      suf:          ' Scanning...',
+      rstyle:       'solid',
+      rstatus:      'running',
+      rotor:        '1'
+    });
+    spin6.style.fontStyle = 'normal';
+    spin6.style.color = '#ccc';
+    this.innerHTML = 'Chase';
+  }
+  // Show the rendered spinner in the console:
+  console.log( spin6.toString() );
+">Scan&lt;/button>
+&lt;p style="font-size:4em;margin-top:0;margin-bottom:0;">
+&lt;!-- These attributes define the spinner when first loaded -->
+&lt;x-spinner id="sp6" rstatus="paused" rotor="1" color="#ddd" sp="1.5" tclr="#ccf" wt="8" dir="ccw" kern="0em" role="status"  aria-wrap='true'>&lt;/x-spinner>&lt;br>
+&lt;/p>
+</code>
+<hr>
+<button type="button" onclick="
+  // Yes, start a spinner element from raw text
+  if (this.innerHTML == 'Search') {
+    let spn = `&lt;x-spinner id='spinMe'>&lt;/x-spinner>`;
+    document.getElementById('searching').innerHTML = spn;
+    const spinM = document.getElementById('spinMe');
+    spinM.setAttribute('sp', '.5');
+    spinM.setAttribute('rotor-style', 'double');
+    spinM.setAttribute('pre', 'Searching ... ');
+    spinM.setAttribute('direction', 'cw');
+    spinM.setAttribute('trace-color', 'transparent' );
+    console.log( spinM.toString() );
+    this.innerHTML = 'Cancel';
+  }
+  else {
+    document.getElementById('searching').innerHTML = ' &nbsp; ';
+    this.innerHTML = 'Search';
+  }
+">Search</button>
+<h2 id="searching" style="color:red;"> &nbsp; </h2>
+<code style="white-space: pre-wrap;">
+&lt;button type="button" onclick="
+  // Yes, start a spinner element from raw text
+  // Note need to use '&amp;lt;' instead of '&lt;'
+  if (this.innerHTML == 'Search') {
+    let spn = `&amp;lt;x-spinner id='spinMe'>&amp;lt;/x-spinner>`;
+    document.getElementById('searching').innerHTML = spn;
+    const spinM = document.getElementById('spinMe');
+    spinM.setAttribute('sp', '.5');
+    spinM.setAttribute('rotor-style', 'double');
+    spinM.setAttribute('pre', 'Searching ... ');
+    spinM.setAttribute('direction', 'cw');
+    spinM.setAttribute('trace-color', 'transparent' );
+    console.log( spinM.toString() );
+    this.innerHTML = 'Cancel';
+  }
+  else {
+    document.getElementById('searching').innerHTML = ' &nbsp; ';
+    this.innerHTML = 'Search';
+  }
+">Search&lt;/button>
+&lt;h2 id="searching" style="color:red;"> &nbsp; &lt;/h2>
+</code>
+<hr>
+<p style="font-size:3em;margin-top:0;margin-bottom:0;">
+<button type="button" style="width:6em;" onclick="
+  const pausebtn = document.getElementById('pauseBtn');
+  pausebtn.style.visibility = 'visible';
+  const spng  = document.getElementById('spinning');
+  if (this.innerHTML=='Spin It') {
+    const sp  = new SpinnerElement( {} );
+    sp.id    = 'thisSpinner';
+    spng.innerHTML = '';
+    spng.appendChild(sp);
+    sp.setAttributes({color: 'turquoise', suffix: ' Spinning', rstyle: 'double', role: 'status', 'aria-wrap': 'true' });
+    this.innerHTML='Stop It';
+  }
+  else {
+    spng.innerHTML = ' &nbsp; ';
+    pausebtn.style.visibility = 'hidden';
+    this.innerHTML='Spin It';
+  }
+">Spin It</button> &nbsp; <button type="button" id="pauseBtn" style="visibility:hidden;width:6em;" onclick="
+  const sp  = document.getElementById('thisSpinner');
+  if (!sp) {return};
+  if (this.innerHTML == 'Pause') {
+    sp.setSuffix(' Paused')
+    sp.pause();
+    this.innerHTML = 'Resume';
+  }
+  else {
+    sp.setSuffix(' Spinning ');
+    sp.go();
+    this.innerHTML = 'Pause';
+  }">Pause</button> &nbsp; &nbsp;
+<span id="spinning"> &nbsp; </span>
+</p>
+<code style="white-space: pre-wrap;">
+&lt;p style="font-size:3em;margin-top:0;margin-bottom:0;">
+&lt;button type="button" style="width:6em;" onclick="
+  const pausebtn = document.getElementById('pauseBtn');
+  pausebtn.style.visibility = 'visible';
+  const spng  = document.getElementById('spinning');
+  if (this.innerHTML=='Spin It') {
+    const sp  = new SpinnerElement( {} );
+    sp.id    = 'thisSpinner';
+    spng.innerHTML = '';
+    spng.appendChild(sp);
+    sp.setAttributes({color: 'turquoise', suffix: ' Spinning', rstyle: 'double', role: 'status', 'aria-wrap': 'true' });
+    this.innerHTML='Stop It';
+  }
+  else {
+    spng.innerHTML = ' &nbsp; ';
+    pausebtn.style.visibility = 'hidden';
+    this.innerHTML='Spin It';
+  }
+">Spin It&lt;/button> &nbsp; &lt;button type="button" id="pauseBtn" style="visibility:hidden;width:6em;" onclick="
+  const sp  = document.getElementById('thisSpinner');
+  if (!sp) {return};
+  if (this.innerHTML == 'Pause') {
+    sp.setSuffix(' Paused')
+    sp.pause();
+    this.innerHTML = 'Resume';
+  }
+  else {
+    sp.setSuffix(' Spinning ');
+    sp.go();
+    this.innerHTML = 'Pause';
+  }">Pause&lt;/button> &nbsp; &nbsp;
+&lt;span id="spinning"> &nbsp; &lt;/span>
+&lt;/p>
+</code>
+<hr>
+<p id="pace" style="font-size:2em;">
+<button type="button" onclick="
+  if (this.innerHTML=='Pace Me') {
+    this.currentSpeedIdx = 0;
+    this.innerHTML = 'Step';
+  }
+  const speeds = [ '0.1', '0.25', '0.5', '0.75', '1', '1.5', '2', '4', 'Reset' ];
+  if (getSpinner('#sp2')) { removeSpinner('#sp2') }
+  const sp2  = new SpinnerElement({id: 'sp2'});
+  appendSpinner(sp2, '#pace');
+  let curSpd = speeds[this.currentSpeedIdx];
+  if (curSpd === 'Reset') {
+    this.innerHTML = 'Pace Me';
+    removeSpinner('#sp2');
+    this.currentSpeedIdx = 0;
+  }
+  else {
+  	let ss = curSpd === '1' ? '' : 's';
+    sp2.setAttributes({'color': 'blue', 'speed': curSpd, kern: '1ch', 'prefix': 'Rotation in', 'suffix': curSpd + ' second' + ss});
+    this.currentSpeedIdx += 1;
+  }
+">Pace Me</button>
+</p>
+<code style="white-space: pre-wrap;">
+&lt;p id="pace" style="font-size:2em;">
+&lt;button type="button" onclick="
+  if (this.innerHTML=='Pace Me') {
+    this.currentSpeedIdx = 0;
+    this.innerHTML = 'Step';
+  }
+  const speeds = [ '0.1', '0.25', '0.5', '0.75', '1', '1.5', '2', '4', 'Reset' ];
+  if (getSpinner('#sp2')) { removeSpinner('#sp2') }
+  const sp2  = new SpinnerElement({id: 'sp2'});
+  appendSpinner(sp2, '#pace');
+  let curSpd = speeds[this.currentSpeedIdx];
+  if (curSpd === 'Reset') {
+    this.innerHTML = 'Pace Me';
+    removeSpinner('#sp2');
+    this.currentSpeedIdx = 0;
+  }
+  else {
+  	let ss = curSpd === '1' ? '' : 's';
+    sp2.setAttributes({'color': 'blue', 'speed': curSpd, kern: '1ch', 'prefix': 'Rotation in', 'suffix': curSpd + ' second' + ss});
+    this.currentSpeedIdx += 1;
+  }
+">Pace Me&lt;/button>
+&lt;/p>
+</code>
+<hr>
+<button type="button" role='alert' style="font-weight:bold;height:1.6em;width:12ch;font-size:1.4em" onclick="
+  if (this.innerHTML=='Run') {
+    const sp  = new SpinnerElement;
+    sp.id     = 'thatSpinner';
+    this.innerHTML = '';
+    this.appendChild(sp);
+    sp.setAttributes({'color': 'purple', 'prefix': 'Cancel '});
+  }
+  else {
+    this.innerHTML='Run';
+  }
+
+">Run</button>
+<code style="white-space: pre-wrap;">
+&lt;button type="button" role='alert' style="font-weight:bold;height:1.6em;width:12ch;font-size:1.4em" onclick="
+  if (this.innerHTML=='Run') {
+    const sp  = new SpinnerElement;
+    sp.id     = 'thatSpinner';
+    this.innerHTML = '';
+    this.appendChild(sp);
+    sp.setAttributes({'color': 'purple', 'prefix': 'Cancel '});
+  }
+  else {
+    this.innerHTML='Run';
+  }
+
+">Run&lt;/button>
+</code>
+<hr>
+<div style="font-size:2em;">
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
+<div style="display:inline-block;font-size:.8rem;">
+Click to View
+</div>
+<div id="here0" style="display:inline-block;width:3em;text-align:center;font-size:.8rem;">Example</div>
+<div style="font-size:.8rem;display:inline-block;">
+Layout: External Functions and Spinner Methods:
+</div>
+</div>
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
+<div style="display:inline-block;">
+<button type="button" onclick="
+  if (this.innerHTML === 'Insert It') {
+    const sp1=new SpinnerElement({id: 'sp1_id'});
+    insertSpinner(sp1,'#here1');
+    this.innerHTML='Remove It';
+  }
+  else {
+    removeSpinner('#sp1_id');
+    document.querySelector('#here1').innerHTML = ' &nbsp; ';
+    this.innerHTML='Insert It';
+  }
+">Insert It</button>
+</div>
+<div id="here1" style="display:inline-block;width:3em;text-align:center;"></div>
+<div>
+<code style="white-space: pre-wrap;font-size:.8rem;display:inline-block;">
+insertSpinner(sp1,'#here1');
+removeSpinner( [ sp1 | '#sp1_id' ] );
+</code>
+</div>
+</div>
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
+<div style="display:inline-block;">
+<button type="button" onclick="
+  if (this.innerHTML === 'Append It') {
+    const sp2=new SpinnerElement({id: 'sp2_id',
+    rotor:'1111', rstyle:'dotted',wt:'5'});
+    appendSpinner(sp2,'#here2');
+    this.innerHTML='Remove It';
+  }
+  else {
+    removeSpinner('#sp2_id');
+    this.innerHTML='Append It';
+  }
+">Append It</button>
+</div>
+<div id="here2" style="display:inline-block;width:3em;text-align:center;"> Hi </div>
+<div>
+<code style="white-space: pre-wrap;font-size:.8rem;display:inline-block;">
+appendSpinner(sp2,'#here2');
+removeSpinner( [ sp2 | '#sp2_id' ] );
+</code>
+</div>
+</div>
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
+<div style="display:inline-block;">
+<button type="button" onclick="
+  const sp3 = document.getElementById('sp3_id');
+  if (this.innerHTML === 'Show It') {
+    sp3.show();
+    this.innerHTML='Hide It';
+  }
+  else {
+    sp3.hide();
+    this.innerHTML='Show It';
+  }
+">Show It</button>
+</div>
+<div id="here3" style="display:inline-block;width:3em;text-align:center;"> |<x-spinner id="sp3_id" style="display:none;"></x-spinner>| </div>
+<div>
+<code style="white-space: pre-wrap;font-size:.8rem;display:inline-block;">
+sp3.show();  sp3.hide();
+</code>
+</div>
+</div>
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
+<div style="display:inline-block;">
+<button type="button" onclick="
+  const sp4 = document.getElementById('sp4_id');
+  if (this.innerHTML === 'Unveil It') {
+    sp4.unveil();
+    this.innerHTML='Veil It';
+  }
+  else {
+    sp4.veil();
+    this.innerHTML='Unveil It';
+  }
+">Unveil It</button>
+</div>
+<div id="here4" style="display:inline-block;width:3em;text-align:center;"> |<x-spinner id="sp4_id" style="visibility:hidden;"></x-spinner>| </div>
+<div>
+<code style="white-space: pre-wrap;font-size:.8rem;display:inline-block;">
+sp4.unveil();  sp4.veil();
+</code>
+</div>
+</div>
+<div style="display:grid;grid-template-columns: 4em 4em 1fr;">
+<div style="display:inline-block;">
+<button type="button" onclick="
+  let sp5 = document.getElementById('sp5_id');
+  if (this.innerHTML === 'Stop It') {
+    sp5.stop();
+    this.innerHTML='Start It';
+  }
+  else {
+    sp5.run();
+    this.innerHTML='Stop It';
+  }
+">Start It</button>
+</div>
+<div id="here5" style="display:inline-block;width:3em;text-align:center;"> <x-spinner id="sp5_id" rstatus="paused"></x-spinner> </div>
+<div>
+<code style="white-space: pre-wrap;font-size:.8rem;display:inline-block;">
+sp5.run(); sp5.stop();
+</code>
+</div>
+</div>
+</div>
+</section>
+<hr id="save">
+<section>
+<button onclick="
+	const tgt = document.getElementById('saveSp');
+	const saveTgt = document.getElementById('saveArea');
+	if (this.innerHTML=='Add and View') {
+		const saveSpinner = new SpinnerElement({
+			id: 'sp_save',
+			rotor:'1111',
+			rstyle:'dotted',
+			wt:'5',
+			color:'magenta',
+			kerning: '1ch',
+			suffix: 'Now Spinning...'
+		});
+		appendSpinner(saveSpinner,tgt);
+		const spStr = saveSpinner.toString();
+		saveTgt.style.height = '48em';
+		saveTgt.innerHTML = spStr;
+		this.innerHTML = 'Hide';
+    }
+    else {
+    	removeSpinner('#sp_save');
+    	saveTgt.innerHTML = '';
+		saveTgt.style.height = '2em';
+    	this.innerHTML = 'Add and View';
+    }
+">Add and View</button>
+<div id="saveSp"></div>
+<textarea id="saveArea"></textarea>
+</section>
+<hr id="rstyles">
+<section>
+<style>
+	.demoSpnr {
+	  font-size: 2em;
+	  @media screen and (min-width: 660px) {
+		font-size: 3em;
+	  }
+	}
+	.demoHdr {
+	  font-size: .6em;
+	  @media screen and (min-width: 660px) {
+		font-size: .8em;
+	  }
+	}
+</style>
+<h2 style="text-align:center;">
+  <x-spinner rstyle="dotted" rotor="1010" class="demoSpnr" color="magenta" style="font-size:inherit;"></x-spinner> Rotor Styles
+  <x-spinner rstyle="dotted" rotor="1010" class="demoSpnr" color="magenta" style="font-size:inherit;"></x-spinner>
+</h2>
+<div style="text-align:center;">
+<button type="button" onclick="
+  const targetSpinners = document.querySelectorAll('.demoSpnr');
+  targetSpinners.forEach(spinner => {
+    spinner.setRotor('solid')
+  });
+">Solid</button> &nbsp;
+<button type="button" onclick="
+  const targetSpinners = document.querySelectorAll('.demoSpnr');
+  targetSpinners.forEach(spinner => {
+    spinner.setRotor('double')
+  });
+">Double</button> &nbsp;
+<button type="button" onclick="
+  const targetSpinners = document.querySelectorAll('.demoSpnr');
+  targetSpinners.forEach(spinner => {
+    spinner.setRotor('dotted')
+  });
+">Dotted</button> &nbsp;
+<button type="button" onclick="
+  const targetSpinners = document.querySelectorAll('.demoSpnr');
+  targetSpinners.forEach(spinner => {
+    spinner.setRotor('dashed')
+  });
+">Dashed</button> &nbsp;
+<button type="button" onclick="
+  const targetSpinners = document.querySelectorAll('.demoSpnr');
+  targetSpinners.forEach(spinner => {
+    spinner.setRotor('ridge')
+  });
+">Ridge</button> &nbsp;
+<button type="button" onclick="
+  const targetSpinners = document.querySelectorAll('.demoSpnr');
+  targetSpinners.forEach(spinner => {
+    spinner.setRotor('groove')
+  });
+">Groove</button> &nbsp;
+<button type="button" onclick="
+  const targetSpinners = document.querySelectorAll('.demoSpnr');
+  targetSpinners.forEach(spinner => {
+    spinner.setRotor('inset')
+  });
+">Inset</button> &nbsp;
+<button type="button" onclick="
+  const targetSpinners = document.querySelectorAll('.demoSpnr');
+  targetSpinners.forEach(spinner => {
+    spinner.setRotor('outset')
+  });
+">Outset</button> &nbsp; | &nbsp;
+<button onclick="
+  if (this.innerHTML === 'Stop Everything!') {
+    const targetSpinners = getSpinners('.demoSpnr');
+    targetSpinners.forEach(spinner => { spinner.pause() });
+    this.innerHTML = 'OK. Carry On.'
+  }
+  else {
+    const targetSpinners = getSpinners('.demoSpnr');
+    targetSpinners.forEach(spinner => { spinner.run() });
+    this.innerHTML = 'Stop Everything!';
+  }
+">Stop Everything!</button>
+</div>
+<hr>
+<div style="font-family:sans-serif;color:green;">
+<div style="margin: 0 auto;width:100%;text-align:center;">
+<div style="display:grid;grid-template-columns: repeat(12, 1fr);gap:1px;justify-content:center;">
+  <div class="demoHdr" style="font-size:.8em;">weight&rarr;<br>rotor&darr;</div>
+  <div class="demoHdr">Default<br>.195</div>
+  <div class="demoHdr">1<br>.045</div>
+  <div class="demoHdr">2<br>.095</div>
+  <div class="demoHdr">3<br>.145</div>
+  <div class="demoHdr">4<br>.195</div>
+  <div class="demoHdr">5<br>.245</div>
+  <div class="demoHdr">6<br>.295</div>
+  <div class="demoHdr">7<br>.345</div>
+  <div class="demoHdr">8<br>.395</div>
+  <div class="demoHdr">9<br>.445</div>
+  <div class="demoHdr">10<br>.495</div>
+</div>
+<div style="display:grid;grid-template-columns: repeat(12, 1fr);gap:1px;justify-content:center;">
+  <div><br>1000</div>
+  <div><X-SPINNER class="demoSpnr" rtr="1" wt=".195" tclr="rgba(0,55,255,.25)"></X-SPINNER></div>
+  <div><x-spinner class="demoSpnr" rtr="1" wt=".045" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1" wt=".095" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1" wt=".145" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1" wt=".195" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1" wt=".245" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1" wt=".295" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1" wt=".345" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1" wt=".395" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1" wt=".445" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-fast-revspinner class="demoSpnr" rtr="1" wt=".495" tclr="rgba(0,55,255,.25)"></x-fast-revspinner></div>
+</div>
+
+<div style="display:grid;grid-template-columns: repeat(12, 1fr);gap:1px;justify-content:center;">
+  <div><br>1010</div>
+  <div><x-spinner class="demoSpnr" rtr="101" wt=".195" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="101" wt=".045" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="101" wt=".095" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="101" wt=".145" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="101" wt=".195" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="101" wt=".245" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="101" wt=".295" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="101" wt=".345" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="101" wt=".395" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="101" wt=".445" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-fast-revspinner class="demoSpnr" rtr="101" wt=".495" tclr="rgba(0,55,255,.25)"></x-fast-revspinner></div>
+</div>
+<div style="display:grid;grid-template-columns: repeat(12, 1fr);gap:1px;justify-content:center;">
+  <div><br>1100</div>
+  <div><x-spinner class="demoSpnr" rtr="11" wt=".195" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="11" wt=".045" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="11" wt=".095" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="11" wt=".145" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="11" wt=".195" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-fast-revspinner class="demoSpnr" rtr="11" wt=".245" tclr="rgba(0,55,255,.25)"></x-fast-revspinner></div>
+  <div><x-spinner class="demoSpnr" rtr="11" wt=".295" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="11" wt=".345" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="11" wt=".395" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="11" wt=".445" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="11" wt=".495" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+</div>
+<div style="display:grid;grid-template-columns: repeat(12, 1fr);gap:1px;justify-content:center;">
+  <div><br>1110</div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".195" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".045" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".095" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".145" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".195" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".245" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".295" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".345" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".395" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".445" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="111" wt=".495" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+</div>
+<div style="display:grid;grid-template-columns: repeat(12, 1fr);gap:1px;justify-content:center;">
+  <div><br>1111</div>
+  <div><x-spinner class="demoSpnr" rtr="1111" wt=".195" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1111" wt=".045" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1111" wt=".095" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-fast-revspinner class="demoSpnr" rtr="1111" wt=".145" tclr="rgba(0,55,255,.25)"></x-fast-revspinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1111" wt=".195" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1111" wt=".245" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1111" wt=".295" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1111" wt=".345" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1111" wt=".395" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1111" wt=".445" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+  <div><x-spinner class="demoSpnr" rtr="1111" wt=".495" tclr="rgba(0,55,255,.25)"></x-spinner></div>
+</div>
+</div>
+</div>
+<p>
+All of the spinners above use the same basic spinner, with font-size flexing from 2em to 3em set in the page's style sheet,
+with the rotor color green inherited from the containing <code> &lt;div></code>, and the spinner's own markup specifying the light blue trace color.
+The table shows how the spinner varies with different rotor types and weights,
+and the buttons above change the rotor style for the whole set of spinners, which are identified in the HTML markup by the class "demoSpnr".
+</p>
+<p>
+Here is the spinner markup for one of the spinners above:
+<code style="white-space: pre-wrap;">
+  &lt;div style="color:green;">
+  &lt;x-spinner class="demoSpnr" rtr="101" wt=".195" tclr="rgba(0,55,255,.25)">&lt;/x-spinner>
+  &lt;/div>
+</code>
+yielding: <x-spinner rtr="101" wt=".195" class="demoSpnr" tclr="rgba(0,55,255,.25)" rclr="green" style="font-size:3em;"></x-spinner>,
+which still has the class "demoSpnr" so it has the size of the spinners above,
+and it will change rotor style when you click the buttons above.
+</p>
+<p>
+Here is one of the buttons that sets the style of the rotors assigned the "demoSpnr" class,
+using one of the spinner's built-in methods:
+<code style="white-space: pre-wrap;">
+  &lt;button type="button" onclick="
+    const targetSpinners = document.querySelectorAll('.demoSpnr');
+    targetSpinners.forEach(spinner => {
+    spinner.setRotor('dotted');
+    });
+  ">Dotted&lt;/button>
+</code>
+</p>
+</section>
+<hr>
+<section>
+<style>
+	.sqr2crcl {
+	  font-size: 1.2em;
+	  @media screen and (min-width: 660px) {
+	  font-size: 1.6em;
+	  }
+	}
+</style>
+  <h3 style="text-align:center;"> How is this spinner made?</h3>
+  <p>
+These images illustrate how the <em>rotor</em> - the spinning part - is made from a square box HTML element with a border.
+One or more of the top, right, bottom, and left, borders are colored differently from the rest.
+Then the sides of the square are made round by giving the corners of the square a radius of 50% of its size.
+The result is four "quadrants" of the spinner to color and format for different spinners.
+  </p>
+  <div style="
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:1px;
+  justify-content:center;
+  text-align:center">
+<div>
+  <span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+  "></span>&rarr;<span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border-radius: 50%;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+  "></span>
+</div>
+<div>
+  <span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+  "></span>&rarr;<span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border-radius: 50%;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+  "></span>
+</div>
+<div>
+  <span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>&rarr;<span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border-radius: 50%;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>
+</div>
+<div>
+  <span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>&rarr;<span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border-radius: 50%;
+    border:        .195cap solid rgba(0,80,80,.1);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>
+</div>
+<div>
+  <span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border:        .195cap solid rgba(0,80,80,.75);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>&rarr;<span class="sqr2crcl" style="
+    display: inline-block;
+    width:         1cap;
+    height:        1cap;
+    border-radius: 50%;
+    border:        .195cap solid rgba(0,80,80,.75);
+    border-top:    .195cap solid rgba(0,80,80,.75);
+    border-bottom: .195cap solid rgba(0,80,80,.75);
+    border-left:   .195cap solid rgba(0,80,80,.75);
+  "></span>
+</div>
+  </div>
+  <p>
+The faint background of the borders is called the <em>trace</em>.
+It may also be any color, or transparent so it doesn't show at all.
+  </p>
+  <p>
+The spinning motion of the rotor is accomplished with the spinner's built-in
+css animation, rotating the (rounded) square 360&deg; in the number of seconds specified
+with <code>speed="[#]"</code>, rotating clockwise or counter-clockwise
+as specified with <code>direction="[ cw | ccw ]"</code>.
+  </p>
+</section>
+<hr>
+<section>
+<h2 style="text-align:center;">
+You Can Make Your Own Base Spinner<br>
+<x-fast-revspinner></x-fast-revspinner>
+With Customized Defaults!
+<x-fast-revspinner></x-fast-revspinner>
+</h2>
+<p>
+The defaults for spinners may be customized,
+baking in your preferred attributes so it's not necessary to provide them in markup.
+Unless you specify otherwise, they will still assume the color and size of the text they're embedded in, like a text character <x-spinner></x-spinner>.
+</p>
+<p>
+<span style="color:magenta;">Here is the standard spinner &rarr; <x-spinner></x-spinner>,
+marked up with no added attributes as </span>
+<code style="white-space: pre-wrap;">
+  &lt;x-spinner>&lt;/x-spinner>
+</code>
+</p>
+<p>
+This page includes a script that uses the <code>createSpinnerElement</code> constructor
+provided by <code>spinnerComponent.js</code> to create a second spinner
+with a faster default speed and reverse direction:
+<code style="white-space: pre-wrap;">
+  &lt;script>
+    createSpinnerElement('x-fast-revspinner', { speed: '.5', dir: 'ccw'});
+  &lt;/script>
+</code>
+</p>
+<p>
+<span style="color:magenta;">Here is the second spinner &rarr; <x-fast-revspinner></x-fast-revspinner>,
+marked up with no added attributes as </span>
+<code style="white-space: pre-wrap;">
+  &lt;x-fast-revspinner>&lt;/x-fast-revspinner>
+</code>
+</p>
+<p>
+A few of the spinners in the big table above are this type. Do you see them?
+</p>
+
+<p>
+This page has another script to create a third "proprietary" spinner for the Acme company:
+<code style="white-space: pre-wrap;">
+  &lt;script>
+    createSpinnerElement('acme-spnr-06', { sp: '.33', wt: '6', rtr: '101', dir: 'cw' });
+  &lt;/script>
+</code>
+</p>
+<p>
+<span style="color:magenta;">The third spinner comes out like &rarr; <acme-spnr-06></acme-spnr-06>,
+marked up with no added attributes as </span>
+<code style="white-space: pre-wrap;">
+  &lt;acme-spnr-06>&lt;/acme-spnr-06>
+</code>
+</p>
+<p>
+<b>Naming custom spinners:</b>
+<ul>
+	<li>the name <strong>must</strong> contain a hyphen ('-');</li>
+	<li>the name <strong>must</strong> avoid standard reserved words in HTML;</li>
+	<li>the name <em>should</em> be all lower case;</li>
+	<li>the name is <em>recommended</em> to start with the `x-` prefix.</li>
+</ul>
+</p>
+<p>
+Note that the above scripts using `createSpinnerElement` add <em>new</em> spinner elements to the DOM; the original spinner
+with the tag name 'x-spinner' is still available.
+</p>
+</section>
+<hr>
+<section>
+  <style>
+    .spin1 {
+      list-style: none;
+      padding: 0;
+    }
+    .spin1 li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5em;
+    }
+    .spin1 li x-spinner {
+      margin-right: 0.5em;
+    }
+  </style>
+<h2 style="text-align:center">Special Case: A Workaround for List Bullets</h2>
+<ul class="spin1" style="font-size:1.6em;">
+  <li> Customizable</li>
+  <li> No Dependencies or Frameworks</li>
+  <li> Compatible with standard HTML, css, and Javascript</li>
+  <li> Works in all modern browsers</li>
+  <li> May be entirely controlled in markup, or by script, or in combination</li>
+</ul>
+<p>
+  HTML list elements do not accept custom web components as bullet markers.
+  Instead, the spinning bullets on the list above are provided by removing the list's own item markers by styling them <code>list-style: none;</code>,
+  and then inserting the custom spinner elements at the very start of each list item, just before its content.
+  The insertion is accomplished with a brief script triggered after full DOM load
+  to ensure the list is all there.
+  <code style="white-space: pre-wrap;">
+  &lt;script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const listItems = document.querySelectorAll('.spin1 li');
+      const spinOpts = {
+        rtr:           '101',
+        color:         'red',
+        bgclr:         'gold',
+        tclr:          'blue'
+      };
+      listItems.forEach(function(item) {
+        const spinner = new SpinnerElement( spinOpts );
+        item.insertAdjacentElement('afterbegin', spinner);
+      })
+    });
+  &lt;/script>
+  </code>
+</p>
+</section>
+<hr id="sources">
+<section>
+<h2 style="text-align:center">Sources</h2>
+<p>
+Enabling the HTML SpinnerElement is as simple as adding the script
+<code> spinnerComponent.js </code> to your website and loading it
+as the "src" of an HTML &lt;script> element:
+<code style="white-space: pre-wrap;">
+  &lt;script src="./scripts/spinnerComponent.js">&lt;/script>
+</code>
+</p>
+<p>
+The best source for the latest production release of <code> spinnerComponent.js </code> is from my account at <a href="https://github.com/bwva/HTML-SpinnerElem">GitHub.com</a>.
+That release comes with a README file with <b>documentation</b>
+and also a copy of this page's HTML file you can inspect for examples.
+</p>
+<p>
+You can simply embed the script from a cdn, jsdelivr.net, which taps my latest release on Github:
+<code style="white-space: pre-wrap;">
+  &lt;script src="https://cdn.jsdelivr.net/gh/bwva/HTML-SpinnerElem/src/spinnerComponent.js">&lt;/script>
+</code>
+</p>
+</section>
+<section>
+<p>
+  <x-spinner rstyle="double" rotor="101" style="font-size:60em;color:purple;margin:auto;"></x-spinner>
+</p>
+<code style="white-space: pre-wrap;">
+&lt;p>
+  &lt;x-spinner rstyle="double" rotor="101" style="font-size:60em;color:purple;margin:auto;">&lt;/x-spinner>
+&lt;/p>
+</code>
+
+</section>
+<hr>
+<script src="./scripts/spinnerComponent.js"></script>
+<script>
+  // Create a new spinner with a faster default speed & reverse spin
+  createSpinnerElement('x-fast-revspinner', { sp: '.5', dir: 'ccw'});
+</script>
+<script>
+  // Create a new spinner with
+  createSpinnerElement('acme-spnr-06', { sp: '.33', wt: '6', rtr: '101', dir: 'cw' });
+</script>
+<script>
+// for the list bullets example
+document.addEventListener('DOMContentLoaded', function() {
+  const listItems = document.querySelectorAll('.spin1 li');
+  const spinOpts = {
+    rtr:           '101',
+    color:         'red',
+    bgclr:         'gold',
+    tclr:          'blue'
+  };
+  listItems.forEach(function(item) {
+    const spinner = new SpinnerElement( spinOpts );
+    item.insertAdjacentElement('afterbegin', spinner);
+  })
+});
+</script>
+</body>
+</html>
+

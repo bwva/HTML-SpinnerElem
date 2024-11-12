@@ -207,7 +207,7 @@ Sets the color of the spinner's rotor. Accepts any valid CSS color value. Defaul
   <x-spinner trace-color="transparent"></x-spinner>
 ```
 Sets the color of the spinner's trace. Accepts any valid CSS color value.
-Default is a light gray - rgba(20, 20, 20, .1).
+Default is a light gray - ```rgba(20, 20, 20, .1)```.
 
 #### background-color | bgclr = [ hex color | rgba() color | inherit | transparent ]
 ```html

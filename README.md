@@ -115,7 +115,7 @@ You can save a spinner as a fragment of plain HTML and some associated CSS prope
 
 Standard "dynamic" spinners created with `spinnerComponent.js` are embedded in the shadow DOM to prevent the spinner's CSS properties from affecting the rest of the web page. Currently the only way to put something into the shadow DOM is via Javascript, which is why dynamic spinners need `spinnerComponent.js` to be loaded every time.
 
-An exported **static** spinner fragment is inserted where needed in the main document, not the shadow DOM, and its CSS is added to the document's CSS stylesheets or `style` elements. If you export a spinner, be sure to check for naming collisions among CSS selectors and HTML element identifiers - you might not want the spinner's styling to spill over to other elements or vice versa. The spinner uses these internal class names: 'spinner-wrap', 'spinner-prefix', 'spinner-rotor', 'spinner-suffix', and 'aria-spinner-wrap'). Its entire HTML fragment is:
+An exported **static** spinner fragment is inserted where needed **in the main document**, not the shadow DOM, and its CSS is added to the document's CSS stylesheets or `style` elements. If you export a spinner, be sure to check for naming collisions among CSS selectors and HTML element identifiers - you might not want the spinner's styling to spill over to other elements or vice versa. The spinner uses these internal class names: 'spinner-wrap', 'spinner-prefix', 'spinner-rotor', 'spinner-suffix', and 'aria-spinner-wrap'). Its entire HTML fragment is:
 ```html
 <div class="spinner-wrap"><span class="spinner-prefix"></span><span class="spinner-rotor"></span><span class="spinner-suffix"></span></div>
 ```

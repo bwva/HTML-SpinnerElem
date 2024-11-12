@@ -259,12 +259,6 @@ By default, the SpinnerElement is constructed for this presentational role. It i
 
 At the same time, with `<div>` and `<span>` elements not having their own semantic roles, any text they contain is directly available to assistive technologies. That allows a spinner's prefix and suffix to be detected and read, for example, by a screen reader.
 
-An important visual accessibility aspect of a spinner is its <strong>color scheme</strong>. For some sighted users, the spectrum of colors they see may not have the same distinctions among hues that the "standard" color palettes and names would suggest. Along with hue, differences in intensity and contrast between adjacent colors, such as type over a background, can make or break readability. Official specs: <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG)</a>. Whocanuse: <a href="https://www.whocanuse.com">whocanuse.com</a>.
-
-Finally, <strong>movement</strong> on the screen can be problematic for some sighted users, especially if it rapidly alternates contrasting shades. Often this can be eliminated by choosing a slower speed for the spinner, and can be reduced by selecting less-sharply contrasting colors.
-
->This illustrates why I like the SpinnerElement. A self-contained spinner, including its prefix and suffix, is far simpler to manage than a wait message composed of a span for the prefix, an image tag with the correct src path and styling to insert, align, and size the visual, including its 'alt' text and its own ARIA attributes to play well, and then a span for the suffix, all with their own color assignments and document-wide unique ids.
-
 #### Spinners with ARIA Roles
 In some cases the spinner is part of more complex behavior. Perhaps the "Search" button above keeps the spinner displayed, but transforms its behavior, form, or prefix/suffix messages after the long process returns. Or the spinner itself could be "clickable" to trigger some event, and modifies itself when it does so. Contexts like these require providing more information and meta-data to assistive technologies.
 
@@ -302,6 +296,13 @@ Describes the kind of change that will trigger assistive technologies. Default i
 MDN has a good **reference on ARIA attributes**, at:
 
 [https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes)
+
+### Some Additional Accessibility Considerations
+An important visual accessibility aspect of a spinner is its <strong>color scheme</strong>. For some sighted users, the spectrum of colors they see may not have the same distinctions among hues that the "standard" color palettes and names would suggest. Along with hue, differences in intensity and contrast between adjacent colors, such as type over a background, can make or break readability. Official specs: <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG)</a>. Whocanuse: <a href="https://www.whocanuse.com">whocanuse.com</a>.
+
+Finally, <strong>movement</strong> on the screen can be problematic for some sighted users, especially if it rapidly alternates contrasting shades. Often this can be eliminated by choosing a slower speed for the spinner, and can be reduced by selecting less-sharply contrasting colors.
+
+>This illustrates why I like the SpinnerElement. A self-contained spinner, including its prefix and suffix, is far simpler to manage than a wait message composed of a span for the prefix, an image tag with the correct src path and styling to insert, align, and size the visual, including its 'alt' text and its own ARIA attributes to play well, and then a span for the suffix, all with their own color assignments and document-wide unique ids.
 
 ### Fine to combine attributes
 The examples above are simplified to illustrate each attribute. In practice any number or combination of attributes may be used.
